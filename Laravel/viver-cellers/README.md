@@ -9,9 +9,9 @@
 </p>
 --->
 
-# Viver del Cellers: Laravel 🍇
+# Viver de Cellers: Laravel 🍇
 
-In the Laravel section of our "Viver del Cellers" project, we will focus on the backend development, responsible for handling the application logic, interaction with the database, and management of the different system functionalities. Here's a detailed explanation of what will be covered:
+In the Laravel section of our "Viver de Cellers" project, we will focus on the backend development, responsible for handling the application logic, interaction with the database, and management of the different system functionalities. 
 
 ## Folder and File Structure 📁
 
@@ -46,7 +46,7 @@ In the Laravel section of our "Viver del Cellers" project, we will focus on the 
 <!---
 # Viver del Cellers: Laravel 🍇
 
-En la sección de Laravel de nuestro proyecto "Viver de Cellers", nos enfocaremos en el desarrollo del backend, encargado de manejar la lógica de la aplicación, la interacción con la base de datos y la gestión de las diferentes funcionalidades del sistema. Aquí hay una explicación detallada de lo que se abordará:
+En la sección de Laravel de nuestro proyecto "Viver de Cellers", nos enfocaremos en el desarrollo del backend, encargado de manejar la lógica de la aplicación, la interacción con la base de datos y la gestión de las diferentes funcionalidades del sistema. 
 
 ## Estructura de Carpetas y Archivos 📁
 
