@@ -1,6 +1,6 @@
-# Viver del Cellers: Angular 🍇
+# Viver de Cellers: Angular 🍇
 
-In the Angular section of our "Viver del Cellers" project, we will focus on frontend development, responsible for the user interface and client interaction with the application.
+In the Angular section of our "Viver de Cellers" project, we will focus on frontend development, responsible for the user interface and client interaction with the application.
 
 ## Folder and File Structure 📁
 
