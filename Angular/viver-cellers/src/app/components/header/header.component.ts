@@ -10,38 +10,38 @@ import { filter } from 'rxjs/operators';
 })
 
 export class HeaderComponent implements OnInit {
-  pageTitle: string = "Título Predeterminado";
+  backgroundImage: string = "/assets/img/header-background/default-background.jpg"; // Ruta predeterminada de la imagen de fondo
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
     initFlowbite();
 
-    // Suscribirse a los eventos de navegación del router para actualizar el título
+    // Suscribirse a los eventos de navegación del router para actualizar el título y la imagen de fondo
     this.router.events
       .pipe(
         filter(event => event instanceof NavigationEnd)
       )
       .subscribe((event: any) => {
-        // Aquí puedes definir la lógica para cambiar el título según la ruta actual
-        this.updatePageTitle((event as NavigationEnd).url);
+        // Lógica para cambiar imagen de fondo según la ruta actual
+        this.updatePageInfo((event as NavigationEnd).url);
       });
   }
 
-  // Método para actualizar el título según la ruta actual
-  updatePageTitle(url: string): void {
+  // Método para actualizar la imagen de fondo según la ruta actual
+  updatePageInfo(url: string): void {
     switch (url) {
       case '/home':
-        this.pageTitle = 'Página de Inicio';
+        this.backgroundImage = '/assets/img/header-background/home-background.jpg';
         break;
       case '/about':
-        this.pageTitle = 'Acerca de Nosotros';
+        this.backgroundImage = '/assets/img/header-background/about-background.jpg';
         break;
       case '/contact':
-        this.pageTitle = 'Contáctanos';
+        this.backgroundImage = '/assets/img/header-background/contact-background.jpg';
         break;
       default:
-        this.pageTitle = 'Título Predeterminado';
+        this.backgroundImage = '/assets/img/header-background/default-background.jpeg';
     }
   }
 }
