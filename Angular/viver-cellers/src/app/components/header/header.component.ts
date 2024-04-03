@@ -10,7 +10,7 @@ import { filter } from 'rxjs/operators';
 })
 
 export class HeaderComponent implements OnInit {
-  backgroundImage: string = "/assets/img/header-background/default-background.jpg"; // Ruta predeterminada de la imagen de fondo
+  backgroundImage: string = "/assets/img/header-background/home-background.jpg"; // Ruta predeterminada de la imagen de fondo
 
   constructor(private router: Router) { }
 
@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
   updatePageInfo(url: string): void {
     switch (url) {
       case '/home':
-        this.backgroundImage = '/assets/img/header-background/home-background.jpg';
+        this.backgroundImage = '/assets/img/header-background/home-background.jpeg';
         break;
       case '/about':
         this.backgroundImage = '/assets/img/header-background/about-background.jpg';
@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
         this.backgroundImage = '/assets/img/header-background/contact-background.jpg';
         break;
       default:
-        this.backgroundImage = '/assets/img/header-background/default-background.jpeg';
+        this.backgroundImage = '/assets/img/header-background/home-background.jpeg';
     }
   }
 }
