@@ -46,6 +46,9 @@ export class HeaderComponent implements OnInit {
       case '/services':
         this.backgroundImage = '/assets/img/header-background/home-background.jpeg';
         break;
+      case '/information':
+        this.backgroundImage = '/assets/img/header-background/home-background.jpeg';
+        break;
       default:
         this.backgroundImage = '/assets/img/header-background/home-background.jpeg';
     }
