@@ -10,6 +10,7 @@ import { RequirementsComponent } from './components/requirements/requirements.co
 import { ServicesComponent } from './components/services/services.component';
 import { InformationComponent } from './components/information/information.component';
 import { RegulationComponent } from './components/regulation/regulation.component';
+import { PectComponent } from './components/pect/pect.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { RegulationComponent } from './components/regulation/regulation.componen
     ServicesComponent,
     InformationComponent,
     RegulationComponent,
+    PectComponent,
   ],
   imports: [
     BrowserModule,
