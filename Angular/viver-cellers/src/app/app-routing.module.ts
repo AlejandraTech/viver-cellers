@@ -7,6 +7,7 @@ import { InformationComponent } from './components/information/information.compo
 import { RegulationComponent } from './components/regulation/regulation.component';
 import { PectComponent } from './components/pect/pect.component';
 import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent }, // Página Inicio
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'pect', component: PectComponent }, // Página de Informcaión del PECT
 
   { path: 'register', component: RegisterComponent }, // Página de Registro
+  { path: 'login', component: LoginComponent }, // Página de Login
 
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Página que se carga primero
   // { path: '**', component: ErrorPageComponent }, // URL incorrecta

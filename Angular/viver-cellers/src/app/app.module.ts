@@ -12,6 +12,7 @@ import { InformationComponent } from './components/information/information.compo
 import { RegulationComponent } from './components/regulation/regulation.component';
 import { PectComponent } from './components/pect/pect.component';
 import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { RegisterComponent } from './components/register/register.component';
     RegulationComponent,
     PectComponent,
     RegisterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
