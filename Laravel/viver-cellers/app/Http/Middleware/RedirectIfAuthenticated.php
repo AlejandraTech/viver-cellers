@@ -21,6 +21,9 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+                if ($request->expectsJson()) {
+                    return response()->json(['error' => 'You are already authenticated'], 200);
+                }
                 return redirect(RouteServiceProvider::HOME);
             }
         }
@@ -28,3 +31,24 @@ class RedirectIfAuthenticated
         return $next($request);
     }
 }
+
+// class RedirectIfAuthenticated
+// {
+//     /**
+//      * Handle an incoming request.
+//      *
+//      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+//      */
+//     public function handle(Request $request, Closure $next, string ...$guards): Response
+//     {
+//         $guards = empty($guards) ? [null] : $guards;
+
+//         foreach ($guards as $guard) {
+//             if (Auth::guard($guard)->check()) {
+//                 return redirect(RouteServiceProvider::HOME);
+//             }
+//         }
+
+//         return $next($request);
+//     }
+// }
