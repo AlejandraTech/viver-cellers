@@ -5,7 +5,7 @@
         <div class="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
 
           <div class="g-0 lg:flex lg:flex-wrap">
-            <!-- Left column container with background and description-->
+            <!-- Left column container with background and description -->
             <div class="flex items-center rounded-b-lg lg:w-6/12 lg:rounded-e-lg lg:rounded-bl-none"
               style="background: linear-gradient(to right, #6b0000, #8b0000, #ab0000, #cb0000)">
               <div class="px-4 py-6 text-white md:mx-6 md:p-12">
@@ -23,10 +23,10 @@
               </div>
             </div>
 
-            <!-- Right column container-->
+            <!-- Right column container -->
             <div class="px-4 md:px-0 lg:w-6/12">
               <div class="md:mx-6 md:p-12">
-                <!--Logo-->
+                <!-- Logo -->
                 <div class="text-center">
                   <img class="mx-auto w-48" src="../../../assets/img/logo.png" alt="logo" />
                   <h4 class="mb-12 mt-1 pb-1 text-xl font-semibold">
@@ -34,102 +34,229 @@
                   </h4>
                 </div>
 
-                <form>
-                  <!--Username input-->
-                  <div class="relative mb-4" data-twe-input-wrapper-init>
+                <form [formGroup]="register" (ngSubmit)="submit()">
+                  <!-- firstname input -->
+                  <div class="form-group relative mb-4" data-twe-input-wrapper-init>
                     <input type="text"
                       class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-                      id="username" placeholder="Username" />
-                    <label for="username"
-                      class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary">Username
-                    </label>
-                  </div>
-
-                  <!--Firstname input-->
-                  <div class="relative mb-4" data-twe-input-wrapper-init>
-                    <input type="text"
-                      class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-                      id="firstname" placeholder="Firstname" />
+                      placeholder="firstname" formControlName="firstname" />
                     <label for="firstname"
                       class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary">Firstname
                     </label>
+
+                    <!-- This field is required -->
+                    <div
+                      *ngIf="this.register.get('firstname')?.errors?.['required'] && this.register.get('firstname')?.touched"
+                      class="text-red-500 text-xs italic">
+                      Aquest camp és obligatori.
+                    </div>
+
+                    <!-- MaxLength -->
+                    <div *ngIf="this.register.get('firstname')?.errors?.['maxlength'] &&
+                    this.register.get('firstname')?.touched" class="text-red-500 text-xs italic">
+                      Aquest camp només pot contenir un màxim de 20 caràcters.
+                    </div>
+
+                    <!-- MinLength -->
+                    <div *ngIf="this.register.get('firstname')?.errors?.['minlength'] &&
+                    this.register.get('firstname')?.touched" class="text-red-500 text-xs italic">
+                      Aquest camp només pot contenir com a mínim 3 caràcters.
+                    </div>
+
+                    <!-- Only letters -->
+                    <div *ngIf="this.register.get('firstname')?.errors?.['pattern'] &&
+                    this.register.get('firstname')?.touched" class="text-red-500 text-xs italic">
+                      Només s'accepten lletres.
+                    </div>
                   </div>
 
-                  <!--DNI input-->
-                  <div class="relative mb-4" data-twe-input-wrapper-init>
+                  <!-- lastname input -->
+                  <div class="form-group relative mb-4" data-twe-input-wrapper-init>
                     <input type="text"
                       class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-                      id="dni" placeholder="DNI" />
+                      placeholder="Apellidos" formControlName="lastname" />
+                    <label for="lastname"
+                      class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary">Apellidos
+                    </label>
+
+                    <!-- This field is required -->
+                    <div *ngIf="this.register.get('lastname')?.errors?.['required'] &&
+                    this.register.get('lastname')?.touched" class="text-red-500 text-xs italic">
+                      Aquest camp és obligatori.
+                    </div>
+
+                    <!-- MaxLength -->
+                    <div *ngIf="this.register.get('lastname')?.errors?.['maxlength'] &&
+                    this.register.get('lastname')?.touched" class="text-red-500 text-xs italic">
+                      Aquest camp només pot contenir un màxim de 20 caràcters.
+                    </div>
+
+                    <!-- MinLength -->
+                    <div *ngIf="this.register.get('lastname')?.errors?.['minlength'] &&
+                    this.register.get('lastname')?.touched" class="text-red-500 text-xs italic">
+                      Aquest camp només pot contenir com a mínim 3 caràcters.
+                    </div>
+
+                    <!-- Only letters -->
+                    <div *ngIf="this.register.get('lastname')?.errors?.['pattern'] &&
+                        this.register.get('lastname')?.touched" class="text-red-500 text-xs italic">
+                      Només s'accepten lletres.
+                    </div>
+                  </div>
+
+                  <!-- DNI input -->
+                  <div class="form-group relative mb-4" data-twe-input-wrapper-init>
+                    <input type="text"
+                      class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
+                      placeholder="DNI" formControlName="dni" />
                     <label for="dni"
                       class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary">DNI
                     </label>
+
+                    <!-- This field is required -->
+                    <div *ngIf="this.register.get('dni')?.errors?.['required'] &&
+                    this.register.get('dni')?.touched" class="text-red-500 text-xs italic">
+                      Aquest camp és obligatori.
+                    </div>
+
+                    <!-- MaxLength -->
+                    <div *ngIf="this.register.get('dni')?.errors?.['maxlength'] &&
+                        this.register.get('dni')?.touched" class="text-red-500 text-xs italic">
+                      Aquest camp només pot contenir un màxim de 9 caràcters.
+                    </div>
+
+                    <!-- MinLength -->
+                    <div *ngIf="this.register.get('dni')?.errors?.['minlength'] &&
+                     this.register.get('dni')?.touched" class="text-red-500 text-xs italic">
+                      Aquest camp només pot contenir com a mínim 9 caràcters.
+                    </div>
                   </div>
 
-                  <!--E-mail input-->
-                  <div class="relative mb-4" data-twe-input-wrapper-init>
+                  <!-- E-mail input -->
+                  <div class="form-group relative mb-4" data-twe-input-wrapper-init>
                     <input type="email"
                       class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-                      id="email" placeholder="E-mail" />
+                      placeholder="E-mail" formControlName="email" />
                     <label for="email"
                       class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary">Correo
                       Electrónico
                     </label>
+
+                    <!-- This field is required -->
+                    <div *ngIf="this.register.get('email')?.errors?.['required'] &&
+                    this.register.get('email')?.touched" class="text-red-500 text-xs italic">
+                      Aquest camp és obligatori.
+                    </div>
+
+                    <!-- Pattern -->
+                    <div *ngIf="this.register.get('email')?.errors?.['pattern'] &&
+                    this.register.get('email')?.touched" class="text-red-500 text-xs italic">
+                      Format invàlid.
+                    </div>
                   </div>
 
-                  <!--Password input-->
-                  <div class="relative mb-4" data-twe-input-wrapper-init>
+                  <!-- Password input -->
+                  <div class="form-group relative mb-4" data-twe-input-wrapper-init>
                     <input type="password"
                       class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-                      id="password" placeholder="Password" />
+                      placeholder="Password" formControlName="password" />
                     <label for="password"
                       class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary">Password
                     </label>
+
+                    <!-- This field is required -->
+                    <div *ngIf="this.register.get('password')?.errors?.['required'] &&
+                    this.register.get('password')?.touched" class="text-red-500 text-xs italic">
+                      Aquest camp és obligatori.
+                    </div>
+
+                    <!-- MinLength -->
+                    <div *ngIf="this.register.get('password')?.errors?.['minlength'] &&
+                    this.register.get('password')?.touched" class="text-red-500 text-xs italic">
+                      Aquest camp només pot contenir com a mínim 8 caràcters.
+                    </div>
                   </div>
 
-                  <!--Repeat Password input-->
-                  <div class="relative mb-4" data-twe-input-wrapper-init>
+                  <!-- Repeat Password input -->
+                  <div class="form-group relative mb-4" data-twe-input-wrapper-init>
                     <input type="password"
                       class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-                      id="repeatPassword" placeholder="Password" />
-                    <label for="repeatPassword"
+                      placeholder="Password" formControlName="repeatpassword" />
+                    <label for="repeatpassword"
                       class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary">Repeat
                       Password
                     </label>
+
+                    <!-- This field is required -->
+                    <div *ngIf="this.register.get('repeatpassword')?.errors?.['required'] &&
+                    this.register.get('repeatpassword')?.touched" class="text-red-500 text-xs italic">
+                      Aquest camp és obligatori.
+                    </div>
                   </div>
 
-                  <!--Address input-->
-                  <div class="relative mb-4" data-twe-input-wrapper-init>
+                  <!-- Address input -->
+                  <div class="form-group relative mb-4" data-twe-input-wrapper-init>
                     <input type="text"
                       class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-                      id="address" placeholder="Address" />
+                      placeholder="Address" formControlName="address" />
                     <label for="address"
                       class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary">Address
                     </label>
+
+                    <!-- This field is required -->
+                    <div *ngIf="this.register.get('address')?.errors?.['required'] &&
+                    this.register.get('address')?.touched" class="text-red-500 text-xs italic">
+                      Aquest camp és obligatori.
+                    </div>
                   </div>
 
-                  <!--Postal Code input-->
-                  <div class="relative mb-4" data-twe-input-wrapper-init>
-                    <input type="number"
+                  <!-- Postal Code input -->
+                  <div class="form-group relative mb-4" data-twe-input-wrapper-init>
+                    <input type="text"
                       class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-                      id="postalCode" placeholder="Postal Code" />
-                    <label for="postalCode"
+                      placeholder="Postal Code" formControlName="postalcode" />
+                    <label for="postalcode"
                       class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary">Postal
                       Code
                     </label>
+
+                    <!-- This field is required -->
+                    <div *ngIf="this.register.get('postalcode')?.errors?.['required'] &&
+                    this.register.get('postalcode')?.touched" class="text-red-500 text-xs italic">
+                      Aquest camp és obligatori.
+                    </div>
+
+                    <!-- MaxLength -->
+                    <div *ngIf="this.register.get('postalcode')?.errors?.['maxlength'] &&
+                    this.register.get('postalcode')?.touched" class="text-red-500 text-xs italic">
+                      Aquest camp només pot contenir un màxim de 5 caràcters.
+                    </div>
+
+                    <!-- MinLength -->
+                    <div *ngIf="this.register.get('postalcode')?.errors?.['minlength'] &&
+                    this.register.get('postalcode')?.touched" class="text-red-500 text-xs italic">
+                      Aquest camp només pot contenir com a mínim 5 caràcters.
+                    </div>
+
+                    <!-- Only numbers -->
+                    <div *ngIf="this.register.get('postalcode')?.errors?.['pattern'] &&
+                        this.register.get('postalcode')?.touched" class="text-red-500 text-xs italic">
+                      Només s'accepten números.
+                    </div>
                   </div>
 
-                  <!--Submit button-->
+                  <!-- Submit button -->
                   <div class="mb-12 pb-1 pt-1 text-center">
                     <button
-                      class="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-dark-3 transition duration-150 ease-in-out hover:shadow-dark-2 focus:shadow-dark-2 focus:outline-none focus:ring-0 active:shadow-dark-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
-                      type="button" data-twe-ripple-init data-twe-ripple-color="light" style="
+                      class="mb-3 w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-dark-3 transition duration-150 ease-in-out hover:shadow-dark-2 focus:shadow-dark-2 focus:outline-none focus:ring-0 active:shadow-dark-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
+                      type="submit" data-twe-ripple-init data-twe-ripple-color="light" style="
                     	background: linear-gradient(to right, #cb0000, #ab0000, #8b0000, #6b0000 );
-                  	">
+                  	" [disabled]="register.invalid">
                       Registre
                     </button>
                   </div>
 
-                  <!--Register button-->
+                  <!-- Register button -->
                   <div class="flex items-center justify-between pb-6">
                     <p class="mb-0 me-2">Ja tens un compte?</p>
                     <button type="button"
