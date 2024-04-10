@@ -14,6 +14,8 @@ import { PectComponent } from './components/pect/pect.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DniDirective } from './directives/dni.directive';
+import { RepeatPasswordDirective } from './directives/repeat-password.directive';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     PectComponent,
     RegisterComponent,
     LoginComponent,
+    DniDirective,
+    RepeatPasswordDirective,
   ],
   imports: [
     BrowserModule,
