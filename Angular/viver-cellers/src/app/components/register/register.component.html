@@ -108,7 +108,7 @@
                   <div class="form-group relative mb-4" data-twe-input-wrapper-init>
                     <input type="text"
                       class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-                      placeholder="DNI" formControlName="dni" />
+                      placeholder="DNI" formControlName="dni" appDni=dni />
                     <label for="dni"
                       class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary">DNI
                     </label>
@@ -129,6 +129,12 @@
                     <div *ngIf="this.register.get('dni')?.errors?.['minlength'] &&
                      this.register.get('dni')?.touched" class="text-red-500 text-xs italic">
                       Aquest camp només pot contenir com a mínim 9 caràcters.
+                    </div>
+
+                    <!-- Custom -->
+                    <div *ngIf="this.register.get('dni')?.errors?.['custom'] &&
+                    this.register.get('dni')?.touched" class="text-red-500 text-xs italic">
+                      DNI incorrecte
                     </div>
                   </div>
 
@@ -181,7 +187,7 @@
                   <div class="form-group relative mb-4" data-twe-input-wrapper-init>
                     <input type="password"
                       class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-                      placeholder="Password" formControlName="repeatpassword" />
+                      placeholder="Password" formControlName="repeatpassword" appRepeatPassword=password />
                     <label for="repeatpassword"
                       class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary">Repetir
                       Contrasenya
@@ -191,6 +197,12 @@
                     <div *ngIf="this.register.get('repeatpassword')?.errors?.['required'] &&
                     this.register.get('repeatpassword')?.touched" class="text-red-500 text-xs italic">
                       Aquest camp és obligatori.
+                    </div>
+
+                    <!-- Match password -->
+                    <div *ngIf="this.register.get('repeatpassword')?.errors?.['custom'] &&
+                    this.register.get('repeatpassword')?.touched" class="text-red-500 text-xs italic">
+                      Les contrasenyes han de coincidir.
                     </div>
                   </div>
 
@@ -256,7 +268,7 @@
                     </button>
                   </div>
 
-                  <!-- Register button -->
+                  <!-- Login button -->
                   <div class="flex items-center justify-between pb-6">
                     <p class="mb-0 me-2">Ja tens un compte?</p>
                     <button type="button"
