@@ -8,6 +8,7 @@ import { RegulationComponent } from './components/regulation/regulation.componen
 import { PectComponent } from './components/pect/pect.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { UserManagementComponent } from './components/user-management/user-management.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent }, // Página Inicio
@@ -19,6 +20,8 @@ const routes: Routes = [
 
   { path: 'register', component: RegisterComponent }, // Página de Registro
   { path: 'login', component: LoginComponent }, // Página de Login
+
+  { path: 'user_management', component: UserManagementComponent }, // Página de Gestión de Usuarios
 
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Página que se carga primero
   // { path: '**', component: ErrorPageComponent }, // URL incorrecta

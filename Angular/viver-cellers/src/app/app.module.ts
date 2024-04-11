@@ -16,6 +16,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DniDirective } from './directives/dni.directive';
 import { RepeatPasswordDirective } from './directives/repeat-password.directive';
+import { UserManagementComponent } from './components/user-management/user-management.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { RepeatPasswordDirective } from './directives/repeat-password.directive'
     LoginComponent,
     DniDirective,
     RepeatPasswordDirective,
+    UserManagementComponent,
   ],
   imports: [
     BrowserModule,
