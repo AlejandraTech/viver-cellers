@@ -1,0 +1,94 @@
+<section class="bg-neutral-200 dark:bg-neutral-700">
+  <div class="container mx-auto p-6">
+    <!-- User table -->
+    <div class="overflow-x-auto rounded-lg shadow-md">
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-center text-xs uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th class="px-6 py-3">Nom</th>
+            <th class="px-6 py-3">Cognoms</th>
+            <th class="px-6 py-3">Correu Electrònic</th>
+            <th class="px-6 py-3">Modificar</th>
+            <th class="px-6 py-3">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bg-white dark:bg-gray-800 text-center">
+            <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">Admin</td>
+            <td class="px-6 py-4">Admin</td>
+            <td class="px-6 py-4">admin@gmail.com</td>
+            <td class="px-6 py-4 justify-center">
+              <div class="inline-block align-middle border border-red-600 rounded-full p-1 hover:bg-red-100">
+                <a href="#">
+                  <img
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAR9JREFUSEu1lUFygzAMRZ8nOUhyCJjpDo6Sk+QoyU3IrgsuwUU6dJSiVjHYMqSw8iD5f+nr2w7s/IWd8fkXgk84HaCp4R4X/ELQQzPCLcDJ6ayt4CE5PXRAI+sRhi9oP2DQ/THBb3KGYAYuwJIvhcm6hnOKYJRA9czNf1q5Ak4ydRPJReWKOygiSMliSLcT2MqtLOFHJpnhNolEgiPcLIiVRYds9Z8K+NO6fxphPoMlcN0Vz8Kz6YxgLbhYXS3sdpACT/0XcKCzLsy6aKl9p6OZAh7By4Yc+HSqtxN44G8RWGfEPrexJRcWSaQgOfBNHXj3URxf3cEeBCXXtcf7qKBNXddyUK76gHhIcVxmFOCSPMlrAUvy3YelBCSXszvBN0nVohleaXBfAAAAAElFTkSuQmCC"
+                    alt="Modificar" class="rounded-full">
+                </a>
+              </div>
+            </td>
+            <td class="px-6 py-4 justify-center">
+              <div class="inline-block align-middle border border-red-600 rounded-full p-1 hover:bg-red-100">
+                <a href="#">
+                  <img
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAJRJREFUSEvtlcsRgCAMBZeiuGspVqJWJneasBMdDoyKfEQGL5IjQ7LJ4/MElUNUrk8SoKEDlkAjs4Qp1mQUkCjOBquAQYIKQS4AjckpD8mhzLeA8t7vFbxn8FaqszQW9QOAHduVzbf+SqIGSN6iJtEPJMr5AHMemnEw42Q5oST0bkLoDEzx8Skk5mxJT84Zwbe3OmAH5BVSGbEiBo0AAAAASUVORK5CYII="
+                    alt="Eliminar" class="rounded-full">
+                </a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Form to add user -->
+    <div class="mt-4">
+      <form class="bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4">
+        <div class="flex justify-center items-center">
+          <div class="justify-center items-center inline-block align-middle border border-red-600 rounded-full p-1">
+            <img
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAP9JREFUSEvtlMsRgjAQQF8cC9Ei4KyViJWolaCVyM0ZsAftJLryGSDLJGGGm7my7Nu83Y1h4WMWzs8f4DWsKnrAZg2ZhYNkMHBL4OzNpgSogAruwK4fb+GdwjYW4gBKyAzkE4n2CRQxEAdQ1SpOE0kumqoKrMQnP5vDowFEjShyjoVjCtfxhyhA02BRFNyDKIBU106RqJLmGngnsO9X3iad6kera/YmzwZUtRppcqdIbrGCwtb74ExRsCLPiLY2nEkKAjSVq9OjeB7sQxDgCflXRRa4RMW46VP/dU0u4WVgEwKIeTY6gG8qxmBta7XiZo9pyE2blzg0dF7c/wZebx/ln0IZaZTTHgAAAABJRU5ErkJggg=="
+              alt="Afegir" class="rounded-full" />
+          </div>
+        </div>
+        <h2 class="text-lg font-semibold mb-4 text-center">Afegir Usuari</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="firstname">Nom</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="firstname" type="text" placeholder="Nom">
+          </div>
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="lastname">Cognoms</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="lastname" type="text" placeholder="Cognoms">
+          </div>
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="dni">DNI</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="dni" type="text" placeholder="DNI">
+          </div>
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="email">Email</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="email" type="email" placeholder="Email">
+          </div>
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="password">Contrasenya</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="password" type="password" placeholder="Contrasenya">
+          </div>
+        </div>
+        <div class="mt-6">
+          <button
+            class="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="button">Afegir Usuari</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
