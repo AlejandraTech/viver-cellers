@@ -16,4 +16,20 @@ export class UserManagementComponent {
     //   this.users = users;
     // });
   }
+
+  isModifyFormVisible: boolean = false;
+  isAddFormVisible: boolean = true;
+  modifyButtonsDisabled: boolean[] = [];
+
+  toggleModifyFormVisibility(index: number) {
+    this.isModifyFormVisible = true;
+    this.isAddFormVisible = false;
+    this.modifyButtonsDisabled[index] = true;
+  }
+
+  cancelar() {
+    this.isModifyFormVisible = false;
+    this.isAddFormVisible = true;
+    this.modifyButtonsDisabled = this.modifyButtonsDisabled.map(() => false);
+  }
 }
