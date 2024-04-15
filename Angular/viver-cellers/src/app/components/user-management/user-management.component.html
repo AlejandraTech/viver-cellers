@@ -13,12 +13,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="bg-white dark:bg-gray-800 text-center">
+          <tr class="bg-white dark:bg-gray-800 text-center" *ngFor="let user of users">
             <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">
-              Admin
+              {{user.name}}
             </td>
-            <td class="px-6 py-4">Admin</td>
-            <td class="px-6 py-4">admin@gmail.com</td>
+            <td class="px-6 py-4">{{user.lastname}}</td>
+            <td class="px-6 py-4">{{user.email}}</td>
             <td class="px-6 py-4 justify-center">
               <div class="inline-block align-middle border border-red-600 rounded-full p-1 hover:bg-red-100">
                 <button (click)="toggleModifyFormVisibility(0)" [disabled]="modifyButtonsDisabled[0]">
@@ -158,3 +158,7 @@
     </div>
   </div>
 </section>
+
+
+
+
