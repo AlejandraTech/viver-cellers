@@ -19,14 +19,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/usuarios', [AuthController::class, 'getAll'])->name('usuarios');
+// Ruta para mostrar todos los usuarios
+Route::get('/users', [AuthController::class, 'getAll'])->name('users');
 
+// Ruta para el registro de usuarios
+Route::post('/register', [AuthController::class, 'register'])->name('register');
 
-//
-// Route::prefix('person')->group(function () {
-//     Route::get('/',[ PersonController::class, 'getAll']);
-//     Route::post('/',[ PersonController::class, 'create']);
-//     Route::delete('/{id}',[ PersonController::class, 'delete']);
-//     Route::get('/{id}',[ PersonController::class, 'get']);
-//     Route::put('/{id}',[ PersonController::class, 'update']);
-// });
+// Ruta para mostrar todas las provincias
+Route::get('/provinces', [AuthController::class, 'getProvinces'])->name('provinces');
