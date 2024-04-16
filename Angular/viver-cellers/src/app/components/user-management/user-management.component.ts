@@ -6,18 +6,16 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './user-management.component.html',
   styleUrls: ['./user-management.component.css']
 })
-export class UserManagementComponent implements OnInit{
+export class UserManagementComponent implements OnInit {
   users: any[] = []; // Aquí almacenarías los usuarios obtenidos de la base de datos
 
   constructor(private service: AuthService) { }
 
   ngOnInit(): void {
-    this.ListUsers();
+    this.listUsers();
   }
 
-
-
-  ListUsers(): void {
+  listUsers(): void {
     this.service.getUsers().subscribe(
       data => {
         this.users = data;
@@ -28,7 +26,6 @@ export class UserManagementComponent implements OnInit{
       }
     );
   }
-
 
   isModifyFormVisible: boolean = false;
   isAddFormVisible: boolean = true;
