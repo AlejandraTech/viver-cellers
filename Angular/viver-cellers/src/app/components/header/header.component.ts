@@ -10,7 +10,7 @@ import { filter } from 'rxjs/operators';
 })
 
 export class HeaderComponent implements OnInit {
-  backgroundImage: string = "/assets/img/header-background/home-background.jpg"; // Ruta predeterminada de la imagen de fondo
+  backgroundImage: string = "/assets/img/header-background/home-background.jpeg"; // Ruta predeterminada de la imagen de fondo
 
   constructor(private router: Router) { }
 
