@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Ruta para mostrar todos los usuarios
+Route::get('/users', [AuthController::class, 'getAll'])->name('users');
+
+// Ruta para el registro de usuarios
+Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+// Ruta para mostrar todas las provincias
+Route::get('/provinces', [AuthController::class, 'getProvinces'])->name('provinces');

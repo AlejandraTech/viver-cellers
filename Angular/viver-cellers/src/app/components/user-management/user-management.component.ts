@@ -1,20 +1,30 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-user-management',
   templateUrl: './user-management.component.html',
   styleUrls: ['./user-management.component.css']
 })
-export class UserManagementComponent {
+export class UserManagementComponent implements OnInit {
   users: any[] = []; // Aquí almacenarías los usuarios obtenidos de la base de datos
 
-  constructor() { }
+  constructor(private service: AuthService) { }
 
   ngOnInit(): void {
-    // Aquí podrías hacer una petición HTTP para obtener los usuarios de la base de datos
-    // this.userService.getUsers().subscribe((users) => {
-    //   this.users = users;
-    // });
+    this.listUsers();
+  }
+
+  listUsers(): void {
+    this.service.getUsers().subscribe(
+      data => {
+        this.users = data;
+        console.log('Datos recibidos:', data);
+      },
+      error => {
+        console.error('Error al obtener usuarios:', error);
+      }
+    );
   }
 
   isModifyFormVisible: boolean = false;
