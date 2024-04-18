@@ -13,28 +13,28 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="bg-white dark:bg-gray-800 text-center" *ngFor="let user of users">
+          <tr class="bg-white dark:bg-gray-800 text-center" *ngFor="let user of users; let i = index">
             <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">
-              {{user.firstname}}
+              {{user.name}}
             </td>
             <td class="px-6 py-4">{{user.lastname}}</td>
             <td class="px-6 py-4">{{user.email}}</td>
             <td class="px-6 py-4 justify-center">
               <div class="inline-block align-middle border border-red-600 rounded-full p-1 hover:bg-red-100">
-                <button (click)="toggleModifyFormVisibility(0)" [disabled]="modifyButtonsDisabled[0]">
+                <button (click)="toggleModifyFormVisibility(user.id)" [disabled]="modifyButtonsDisabled[i]">
                   <img
-                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAR9JREFUSEu1lUFygzAMRZ8nOUhyCJjpDo6Sk+QoyU3IrgsuwUU6dJSiVjHYMqSw8iD5f+nr2w7s/IWd8fkXgk84HaCp4R4X/ELQQzPCLcDJ6ayt4CE5PXRAI+sRhi9oP2DQ/THBb3KGYAYuwJIvhcm6hnOKYJRA9czNf1q5Ak4ydRPJReWKOygiSMliSLcT2MqtLOFHJpnhNolEgiPcLIiVRYds9Z8K+NO6fxphPoMlcN0Vz8Kz6YxgLbhYXS3sdpACT/0XcKCzLsy6aKl9p6OZAh7By4Yc+HSqtxN44G8RWGfEPrexJRcWSaQgOfBNHXj3URxf3cEeBCXXtcf7qKBNXddyUK76gHhIcVxmFOCSPMlrAUvy3YelBCSXszvBN0nVohleaXBfAAAAAElFTkSuQmCC"
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAR9JREFUSEu1lUFygzAMRZ8nOUhyCJjpDo6Sk+QoyU3IrgsuwUU6dJSiVjHYMqSw8iD5f+nr2w7s/IWd8fkXgk84HaCp4R4X/ELQQzPCLcDJ6ayt4CE5PXRAI+sRhi9oP2DQ/THBb3KGYAYuwJIvhcm6hnOKYJRA9czNf1q5Ak4ydRPJReWKOygiSMliSLcT2MqtLOFHJpnhNolEgiPcLIiVRYds9Z8K+NO6fxphPoMlcN0Vz8Kz6YxgLbhYXS3sdpACT/0XcKCzLsy6aKl9p6OZAh7By4Yc+HSqtxN44G8RWGfEPrexJRcWSaQgOfBNHXj3URxf3cEeBCXXtcf7qYBNXddyUK76gHhIcVxmFOCSPMlrAUvy3YelBCSXszvBN0nVohleaXBfAAAAAElFTkSuQmCC"
                     alt="Modificar" class="rounded-full" />
                 </button>
               </div>
             </td>
             <td class="px-6 py-4 justify-center">
               <div class="inline-block align-middle border border-red-600 rounded-full p-1 hover:bg-red-100">
-                <a>
+                <button (click)="deleteUser(user.id)">
                   <img
                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAJRJREFUSEvtlcsRgCAMBZeiuGspVqJWJneasBMdDoyKfEQGL5IjQ7LJ4/MElUNUrk8SoKEDlkAjs4Qp1mQUkCjOBquAQYIKQS4AjckpD8mhzLeA8t7vFbxn8FaqszQW9QOAHduVzbf+SqIGSN6iJtEPJMr5AHMemnEw42Q5oST0bkLoDEzx8Skk5mxJT84Zwbe3OmAH5BVSGbEiBo0AAAAASUVORK5CYII="
                     alt="Eliminar" class="rounded-full" />
-                </a>
+                </button>
               </div>
             </td>
           </tr>
@@ -44,7 +44,7 @@
 
     <!-- Form to add user -->
     <div class="mt-4" *ngIf="isAddFormVisible">
-      <form class="bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4">
+      <form class="bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4" [formGroup]="adduser">
         <div class="flex justify-center items-center">
           <div class="justify-center items-center inline-block align-middle border border-red-600 rounded-full p-1">
             <img
@@ -54,50 +54,170 @@
         </div>
         <h2 class="text-lg font-semibold mb-4 text-center">Afegir Usuari</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+          <!-- Name input -->
           <div>
             <label class="block text-sm font-bold mb-2 text-gray-700" for="firstname">Nom</label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="firstname" type="text" placeholder="Nom" />
+              id="firstname" type="text" placeholder="Nom" formControlName="name" />
+
+            <!-- This field is required -->
+            <div *ngIf="this.adduser.get('name')?.errors?.['required'] && this.adduser.get('name')?.touched"
+              class="text-red-500 text-xs italic">
+              Aquest camp és obligatori.
+            </div>
+
+            <!-- MaxLength -->
+            <div *ngIf="this.adduser.get('name')?.errors?.['maxlength'] &&
+              this.adduser.get('name')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir un màxim de 20 caràcters.
+            </div>
+
+            <!-- MinLength -->
+            <div *ngIf="this.adduser.get('name')?.errors?.['minlength'] &&
+              this.adduser.get('name')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir com a mínim 3 caràcters.
+            </div>
+
+            <!-- Only letters -->
+            <div *ngIf="this.adduser.get('name')?.errors?.['pattern'] &&
+              this.adduser.get('name')?.touched" class="text-red-500 text-xs italic">
+              Només s'accepten lletres.
+            </div>
           </div>
+
+          <!-- lastname input -->
           <div>
             <label class="block text-sm font-bold mb-2 text-gray-700" for="lastname">Cognoms</label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="lastname" type="text" placeholder="Cognoms" />
+              id="lastname" type="text" placeholder="Cognoms" formControlName="lastname" />
+
+            <!-- This field is required -->
+            <div *ngIf="this.adduser.get('lastname')?.errors?.['required'] &&
+              this.adduser.get('lastname')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp és obligatori.
+            </div>
+
+            <!-- MaxLength -->
+            <div *ngIf="this.adduser.get('lastname')?.errors?.['maxlength'] &&
+              this.adduser.get('lastname')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir un màxim de 20 caràcters.
+            </div>
+
+            <!-- MinLength -->
+            <div *ngIf="this.adduser.get('lastname')?.errors?.['minlength'] &&
+              this.adduser.get('lastname')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir com a mínim 3 caràcters.
+            </div>
+
+            <!-- Only letters -->
+            <div *ngIf="this.adduser.get('lastname')?.errors?.['pattern'] &&
+                  this.adduser.get('lastname')?.touched" class="text-red-500 text-xs italic">
+              Només s'accepten lletres.
+            </div>
           </div>
+
+          <!-- DNI input -->
           <div>
             <label class="block text-sm font-bold mb-2 text-gray-700" for="dni">DNI</label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="dni" type="text" placeholder="DNI" />
+              id="dni" type="text" placeholder="DNI" formControlName="dni" />
+
+            <!-- MaxLength -->
+            <div *ngIf="this.adduser.get('dni')?.errors?.['maxlength'] &&
+               this.adduser.get('dni')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir un màxim de 9 caràcters.
+            </div>
+
+            <!-- MinLength -->
+            <div *ngIf="this.adduser.get('dni')?.errors?.['minlength'] &&
+            this.adduser.get('dni')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir com a mínim 9 caràcters.
+            </div>
+
+            <!-- Custom -->
+            <div *ngIf="this.adduser.get('dni')?.errors?.['custom'] &&
+           this.adduser.get('dni')?.touched" class="text-red-500 text-xs italic">
+              DNI incorrecte
+            </div>
           </div>
+
+          <!-- E-mail input -->
           <div>
             <label class="block text-sm font-bold mb-2 text-gray-700" for="email">Email</label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="email" type="email" placeholder="Email" />
+              id="email" type="email" placeholder="Email" formControlName="email" />
+
+            <!-- This field is required -->
+            <div *ngIf="this.adduser.get('email')?.errors?.['required'] &&
+                this.adduser.get('email')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp és obligatori.
+            </div>
+
+            <!-- Pattern -->
+            <div *ngIf="this.adduser.get('email')?.errors?.['pattern'] &&
+                this.adduser.get('email')?.touched" class="text-red-500 text-xs italic">
+              Format invàlid.
+            </div>
           </div>
+
+          <!-- Password input -->
           <div>
             <label class="block text-sm font-bold mb-2 text-gray-700" for="password">Contrasenya</label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="password" type="password" placeholder="Contrasenya" />
+              id="password" type="password" placeholder="Contrasenya" formControlName="password" />
+
+            <!-- This field is required -->
+            <div *ngIf="this.adduser.get('password')?.errors?.['required'] &&
+            this.adduser.get('password')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp és obligatori.
+            </div>
+
+            <!-- MinLength -->
+            <div *ngIf="this.adduser.get('password')?.errors?.['minlength'] &&
+            this.adduser.get('password')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir com a mínim 8 caràcters.
+            </div>
+          </div>
+
+          <!-- Roll input -->
+          <div class="form-group relative mb-4" data-twe-input-wrapper-init>
+            <label for="id_province_fk"
+              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary">Provincia
+            </label>
+            <select
+              class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
+              formControlName="id_province_fk">
+              <option *ngFor="let province of id_province_fk" [value]="province.id">{{ province.name }}</option>
+            </select>
           </div>
         </div>
+
         <div class="mt-6">
-          <button
+          <button (click)="submitAdd()" routerlink="/register"
             class="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="button">
             Afegir Usuari
           </button>
         </div>
+
+        <!-- Success Message -->
+        <div class="text-green-500 text-sm mt-4" *ngIf="successMessage">{{ successMessage }}</div>
+
+        <!-- Error message -->
+        <div class="text-red-500 text-sm mt-4" *ngIf="errorMessage">{{ errorMessage }}</div>
+
       </form>
     </div>
 
     <!-- Form to modify user -->
     <div class="mt-4" *ngIf="isModifyFormVisible">
-      <form class="bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4">
+      <form class="bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4" [formGroup]="modifyuser">
         <div class="flex justify-center items-center">
           <div class="justify-center items-center inline-block align-middle border border-red-600 rounded-full p-1">
             <svg class="h-6 w-6 text-red-700" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
@@ -109,44 +229,51 @@
             </svg>
           </div>
         </div>
-        <h2 class="text-lg font-semibold mb-4 text-center">Modificar Usuari</h2>
+        <h2 class="text-lg font-semibold mb-4 text-center">Modificar Usuario</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+          <!-- Password input -->
           <div>
-            <label class="block text-sm font-bold mb-2 text-gray-700" for="firstname">Nom</label>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="password">Contraseña</label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="firstname" type="text" placeholder="Nom" />
+              id="password" type="password" placeholder="Contraseña" formControlName="password" />
+
+            <!-- This field is required -->
+            <div *ngIf="modifyuser.get('password')?.errors?.['required'] && modifyuser.get('password')?.touched"
+              class="text-red-500 text-xs italic">
+              Este campo es obligatorio.
+            </div>
+
+            <!-- MinLength -->
+            <div *ngIf="modifyuser.get('password')?.errors?.['minlength'] && modifyuser.get('password')?.touched"
+              class="text-red-500 text-xs italic">
+              La contraseña debe tener al menos 8 caracteres.
+            </div>
           </div>
+
+          <!-- Roll input -->
           <div>
-            <label class="block text-sm font-bold mb-2 text-gray-700" for="lastname">Cognoms</label>
-            <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="lastname" type="text" placeholder="Cognoms" />
-          </div>
-          <div>
-            <label class="block text-sm font-bold mb-2 text-gray-700" for="dni">DNI</label>
-            <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="dni" type="text" placeholder="DNI" />
-          </div>
-          <div>
-            <label class="block text-sm font-bold mb-2 text-gray-700" for="email">Email</label>
-            <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="email" type="email" placeholder="Email" />
-          </div>
-          <div>
-            <label class="block text-sm font-bold mb-2 text-gray-700" for="password">Contrasenya</label>
-            <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="password" type="password" placeholder="Contrasenya" />
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="rol">Rol</label>
+            <select formControlName="rol"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+              <option value="">Seleccionar Rol</option>
+              <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+            </select>
+
+            <!-- This field is required -->
+            <div *ngIf="modifyuser.get('rol')?.errors?.['required'] && modifyuser.get('rol')?.touched"
+              class="text-red-500 text-xs italic">
+              Por favor, seleccione un rol.
+            </div>
           </div>
         </div>
+
         <div class="mt-6 flex justify-center items-center space-x-4">
           <button
             class="flex-shrink-0 w-auto bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button">
-            Modificar Usuari
+            type="button" (click)="onSubmit()">
+            Modificar Usuario
           </button>
           <button
             class="flex-shrink-0 w-auto bg-white hover:bg-gray-100 text-red-500 font-bold py-2 px-4 rounded border border-red-500 focus:outline-none focus:shadow-outline"
@@ -154,11 +281,14 @@
             Cancelar
           </button>
         </div>
+
+        <!-- Success Message -->
+        <div class="text-green-500 text-sm mt-4" *ngIf="successMessage">{{ successMessage }}</div>
+
+        <!-- Error message -->
+        <div class="text-red-500 text-sm mt-4" *ngIf="errorMessage">{{ errorMessage }}</div>
+
       </form>
     </div>
   </div>
 </section>
-
-
-
-
