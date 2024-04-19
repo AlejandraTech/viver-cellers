@@ -112,12 +112,6 @@
                       class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary">DNI
                     </label>
 
-                    <!-- This field is required -->
-                    <div *ngIf="this.register.get('dni')?.errors?.['required'] &&
-                    this.register.get('dni')?.touched" class="text-red-500 text-xs italic">
-                      Aquest camp és obligatori.
-                    </div>
-
                     <!-- MaxLength -->
                     <div *ngIf="this.register.get('dni')?.errors?.['maxlength'] &&
                         this.register.get('dni')?.touched" class="text-red-500 text-xs italic">

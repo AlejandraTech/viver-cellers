@@ -47,10 +47,10 @@ class AuthController extends Controller
     {
         $validatedData = $request->validate([
             'id_province_fk' => 'required',
-            'name' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
-            'dni' => 'required|string|max:9',
-            'email' => 'required|string|email|max:255|unique:users',
+            'name' => 'required|min:3|max:20|regex:/^[A-ZÑa-zñáéíóúÁÉÍÓÚ\'° ]+$/',
+            'lastname' => 'required|min:3|max:20|regex:/^[A-ZÑa-zñáéíóúÁÉÍÓÚ\'° ]+$/',
+            'dni' => 'string|min:9|max:9',
+            'email' => 'required|string|email|unique:users',
             'password' => 'required|string|min:8',
         ]);
 
@@ -82,11 +82,11 @@ class AuthController extends Controller
         try {
             $request->validate([
                 'id_province_fk' => 'required',
-                'name' => 'required|min:3|max:20 | regex:/^[A-ZÑa-zñáéíóúÁÉÍÓÚ\'° ]+$/',
-                'lastname' => 'required|min:3|max:20 | regex:/^[A-ZÑa-zñáéíóúÁÉÍÓÚ\'° ]+$/',
-                'dni' => 'min:9|max:9',
-                'email' => 'required|email',
-                'password' => 'required|min:8',
+                'name' => 'required|min:3|max:20|regex:/^[A-ZÑa-zñáéíóúÁÉÍÓÚ\'° ]+$/',
+                'lastname' => 'required|min:3|max:20|regex:/^[A-ZÑa-zñáéíóúÁÉÍÓÚ\'° ]+$/',
+                'dni' => 'string|min:9|max:9',
+                'email' => 'required|string|email|unique:users',
+                'password' => 'required|string|min:8',
             ]);
 
             $data = User::create($request->all());
@@ -105,7 +105,7 @@ class AuthController extends Controller
             $data = User::findOrFail($id);
 
             $request->validate([
-                'password' => 'required|min:8',
+                'password' => 'required|string|min:8',
                 'rol' => 'required|in:admin,client,nurseryman',
             ]);
 
@@ -143,7 +143,7 @@ class AuthController extends Controller
     function destroy($id)
     {
         try {
-            $users = User::find($id);
+            $users = User::findOrFail($id);
             // Delete the user
             $users->delete();
             return ApiResponse::success('User deleted successfully', 200);

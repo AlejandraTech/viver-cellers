@@ -124,7 +124,7 @@
             <label class="block text-sm font-bold mb-2 text-gray-700" for="dni">DNI</label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="dni" type="text" placeholder="DNI" formControlName="dni" />
+              id="dni" type="text" placeholder="DNI" formControlName="dni" appDni=dni />
 
             <!-- MaxLength -->
             <div *ngIf="this.adduser.get('dni')?.errors?.['maxlength'] &&
@@ -195,13 +195,19 @@
               formControlName="id_province_fk">
               <option *ngFor="let province of id_province_fk" [value]="province.id">{{ province.name }}</option>
             </select>
+
+            <!-- This field is required -->
+            <div *ngIf="this.adduser.get('id_province_fk')?.errors?.['required'] &&
+            this.adduser.get('id_province_fk')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp és obligatori.
+            </div>
           </div>
         </div>
 
         <div class="mt-6">
           <button (click)="submitAdd()" routerlink="/register"
             class="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button">
+            type="button" [disabled]="adduser.invalid">
             Afegir Usuari
           </button>
         </div>
@@ -229,12 +235,12 @@
             </svg>
           </div>
         </div>
-        <h2 class="text-lg font-semibold mb-4 text-center">Modificar Usuario</h2>
+        <h2 class="text-lg font-semibold mb-4 text-center">Modificar Usuari</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
           <!-- Password input -->
           <div>
-            <label class="block text-sm font-bold mb-2 text-gray-700" for="password">Contraseña</label>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="password">Contrasenya</label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="password" type="password" placeholder="Contraseña" formControlName="password" />
@@ -242,13 +248,13 @@
             <!-- This field is required -->
             <div *ngIf="modifyuser.get('password')?.errors?.['required'] && modifyuser.get('password')?.touched"
               class="text-red-500 text-xs italic">
-              Este campo es obligatorio.
+              Aquest camp és obligatori.
             </div>
 
             <!-- MinLength -->
             <div *ngIf="modifyuser.get('password')?.errors?.['minlength'] && modifyuser.get('password')?.touched"
               class="text-red-500 text-xs italic">
-              La contraseña debe tener al menos 8 caracteres.
+              Aquest camp només pot contenir com a mínim 8 caràcters.
             </div>
           </div>
 
@@ -264,7 +270,7 @@
             <!-- This field is required -->
             <div *ngIf="modifyuser.get('rol')?.errors?.['required'] && modifyuser.get('rol')?.touched"
               class="text-red-500 text-xs italic">
-              Por favor, seleccione un rol.
+              Si us plau, seleccioni un rol.
             </div>
           </div>
         </div>
@@ -272,8 +278,8 @@
         <div class="mt-6 flex justify-center items-center space-x-4">
           <button
             class="flex-shrink-0 w-auto bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button" (click)="onSubmit()">
-            Modificar Usuario
+            type="button" (click)="onSubmit()" [disabled]="modifyuser.invalid">
+            Modificar Usuari
           </button>
           <button
             class="flex-shrink-0 w-auto bg-white hover:bg-gray-100 text-red-500 font-bold py-2 px-4 rounded border border-red-500 focus:outline-none focus:shadow-outline"

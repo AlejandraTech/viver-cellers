@@ -52,8 +52,8 @@ export class UserManagementComponent implements OnInit {
 
     // Initialize the form for modifying users
     this.modifyuser = new FormGroup({
-      password: new FormControl('', [Validators.minLength(8)]),
-      rol: new FormControl('', [])
+      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      rol: new FormControl('', [Validators.required])
     });
 
     // Get the list of available provinces
@@ -104,8 +104,7 @@ export class UserManagementComponent implements OnInit {
         password: this.adduser.value.password,
         id_province_fk: this.adduser.value.id_province_fk
       };
-      // Call the service to add a new user
-      this.service.postUsers(userData)
+      this.service.registerUser(userData)
         .subscribe(
           response => {
             this.getUsers(); // Update the list of users after addition
@@ -113,13 +112,13 @@ export class UserManagementComponent implements OnInit {
             this.errorMessage = '';
           },
           error => {
-            // Handle errors related to adding users
-            if (error.status === 422) {
-              this.errorMessage = 'Usuari ja registrat. Si us plau, prova amb un altre correu electrònic.';
+            if (error.status == 422) {
+              this.successMessage = '';
+              this.errorMessage = `S'ha produït un error. Si us plau, torna-ho a provar més tard.`;
             } else {
-              this.errorMessage = `S'ha produït un error. Si us plau, intenta-ho de nou més tard.`;
+              this.successMessage = '';
+              this.errorMessage = `L'usuari ja està registrat. Si us plau, intenta-ho amb una altra adreça de correu electrònic.`;
             }
-            this.successMessage = '';
           }
         );
     }
@@ -140,10 +139,10 @@ export class UserManagementComponent implements OnInit {
             this.isModifyFormVisible = false; // Hide the modification form after sending the request
             this.isAddFormVisible = true; // Show add form
             this.successMessage = 'Usuari modificat amb èxit.';
-            this.errorMessage = `S'ha produït un error mentre es modificava l'usuari. Si us plau, intenta-ho de nou més tard.`;
+            this.errorMessage = '';
           },
           error => {
-            this.errorMessage = '';
+            this.errorMessage = `S'ha produït un error mentre es modificava l'usuari. Si us plau, intenta-ho de nou més tard.`;
             this.successMessage = '';
           }
         );

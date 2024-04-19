@@ -15,9 +15,9 @@ export class RegisterComponent {
 
   constructor(private authService: AuthService, private router: Router) {
     this.register = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern("[a-z]+")]),
+      name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$")]),
       lastname: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$")]),
-      dni: new FormControl('', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]),
+      dni: new FormControl('', [Validators.minLength(9), Validators.maxLength(9)]),
       email: new FormControl('', [Validators.required, Validators.pattern("^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$")]),
       password: new FormControl('', [Validators.required, Validators.minLength(8)]),
       repeatpassword: new FormControl('', [Validators.required]),
