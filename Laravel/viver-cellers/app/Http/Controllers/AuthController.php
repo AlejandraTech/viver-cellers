@@ -10,7 +10,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -41,6 +41,29 @@ class AuthController extends Controller
     }
 
     /**
+     * Handles user authentication.
+     */
+    public function login(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+
+        if ($user && Hash::check($request->password, $user->password)) {
+            $token = $user->createToken('auth_token', ['name' => $user->name, 'rol' => $user->rol])->plainTextToken;
+
+            return response()->json([
+                'access_token' => $token,
+                'token_type' => 'Bearer',
+                'user' => [
+                    'name' => $user->name,
+                    'rol' => $user->rol,
+                ],
+            ]);
+        }
+
+        return response()->json(['error' => 'Unauthorized'], 401);
+    }
+
+    /**
      * Register a new user.
      */
     public function register(Request $request)
@@ -61,7 +84,7 @@ class AuthController extends Controller
                 'lastname' => $validatedData['lastname'],
                 'dni' => $validatedData['dni'],
                 'email' => $validatedData['email'],
-                'password' => bcrypt($validatedData['password']),
+                'password' => Hash::make($validatedData['password']),
                 'rol' => 'client',
             ]);
 
@@ -72,6 +95,23 @@ class AuthController extends Controller
             }
             return ApiResponse::error('Error registering user: ' . $e->getMessage(), 500);
         }
+    }
+
+    /**
+     * Retrieve the information of the currently authenticated user.
+     */
+    public function getUser(Request $request)
+    {
+        $user = $request->user();
+        return response()->json([
+            'data' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'lastname' => $user->lastname,
+                'email' => $user->email,
+                'rol' => $user->rol,
+            ]
+        ]);
     }
 
     /**

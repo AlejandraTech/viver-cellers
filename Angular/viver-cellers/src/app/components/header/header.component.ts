@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { filter } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -10,29 +11,29 @@ import { filter } from 'rxjs/operators';
 })
 
 export class HeaderComponent implements OnInit {
-  backgroundImage: string = "/assets/img/header-background/home-background.jpeg"; // Ruta predeterminada de la imagen de fondo
+  backgroundImage: string = "/assets/img/header-background/home-background.jpg"; // Ruta predeterminada de la imagen de fondo
 
-  constructor(private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     initFlowbite();
 
-    // Suscribirse a los eventos de navegación del router para actualizar el título y la imagen de fondo
+    // Subscribe to router navigation events to update title and background image
     this.router.events
       .pipe(
         filter(event => event instanceof NavigationEnd)
       )
       .subscribe((event: any) => {
-        // Lógica para cambiar imagen de fondo según la ruta actual
+        // Logic to change background image based on current route
         this.updatePageInfo((event as NavigationEnd).url);
       });
   }
 
-  // Método para actualizar la imagen de fondo según la ruta actual
+  // Method to update background image based on current route
   updatePageInfo(url: string): void {
     switch (url) {
       case '/home':
-        this.backgroundImage = '/assets/img/header-background/home-background.jpeg';
+        this.backgroundImage = '/assets/img/header-background/home-background.jpg';
         break;
       case '/about':
         this.backgroundImage = '/assets/img/header-background/about-background.jpg';
@@ -41,22 +42,22 @@ export class HeaderComponent implements OnInit {
         this.backgroundImage = '/assets/img/header-background/contact-background.jpg';
         break;
       case '/requirements':
-        this.backgroundImage = '/assets/img/header-background/home-background.jpeg';
+        this.backgroundImage = '/assets/img/header-background/home-background.jpg';
         break;
       case '/services':
-        this.backgroundImage = '/assets/img/header-background/home-background.jpeg';
+        this.backgroundImage = '/assets/img/header-background/home-background.jpg';
         break;
       case '/information':
-        this.backgroundImage = '/assets/img/header-background/home-background.jpeg';
+        this.backgroundImage = '/assets/img/header-background/home-background.jpg';
         break;
       case '/regulation':
-        this.backgroundImage = '/assets/img/header-background/home-background.jpeg';
+        this.backgroundImage = '/assets/img/header-background/home-background.jpg';
         break;
       case '/pect':
-        this.backgroundImage = '/assets/img/header-background/home-background.jpeg';
+        this.backgroundImage = '/assets/img/header-background/home-background.jpg';
         break;
       default:
-        this.backgroundImage = '/assets/img/header-background/home-background.jpeg';
+        this.backgroundImage = '/assets/img/header-background/home-background.jpg';
     }
   }
 }

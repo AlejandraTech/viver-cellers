@@ -91,9 +91,7 @@ export class UserManagementComponent implements OnInit {
     );
   }
 
-  /**
-   * Method to add a new user from the form, only allowed for the administrator
-   */
+  // Method to add a new user from the form, only allowed for the administrator
   submitAdd(): void {
     if (this.adduser.valid) {
       const userData = {

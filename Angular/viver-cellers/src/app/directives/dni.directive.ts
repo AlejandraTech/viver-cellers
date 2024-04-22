@@ -1,4 +1,5 @@
-// Importamos las necesarias dependencias de Angular
+// This file defines an Angular custom directive for validating national identification numbers (DNI).
+
 import { Directive, Input } from '@angular/core';
 import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@angular/forms';
 
@@ -7,11 +8,12 @@ import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@an
   providers: [{ provide: NG_VALIDATORS, useExisting: DniDirective, multi: true }]
 })
 export class DniDirective {
-
+  // The `nin` attribute is used to get the NIN value from the HTML component.
   @Input('appDni') dni!: string;
 
   constructor() { }
 
+  // This `validate` function performs the NIN validation logic.
   validate(control: AbstractControl): ValidationErrors | null {
     const dni = control.value;
     const valid = verificaDNI(dni);
@@ -24,6 +26,7 @@ export class DniDirective {
   }
 }
 
+// This `verifyNIN` function is used to check if an NIN is valid.
 function verificaDNI(dni: string): boolean {
   const lletres = "TRWAGMYFPDXBNJZSQVHLCKE";
   const num = dni.slice(0, -1);
@@ -33,7 +36,3 @@ function verificaDNI(dni: string): boolean {
 
   return lletraBona === lle.toUpperCase();
 }
-
-
-
-

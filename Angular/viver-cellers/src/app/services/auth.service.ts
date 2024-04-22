@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +61,21 @@ export class AuthService {
     return this.http.post<any>(this.apiUrl + '/register', userData, this.httpOptions).pipe(
       catchError(this.errorHandler)
     )
+  }
+
+  // Method to login a user on the API
+  login(email: string, password: string): Observable<any> {
+    const data = { email, password };
+    return this.http.post(`${this.apiUrl}/login`, data);
+  }
+
+  getUser(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+    });
+    return this.http.get(`${this.apiUrl}/user`, { headers }).pipe(
+      map((response: any) => response.data)
+    );
   }
 
   // Method to fetch provinces from the API
