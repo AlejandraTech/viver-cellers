@@ -1,36 +1,36 @@
-// Importamos las necesarias dependencias de Angular
+// Import necessary Angular dependencies
 import { Directive, Input } from '@angular/core';
 import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@angular/forms';
 
-// Definimos una directiva personalizada para validar la repetición de contraseñas
+// Define a custom directive to validate password repetition
 @Directive({
   selector: '[appRepeatPassword]',
   providers: [{ provide: NG_VALIDATORS, useExisting: RepeatPasswordDirective, multi: true }]
 })
 export class RepeatPasswordDirective implements Validator {
 
-  // Capturamos el valor que proviene del formulario
+  // Capture the value coming from the form
   @Input('appRepeatPassword') password1!: string;
 
   constructor() {
-    // Constructor vacío, no realizamos ninguna acción especial al crear la instancia de la directiva
+
   }
 
-  // Implementamos un método de validación personalizado
+  // Implement a custom validation method
   validate(control: AbstractControl<any, any>): ValidationErrors | null {
 
-    // Almacenamos el valor del control de la contraseña repetida
+    // Store the value of the repeated password control
     let repetitPassword = control.value;
 
-    // Obtenemos el control de la contraseña inicial utilizando el nombre proporcionado como input en tiempo real
+    // Get the initial password control using the name provided as input in real-time
     let passwordInicial = control.root.get(this.password1);
 
-    // Verificamos si hay una discrepancia entre las contraseñas y devolvemos un error personalizado si es así
+    // Check for a discrepancy between the passwords and return a custom error if there is one
     if (passwordInicial != null && repetitPassword != passwordInicial.value) {
       return { custom: true }; // Enviamos un flag que indica un error personalizado
     }
 
-    // Si las contraseñas coinciden, devolvemos null indicando que la validación ha pasado
+    // If passwords match, return null indicating validation has passed
     return null;
   }
 }

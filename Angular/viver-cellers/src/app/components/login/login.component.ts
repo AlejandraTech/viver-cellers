@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,10 +9,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  // Define form control property of type formGroup.
-  loginForm!: FormGroup;
+  loginForm: FormGroup;
+  email!: string;
+  password!: string;
+  errorMessage: string = '';
 
-  constructor() {
+  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.pattern("^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$")]),
       password: new FormControl('', [Validators.required, Validators.minLength(8)])
@@ -18,11 +22,26 @@ export class LoginComponent {
   }
 
   // Submit the login form.
-  submitLoginForm(): void {
+  onSubmit() {
     if (this.loginForm.valid) {
-      console.log("Validaciones correctas");
+      const { email, password } = this.loginForm.value;
+      this.authService.login(email, password).subscribe(
+        response => {
+          localStorage.setItem('access_token', response.access_token);
+          localStorage.setItem('user_name', response.user.name);
+          localStorage.setItem('user_rol', response.user.rol);
+          this.router.navigate(['/home']);
+        },
+        error => {
+          if (error.status === 401) {
+            this.errorMessage = 'Correo electrónico o contraseña incorrectos';
+          } else {
+            this.errorMessage = 'Se produjo un error al iniciar sesión. Por favor, inténtalo de nuevo más tarde.';
+          }
+        }
+      );
     } else {
-      console.log("El formulario no es válido");
+      console.log('Formulario inválido');
     }
   }
 }
