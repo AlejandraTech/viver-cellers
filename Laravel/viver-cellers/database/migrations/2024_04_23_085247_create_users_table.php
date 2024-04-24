@@ -13,14 +13,18 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_province_fk');
-            $table->foreign('id_province_fk')->references('id')->on('provinces');
             $table->string('name');
             $table->string('dni')->nullable();
             $table->string('lastname');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('password');
             $table->enum('rol', ['client', 'nurseryman', 'admin']);
+            $table->string('address')->nullable();
+            $table->unsignedInteger('project_id_fk')->nullable();
+
+            // Restricción condicional para vincular proyectos solo a usuarios con rol 'nurseryman'
+            $table->foreign('project_id_fk')->references('id')->on('projects')->onDelete('restrict')->onUpdate('cascade')->where('rol', 'nurseryman');
+
             $table->timestamps();
         });
     }
