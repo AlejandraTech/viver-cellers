@@ -17,10 +17,13 @@ return new class extends Migration
             $table->foreign('id_vineyard_area_fk')->references('id')->on('vineyard_areas');
             $table->string('name');
             $table->string('winemaking');
-            $table->string('vineyard_area');
             $table->integer('grade_alcohol');
             $table->decimal('price', 8, 2);
             $table->integer('iva');
+            $table->unsignedInteger('id_type_wine_fk')->nullable();
+            $table->foreign('id_type_wine_fk')->references('id')->on('types_wine');
+            $table->unsignedInteger('id_type_variety_fk')->nullable();
+            $table->foreign('id_type_variety_fk')->references('id')->on('types_variet');
             $table->unsignedInteger('project_id')->nullable();
             $table->foreign('project_id')->references('id')->on('projects');
             $table->timestamps();
