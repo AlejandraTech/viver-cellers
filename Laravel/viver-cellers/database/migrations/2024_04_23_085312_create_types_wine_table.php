@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('provinces', function (Blueprint $table) {
+        Schema::create('types_wine', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->integer('postal_code');
+            $table->string('category');
             $table->timestamps();
         });
     }
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('provinces');
+        Schema::dropIfExists('types_wine');
     }
 };
