@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,4 +38,13 @@ Route::prefix('users')->group(function () {
     Route::post('/', [AuthController::class, 'store']);
     Route::delete('/{id}', [AuthController::class, 'destroy']);
     Route::put('/{id}', [AuthController::class, 'update']);
+});
+
+
+//Route to display all project
+Route::prefix('project')->group(function () {
+    Route::get('/', [ProjectController::class, 'getAll']);
+    Route::post('/', [ProjectController::class, 'store']);
+    Route::delete('/{id}', [ProjectController::class, 'destroy']);
+    Route::put('/{id}', [ProjectController::class, 'update']);
 });
