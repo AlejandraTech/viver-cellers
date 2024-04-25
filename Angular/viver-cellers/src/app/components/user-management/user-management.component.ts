@@ -47,7 +47,7 @@ export class UserManagementComponent implements OnInit {
       dni: new FormControl('', [Validators.minLength(9), Validators.maxLength(9)]),
       email: new FormControl('', [Validators.required, Validators.pattern("^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$")]),
       password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-      id_province_fk: new FormControl('', [Validators.required])
+      rol: new FormControl('', [Validators.required])
     });
 
     // Initialize the form for modifying users
@@ -55,16 +55,6 @@ export class UserManagementComponent implements OnInit {
       password: new FormControl('', [Validators.required, Validators.minLength(8)]),
       rol: new FormControl('', [Validators.required])
     });
-
-    // Get the list of available provinces
-    this.service.getProvinces().subscribe(
-      (response) => {
-        this.id_province_fk = response.data;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
   }
 
   // Method to fetch the list of roles from the service
@@ -100,9 +90,9 @@ export class UserManagementComponent implements OnInit {
         dni: this.adduser.value.dni,
         email: this.adduser.value.email,
         password: this.adduser.value.password,
-        id_province_fk: this.adduser.value.id_province_fk
+        rol: this.adduser.value.rol
       };
-      this.service.registerUser(userData)
+      this.service.addUser(userData)
         .subscribe(
           response => {
             this.getUsers(); // Update the list of users after addition

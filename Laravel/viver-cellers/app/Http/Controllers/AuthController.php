@@ -1,9 +1,12 @@
 <?php
-// This controller handles operations related to user authentication, such as registration, login, update, and deletion.
+/**
+ * @author: Alejandra Paz , Angel Rivera, Julia Prieto
+ * This controller handles operations related to user authentication, such as registration, login, update, and deletion.
+ */
+
 namespace App\Http\Controllers;
 
 use App\Http\Responses\ApiResponse;
-use App\Models\Province;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -15,20 +18,8 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     /**
-     * Get the list of provinces.
-     */
-    public function getProvinces()
-    {
-        try {
-            $provinces = Province::all();
-            return ApiResponse::success('List of provinces', 200, $provinces);
-        } catch (Exception $e) {
-            return ApiResponse::error('Error to get the list of provinces ' . $e->getMessage(), 500);
-        }
-    }
-
-    /**
-     * Get the list of all users.
+     * Get the list of all users
+     * @return - Api response
      */
     function getAll()
     {
@@ -41,7 +32,9 @@ class AuthController extends Controller
     }
 
     /**
-     * Handles user authentication.
+     * Handles user authentication
+     * @param $request contains the data sent by the client to the server
+     * @return - JSON object format
      */
     public function login(Request $request)
     {
@@ -65,11 +58,13 @@ class AuthController extends Controller
 
     /**
      * Register a new user.
+     * @param $request contains the data sent by the client to the server
+     * @return - Api response
      */
     public function register(Request $request)
     {
+        // user field validations
         $validatedData = $request->validate([
-            'id_province_fk' => 'required',
             'name' => 'required|min:3|max:20|regex:/^[A-ZÑa-zñáéíóúÁÉÍÓÚ\'° ]+$/',
             'lastname' => 'required|min:3|max:20|regex:/^[A-ZÑa-zñáéíóúÁÉÍÓÚ\'° ]+$/',
             'dni' => 'string|min:9|max:9',
@@ -78,8 +73,8 @@ class AuthController extends Controller
         ]);
 
         try {
+            // add user to database
             $user = User::create([
-                'id_province_fk' => $validatedData['id_province_fk'],
                 'name' => $validatedData['name'],
                 'lastname' => $validatedData['lastname'],
                 'dni' => $validatedData['dni'],
@@ -90,6 +85,7 @@ class AuthController extends Controller
 
             return ApiResponse::success('User registered successfully', 201, $user);
         } catch (Exception $e) {
+            // if the email field is already in the database
             if (strpos($e->getMessage(), 'Duplicate entry') !== false) {
                 return ApiResponse::error('Error registering user: The email is already registered.', 409);
             }
@@ -97,8 +93,10 @@ class AuthController extends Controller
         }
     }
 
+
     /**
-     * Retrieve the information of the currently authenticated user.
+     * Retrieve the information of the currently authenticated user
+     * @param $request contains the data sent by the client to the server
      */
     public function getUser(Request $request)
     {
@@ -115,20 +113,36 @@ class AuthController extends Controller
     }
 
     /**
-     * Store a new user in the database.
+     * Log out the current user.
+     */
+    public function logout(Request $request)
+    {
+        try {
+            $request->user()->currentAccessToken()->delete();
+            return ApiResponse::success('Logged out successfully', 200);
+        } catch (Exception $e) {
+            return ApiResponse::error('Error logging out: ' . $e->getMessage(), 500);
+        }
+    }
+
+    /**
+     * Store a new user in the database
+     * @param $request contains the data sent by the client to the server
      */
     public function store(Request $request)
     {
         try {
+            // user field validations
             $request->validate([
-                'id_province_fk' => 'required',
                 'name' => 'required|min:3|max:20|regex:/^[A-ZÑa-zñáéíóúÁÉÍÓÚ\'° ]+$/',
                 'lastname' => 'required|min:3|max:20|regex:/^[A-ZÑa-zñáéíóúÁÉÍÓÚ\'° ]+$/',
                 'dni' => 'string|min:9|max:9',
                 'email' => 'required|string|email|unique:users',
                 'password' => 'required|string|min:8',
+                'rol' => 'required|in:admin,client,nurseryman',
             ]);
 
+            // add user to database
             $data = User::create($request->all());
             return ApiResponse::success('User created successfully', 201, $data);
         } catch (ValidationException  $e) {
@@ -138,17 +152,22 @@ class AuthController extends Controller
 
     /**
      * Update the information of an existing user in the database.
+     * @param $request contains the data sent by the client to the server
+     * @param $id user id field
      */
     function update(Request $request, $id)
     {
         try {
+            // search user in the database by user id
             $data = User::findOrFail($id);
 
+            // user field validations
             $request->validate([
                 'password' => 'required|string|min:8',
                 'rol' => 'required|in:admin,client,nurseryman',
             ]);
 
+            // update user in the database
             $data->update([
                 'password' => bcrypt($request->input('password')), // Make sure to encrypt the password if necessary
                 'rol' => $request->input('rol')
@@ -179,10 +198,12 @@ class AuthController extends Controller
 
     /**
      * Delete a user from the database.
+     * @param $id user id field
      */
     function destroy($id)
     {
         try {
+            // search user in the database by user id
             $users = User::findOrFail($id);
             // Delete the user
             $users->delete();
@@ -191,4 +212,6 @@ class AuthController extends Controller
             return ApiResponse::error('User not found', 404);
         }
     }
+
+
 }
