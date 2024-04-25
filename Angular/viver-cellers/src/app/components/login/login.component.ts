@@ -9,6 +9,9 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  /**
+   *
+   */
   loginForm: FormGroup;
   email!: string;
   password!: string;
@@ -30,18 +33,19 @@ export class LoginComponent {
           localStorage.setItem('access_token', response.access_token);
           localStorage.setItem('user_name', response.user.name);
           localStorage.setItem('user_rol', response.user.rol);
+          location.reload();
           this.router.navigate(['/home']);
         },
         error => {
           if (error.status === 401) {
-            this.errorMessage = 'Correo electrónico o contraseña incorrectos';
+            this.errorMessage = 'Correu electrònic o contrasenya incorrectes';
           } else {
-            this.errorMessage = 'Se produjo un error al iniciar sesión. Por favor, inténtalo de nuevo más tarde.';
+            this.errorMessage = 'Es va produir un error en iniciar sessió. Si us plau, intenta-ho de nou més tard.';
           }
         }
       );
     } else {
-      console.log('Formulario inválido');
+      console.log('Formulari invàlid');
     }
   }
 }
