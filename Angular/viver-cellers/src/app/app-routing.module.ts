@@ -9,22 +9,26 @@ import { PectComponent } from './components/pect/pect.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserManagementComponent } from './components/user-management/user-management.component';
+import { AdminGuard } from './guards/admin.guard';
+import { ProjectManagementComponent } from './components/project-management/project-management.component';
+
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent }, // Página Inicio
-  { path: 'requirements', component: RequirementsComponent }, // Página de los Requisitos
-  { path: 'services', component: ServicesComponent }, // Página de los Servicios
-  { path: 'information', component: InformationComponent }, // Página de Informcaión del Vivero
-  { path: 'regulation', component: RegulationComponent }, // Página del Reglamento
-  { path: 'pect', component: PectComponent }, // Página de Informcaión del PECT
+  { path: 'home', component: HomeComponent }, //Home Page
+  { path: 'requirements', component: RequirementsComponent }, //Requirements Page
+  { path: 'services', component: ServicesComponent }, //Services Page
+  { path: 'information', component: InformationComponent }, //Nursery Information Page
+  { path: 'regulation', component: RegulationComponent }, //Regulation Page
+  { path: 'pect', component: PectComponent }, //PECT Information Page
 
-  { path: 'register', component: RegisterComponent }, // Página de Registro
-  { path: 'login', component: LoginComponent }, // Página de Login
+  { path: 'register', component: RegisterComponent }, //Registration Page
+  { path: 'login', component: LoginComponent }, //Login Page
 
-  { path: 'user_management', component: UserManagementComponent }, // Página de Gestión de Usuarios
+  { path: 'user_management', component: UserManagementComponent, canActivate: [AdminGuard]}, //User Management Page
+  { path: 'project_management', component: ProjectManagementComponent, canActivate: [AdminGuard]},
 
-  { path: '', redirectTo: '/home', pathMatch: 'full' }, // Página que se carga primero
-  // { path: '**', component: ErrorPageComponent }, // URL incorrecta
+  { path: '', redirectTo: '/home', pathMatch: 'full' }, //Page that loads first
+  // { path: '**', component: ErrorPageComponent }, //Incorrect URL
 ];
 
 @NgModule({

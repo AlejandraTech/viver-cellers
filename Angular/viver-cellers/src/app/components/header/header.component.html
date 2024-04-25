@@ -70,19 +70,27 @@
               <a routerLink="/"
                 class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Projectes</a>
             </li>
-            <li>
+            <li *ngIf="isAuthenticated && isClient">
               <a routerLink="/"
                 class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Botiga</a>
             </li>
-            <li>
+            <li *ngIf="!isAuthenticated">
               <a routerLink="/login" class="block py-2 px-3 rounded md:bg-transparent md:p-0"
                 aria-current="page">Iniciar
                 Sessió</a>
             </li>
-            <li>
+            <li *ngIf="isAuthenticated">
+              <a (click)="logout()" class="block py-2 px-3 rounded md:bg-transparent md:p-0">Tancar sessió</a>
+            </li>
+            <li *ngIf="isAuthenticated && isAdmin">
               <a routerLink="/user_management" class="block py-2 px-3 rounded md:bg-transparent md:p-0"
                 aria-current="page">Gestió d'usuaris</a>
             </li>
+            <li *ngIf="isAuthenticated && isAdmin">
+              <a routerLink="/project_management" class="block py-2 px-3 rounded md:bg-transparent md:p-0"
+                aria-current="page">Gestió de Projectes</a>
+            </li>
+            <!--languages-->
             <li>
               <div class="flex items-center md:order-2 space-x-1 md:space-x-0 rtl:space-x-reverse">
                 <button type="button" data-dropdown-toggle="language-dropdown-menu"
@@ -177,6 +185,7 @@
                 </div>
               </div>
             </li>
+            <!------------------------------------------------------------------------>
           </ul>
         </div>
       </div>

@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
   register!: FormGroup;
-  id_province_fk: any[] = [];
   errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) {
@@ -20,20 +19,8 @@ export class RegisterComponent {
       dni: new FormControl('', [Validators.minLength(9), Validators.maxLength(9)]),
       email: new FormControl('', [Validators.required, Validators.pattern("^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$")]),
       password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-      repeatpassword: new FormControl('', [Validators.required]),
-      id_province_fk: new FormControl('', [Validators.required])
+      repeatpassword: new FormControl('', [Validators.required])
     });
-  }
-
-  ngOnInit(): void {
-    this.authService.getProvinces().subscribe(
-      (response) => {
-        this.id_province_fk = response.data;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
   }
 
   onSubmit(): void {
@@ -44,7 +31,6 @@ export class RegisterComponent {
         dni: this.register.value.dni,
         email: this.register.value.email,
         password: this.register.value.password,
-        id_province_fk: this.register.value.id_province_fk
       };
       this.authService.registerUser(userData)
         .subscribe(
