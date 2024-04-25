@@ -10,6 +10,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserManagementComponent } from './components/user-management/user-management.component';
 import { AdminGuard } from './guards/admin.guard';
+import { ProjectManagementComponent } from './components/project-management/project-management.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent }, //Login Page
 
   { path: 'user_management', component: UserManagementComponent, canActivate: [AdminGuard]}, //User Management Page
+  { path: 'project_management', component: ProjectManagementComponent, canActivate: [AdminGuard]},
 
   { path: '', redirectTo: '/home', pathMatch: 'full' }, //Page that loads first
   // { path: '**', component: ErrorPageComponent }, //Incorrect URL

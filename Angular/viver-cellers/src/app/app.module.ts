@@ -18,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DniDirective } from './directives/dni.directive';
 import { RepeatPasswordDirective } from './directives/repeat-password.directive';
 import { UserManagementComponent } from './components/user-management/user-management.component';
+import { ProjectManagementComponent } from './components/project-management/project-management.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { UserManagementComponent } from './components/user-management/user-manag
     DniDirective,
     RepeatPasswordDirective,
     UserManagementComponent,
+    ProjectManagementComponent,
   ],
   imports: [
     BrowserModule,
