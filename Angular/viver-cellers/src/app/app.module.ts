@@ -19,6 +19,7 @@ import { DniDirective } from './directives/dni.directive';
 import { RepeatPasswordDirective } from './directives/repeat-password.directive';
 import { UserManagementComponent } from './components/user-management/user-management.component';
 import { ProjectManagementComponent } from './components/project-management/project-management.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ProjectManagementComponent } from './components/project-management/proj
     RepeatPasswordDirective,
     UserManagementComponent,
     ProjectManagementComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,
