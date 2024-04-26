@@ -11,24 +11,25 @@ import { LoginComponent } from './components/login/login.component';
 import { UserManagementComponent } from './components/user-management/user-management.component';
 import { AdminGuard } from './guards/admin.guard';
 import { ProjectManagementComponent } from './components/project-management/project-management.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent }, //Home Page
-  { path: 'requirements', component: RequirementsComponent }, //Requirements Page
-  { path: 'services', component: ServicesComponent }, //Services Page
-  { path: 'information', component: InformationComponent }, //Nursery Information Page
-  { path: 'regulation', component: RegulationComponent }, //Regulation Page
-  { path: 'pect', component: PectComponent }, //PECT Information Page
+  { path: 'home', component: HomeComponent }, // Home Page
+  { path: 'requirements', component: RequirementsComponent }, // Requirements Page
+  { path: 'services', component: ServicesComponent }, // Services Page
+  { path: 'information', component: InformationComponent }, // Nursery Information Page
+  { path: 'regulation', component: RegulationComponent }, // Regulation Page
+  { path: 'pect', component: PectComponent }, // PECT Information Page
 
-  { path: 'register', component: RegisterComponent }, //Registration Page
-  { path: 'login', component: LoginComponent }, //Login Page
+  { path: 'register', component: RegisterComponent }, // Registration Page
+  { path: 'login', component: LoginComponent }, // Login Page
 
-  { path: 'user_management', component: UserManagementComponent, canActivate: [AdminGuard]}, //User Management Page
-  { path: 'project_management', component: ProjectManagementComponent, canActivate: [AdminGuard]},
+  { path: 'user_management', component: UserManagementComponent, canActivate: [AdminGuard]}, // User Management Page
+  { path: 'project_management', component: ProjectManagementComponent, canActivate: [AdminGuard]}, // Project Management Page
 
-  { path: '', redirectTo: '/home', pathMatch: 'full' }, //Page that loads first
-  // { path: '**', component: ErrorPageComponent }, //Incorrect URL
+  { path: '', redirectTo: '/home', pathMatch: 'full' }, // Page that loads first
+  { path: '**', component: ErrorPageComponent }, // Incorrect URL
 ];
 
 @NgModule({
