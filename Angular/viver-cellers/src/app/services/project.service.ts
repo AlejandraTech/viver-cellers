@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Project } from '../models/Project';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,11 @@ export class ProjectService {
   }
 
   constructor(private http: HttpClient) { } // HttpClient injection into the constructor
+
+  // Método para obtener todos los productos desde el backend
+  getAllProjects(): Observable<Project[]> {
+    return this.http.get<Project[]>(`${this.apiUrl}/project-info`);
+  }
 
   // Method to fetch projects from the API
   getProjects(): Observable<any> {

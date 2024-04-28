@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('definition', 1000);
             $table->string('description');
             $table->string('stories', 2000);
+            $table->string('logo_path')->nullable();
             $table->timestamps();
         });
     }

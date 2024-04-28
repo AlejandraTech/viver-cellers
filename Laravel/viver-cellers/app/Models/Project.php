@@ -14,6 +14,7 @@ class Project extends Model
         'definition',
         'description',
         'stories',
+        'logo_path',
     ];
 
     public function users()
