@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('winemaking');
             $table->integer('grade_alcohol');
+            $table->integer('stock');
             $table->decimal('price', 8, 2);
             $table->integer('iva');
             $table->unsignedInteger('id_type_wine_fk')->nullable();
