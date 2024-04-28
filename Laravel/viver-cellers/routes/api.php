@@ -40,6 +40,7 @@ Route::prefix('users')->group(function () {
     Route::put('/{id}', [AuthController::class, 'update']);
 });
 
+Route::get('/project-info', [ProjectController::class, 'index']);
 
 //Route to display all project
 Route::prefix('project')->group(function () {
