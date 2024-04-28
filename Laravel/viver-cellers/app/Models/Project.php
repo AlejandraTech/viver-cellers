@@ -9,15 +9,20 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id_user_fk', 'project_name', 'definition', 'description', 'stories'];
+    protected $fillable = [
+        'project_name',
+        'definition',
+        'description',
+        'stories',
+    ];
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class, 'id_user_fk');
+        return $this->hasMany(User::class);
     }
 
     public function products()
     {
-        return $this->hasMany(Product::class, 'project_id');
+        return $this->hasMany(Product::class);
     }
 }

@@ -9,25 +9,41 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id_vineyard_area_fk', 'name', 'winemaking', 'vineyard_area', 'grade_alcohol', 'price', 'iva', 'project_id'];
+    protected $fillable = [
+        'id_vineyard_area_fk',
+        'name',
+        'winemaking',
+        'grade_alcohol',
+        'stock',
+        'price',
+        'iva',
+        'id_type_wine_fk',
+        'id_type_variety_fk',
+        'project_id',
+    ];
 
     public function vineyardArea()
     {
         return $this->belongsTo(VineyardArea::class, 'id_vineyard_area_fk');
     }
 
-    public function typeWines()
+    public function typeWine()
     {
-        return $this->hasMany(TypeWine::class, 'id_product_fk');
+        return $this->belongsTo(TypeWine::class, 'id_type_wine_fk');
     }
 
-    public function typeVarieties()
+    public function typeVariety()
     {
-        return $this->hasMany(TypeVariety::class, 'id_product_fk');
+        return $this->belongsTo(TypeVariety::class, 'id_type_variety_fk');
     }
 
     public function project()
     {
-        return $this->belongsTo(Project::class, 'project_id');
+        return $this->belongsTo(Project::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'id_product_fk');
     }
 }
