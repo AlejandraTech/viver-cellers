@@ -9,10 +9,12 @@ class TypeWine extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id_product_fk', 'category'];
+    protected $fillable = [
+        'category',
+    ];
 
-    public function product()
+    public function products()
     {
-        return $this->belongsTo(Product::class, 'id_product_fk');
+        return $this->hasMany(Product::class, 'id_type_wine_fk');
     }
 }

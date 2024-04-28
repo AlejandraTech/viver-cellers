@@ -9,5 +9,12 @@ class VineyardArea extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['area'];
+    protected $fillable = [
+        'area',
+    ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'id_vineyard_area_fk');
+    }
 }

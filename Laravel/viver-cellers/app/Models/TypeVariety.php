@@ -9,10 +9,12 @@ class TypeVariety extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id_product_fk', 'variety'];
+    protected $fillable = [
+        'variety',
+    ];
 
-    public function product()
+    public function products()
     {
-        return $this->belongsTo(Product::class, 'id_product_fk');
+        return $this->hasMany(Product::class, 'id_type_variety_fk');
     }
 }
