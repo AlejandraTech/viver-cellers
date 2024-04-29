@@ -51,6 +51,18 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'name' => 'client1',
+                'dni' => null,
+                'lastname' => 'client1',
+                'email' => 'client1@gmail.com',
+                'password' => Hash::make('12345678'),
+                'rol' => 'client',
+                'address' => null,
+                'project_id_fk' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ];
 
         DB::table('users')->insert($data);
