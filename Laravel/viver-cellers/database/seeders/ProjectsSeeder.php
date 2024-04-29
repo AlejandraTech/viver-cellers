@@ -44,20 +44,6 @@ class ProjectsSeeder extends Seeder
                 'logo_path' => 'assets/img/projects/vins-de-sinergia.png',
             ],
             [
-                'project_name' => 'Vins de Sinergia',
-                'definition' => 'Breu descripció o informació addicional sobre el celler.',
-                'description' => 'Elaboració de vins',
-                'stories' => 'Història del celler',
-                'logo_path' => 'assets/img/projects/vins-de-sinergia.png',
-            ],
-            [
-                'project_name' => 'Heretat Can Serra',
-                'definition' => 'Breu descripció o informació addicional sobre el celler.',
-                'description' => 'Elaboració de vins',
-                'stories' => 'Història del celler',
-                'logo_path' => 'assets/img/projects/heretat-can-serra.png',
-            ],
-            [
                 'project_name' => 'Heretat Can Serra',
                 'definition' => 'Breu descripció o informació addicional sobre el celler.',
                 'description' => 'Elaboració de vins',
