@@ -26,6 +26,15 @@ class ProjectController extends Controller
     }
 
     /**
+     * Muestra los detalles de una casilla en concreto
+     */
+    public function showProject($id)
+    {
+        $projects = Project::find($id);
+        return response()->json($projects, 200);
+    }
+
+    /**
      * Get the list of all projects
      * @return - Api response
      */

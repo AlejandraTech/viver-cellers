@@ -20,6 +20,7 @@ import { RepeatPasswordDirective } from './directives/repeat-password.directive'
 import { UserManagementComponent } from './components/user-management/user-management.component';
 import { ProjectManagementComponent } from './components/project-management/project-management.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { InfoProjectComponent } from './components/info-project/info-project.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
     UserManagementComponent,
     ProjectManagementComponent,
     ErrorPageComponent,
+    InfoProjectComponent,
   ],
   imports: [
     BrowserModule,

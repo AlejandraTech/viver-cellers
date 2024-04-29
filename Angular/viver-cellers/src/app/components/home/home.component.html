@@ -18,14 +18,18 @@
           <h3 class="text-xl font-bold mb-2">{{ project.project_name }}</h3>
           <p class="text-gray-700">{{ project.description }}</p>
         </div>
+        <button [routerLink]="['/info-project' , project.id]"
+          class="block w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600">
+          Més Informació
+        </button>
       </div>
     </div>
   </div>
 
   <!-- YouTube video -->
-  <div class="mt-12 overflow-hidden">
+  <div class="mt-6 overflow-hidden rounded-lg shadow-lg max-w-screen-md mx-auto">
     <div class="aspect-w-16 aspect-h-9">
-      <iframe class="w-full h-full" src="https://www.youtube.com/embed/br184Lt6gdI?si=VKDo-ecLFWucdcNP"
+      <iframe class="w-full h-full rounded-lg" src="https://www.youtube.com/embed/br184Lt6gdI?si=VKDo-ecLFWucdcNP"
         title="YouTube video player" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

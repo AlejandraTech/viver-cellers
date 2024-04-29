@@ -41,6 +41,7 @@ Route::prefix('users')->group(function () {
 });
 
 Route::get('/project-info', [ProjectController::class, 'index']);
+Route::get('/projectDetails/{id}', [ProjectController::class, 'showProject']);
 
 //Route to display all project
 Route::prefix('project')->group(function () {

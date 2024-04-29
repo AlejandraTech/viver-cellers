@@ -22,6 +22,10 @@ export class ProjectService {
 
   constructor(private http: HttpClient) { } // HttpClient injection into the constructor
 
+  getProjectDetails(id: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/projectDetails/${id}`);
+  }
+
   // Método para obtener todos los productos desde el backend
   getAllProjects(): Observable<Project[]> {
     return this.http.get<Project[]>(`${this.apiUrl}/project-info`);
@@ -54,8 +58,6 @@ export class ProjectService {
       catchError(this.errorHandler)
     );
   }
-
-
 
   // Error handler method for HTTP errors
   errorHandler(error: HttpErrorResponse) {
