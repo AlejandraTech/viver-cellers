@@ -20,6 +20,8 @@ import { RepeatPasswordDirective } from './directives/repeat-password.directive'
 import { UserManagementComponent } from './components/user-management/user-management.component';
 import { ProjectManagementComponent } from './components/project-management/project-management.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { ShopComponent } from './components/shop/shop.component';
+import { CartComponent } from './components/cart/cart.component';
 import { InfoProjectComponent } from './components/info-project/info-project.component';
 
 @NgModule({
@@ -40,6 +42,8 @@ import { InfoProjectComponent } from './components/info-project/info-project.com
     UserManagementComponent,
     ProjectManagementComponent,
     ErrorPageComponent,
+    ShopComponent,
+    CartComponent,
     InfoProjectComponent,
   ],
   imports: [

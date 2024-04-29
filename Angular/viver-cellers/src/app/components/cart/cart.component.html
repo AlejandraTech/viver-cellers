@@ -1,0 +1,20 @@
+<div class="container mx-auto px-4 py-8">
+  <h2 class="text-3xl font-bold text-center mb-8">Carrito de Compra</h2>
+  <ul>
+    <li *ngFor="let item of cart" class="bg-white rounded-lg shadow-md overflow-hidden mb-4">
+      <div class="p-6">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">{{ item.name }}</h3>
+        <p class="text-sm text-gray-600 mb-2">Cantidad: {{ item.quantity }}</p>
+        <p class="text-lg font-semibold text-gray-900 mb-4">Precio: ${{ item.price * item.quantity }}</p>
+        <button (click)="removeFromCart(item)" class="bg-red-500 text-white py-2 px-4 rounded">Quitar del
+          carrito</button>
+      </div>
+    </li>
+  </ul>
+  <div class="text-center mt-8">
+    <button (click)="checkout()"
+      class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+      Finalizar compra
+    </button>
+  </div>
+</div>

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->unsignedInteger('id_vineyard_area_fk');
             $table->foreign('id_vineyard_area_fk')->references('id')->on('vineyard_areas');
+            $table->string('image_path')->nullable();
             $table->string('name');
             $table->string('winemaking');
             $table->integer('grade_alcohol');
