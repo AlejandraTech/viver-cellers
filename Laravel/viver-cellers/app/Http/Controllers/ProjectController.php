@@ -15,6 +15,26 @@ class ProjectController extends Controller
 {
 
     /**
+     * Display a listing of the products.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $projects = Project::all();
+        return response()->json($projects);
+    }
+
+    /**
+     * Muestra los detalles de una casilla en concreto
+     */
+    public function showProject($id)
+    {
+        $projects = Project::find($id);
+        return response()->json($projects, 200);
+    }
+
+    /**
      * Get the list of all projects
      * @return - Api response
      */

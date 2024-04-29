@@ -11,86 +11,25 @@
   <div class="mt-12">
     <h2 class="text-2xl font-bold mb-4">Cellers participants</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Store 1 -->
-      <div class="bg-white rounded-lg overflow-hidden shadow-md">
-        <img src="/assets/img/projects/heretat-can-serra.png" alt="Imatge del celler 1"
+      <div *ngFor="let project of projects" class="bg-white rounded-lg overflow-hidden shadow-md">
+        <img [src]="project.logo_path" [alt]="project.project_name + ' logo'"
           class="w-full h-48 object-cover object-center">
         <div class="p-4">
-          <h3 class="text-xl font-bold mb-2">Heretat Can Serra</h3>
-          <p class="text-gray-700">Breu descripció o informació addicional sobre el celler.</p>
+          <h3 class="text-xl font-bold mb-2">{{ project.project_name }}</h3>
+          <p class="text-gray-700">{{ project.description }}</p>
         </div>
-      </div>
-
-      <!-- Store 2 -->
-      <div class="bg-white rounded-lg overflow-hidden shadow-md">
-        <img src="/assets/img/projects/mulet-viticultors.png" alt="Imatge del celler 2"
-          class="w-full h-48 object-cover object-center">
-        <div class="p-4">
-          <h3 class="text-xl font-bold mb-2">Mulet Viticultors</h3>
-          <p class="text-gray-700">Breu descripció o informació addicional sobre el celler.</p>
-        </div>
-      </div>
-
-      <!-- Store 3 -->
-      <div class="bg-white rounded-lg overflow-hidden shadow-md">
-        <img src="/assets/img/projects/vins-de-sinergia.png" alt="Imatge del celler 3"
-          class="w-full h-48 object-cover object-center">
-        <div class="p-4">
-          <h3 class="text-xl font-bold mb-2">Vins de Sinergia</h3>
-          <p class="text-gray-700">Breu descripció o informació addicional sobre el celler.</p>
-        </div>
-      </div>
-
-      <!-- Store 4 -->
-      <div class="bg-white rounded-lg overflow-hidden shadow-md">
-        <img src="/assets/img/projects/vins-geniu.png" alt="Imatge del celler 4"
-          class="w-full h-48 object-cover object-center">
-        <div class="p-4">
-          <h3 class="text-xl font-bold mb-2">Vins Gèniu</h3>
-          <p class="text-gray-700">Vins Gèniu és el projecte familiar apassionant d’elaboració de vins ecològics de vinyes velles que connecta les darreres cinc generacions de la família Urpí.</p>
-        </div>
-      </div>
-
-      <!-- Store 5 -->
-      <div class="bg-white rounded-lg overflow-hidden shadow-md">
-        <img src="/assets/img/projects/joan-grill.png" alt="Imatge del celler 5"
-          class="w-full h-48 object-cover object-center">
-        <div class="p-4">
-          <h3 class="text-xl font-bold mb-2">Joan Grill</h3>
-          <p class="text-gray-700">Família de Viticultors que elabora vins ecològics d’alçada de la Zona +500.</p>
-        </div>
-      </div>
-
-      <!-- Store 6 -->
-      <div class="bg-white rounded-lg overflow-hidden shadow-md">
-        <img src="/assets/img/projects/amat-i-montane.png" alt="Imatge del celler 6"
-          class="w-full h-48 object-cover object-center">
-        <div class="p-4">
-          <h3 class="text-xl font-bold mb-2">Amat i Montané</h3>
-          <p class="text-gray-700">Breu descripció o informació addicional sobre el celler.</p>
-        </div>
-      </div>
-
-      <!-- Store 7 -->
-      <div class="bg-white rounded-lg overflow-hidden shadow-md">
-        <img src="/assets/img/projects/heretat-balta-de-cela.png" alt="Imatge del celler 7"
-          class="w-full h-48 object-cover object-center">
-        <div class="p-4">
-          <h3 class="text-xl font-bold mb-2">Heretat Baltà de Cela</h3>
-          <p class="text-gray-700">Breu descripció o informació addicional sobre el celler.</p>
-        </div>
+        <button [routerLink]="['/info-project' , project.id]"
+          class="block w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600">
+          Més Informació
+        </button>
       </div>
     </div>
   </div>
 
-  <div class="mt-12 text-center">
-    <a routerLink="/home" class="text-blue-500 hover:underline">Veure tots els cellers participants</a>
-  </div>
-
   <!-- YouTube video -->
-  <div class="mt-12 overflow-hidden">
+  <div class="mt-6 overflow-hidden rounded-lg shadow-lg max-w-screen-md mx-auto">
     <div class="aspect-w-16 aspect-h-9">
-      <iframe class="w-full h-full" src="https://www.youtube.com/embed/br184Lt6gdI?si=VKDo-ecLFWucdcNP"
+      <iframe class="w-full h-full rounded-lg" src="https://www.youtube.com/embed/br184Lt6gdI?si=VKDo-ecLFWucdcNP"
         title="YouTube video player" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

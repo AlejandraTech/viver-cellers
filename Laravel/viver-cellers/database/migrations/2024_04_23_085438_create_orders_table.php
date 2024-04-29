@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('deliver_date');
             $table->integer('amount');
             $table->unsignedInteger('id_user_fk');
+            $table->foreign('id_user_fk')->references('id')->on('users');
             $table->unsignedInteger('order_status_id');
             $table->foreign('order_status_id')->references('id')->on('order_statuses');
             $table->timestamps();
