@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\PurchaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -50,3 +52,10 @@ Route::prefix('project')->group(function () {
     Route::delete('/{id}', [ProjectController::class, 'destroy']);
     Route::put('/{id}', [ProjectController::class, 'update']);
 });
+
+//Route to display all products
+Route::get('/products', [ProductController::class, 'index']);
+
+// Make payment
+Route::post('/purchase', [PurchaseController::class, 'checkout']);
+Route::get('/purchase/execute', [PurchaseController::class, 'handlePayment']);

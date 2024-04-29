@@ -2,6 +2,7 @@ export interface Product {
   id: number;
   id_vineyard_area_fk: number;
   name: string;
+  image_path: string;
   winemaking: string;
   grade_alcohol: number;
   stock: number;

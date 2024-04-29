@@ -17,7 +17,8 @@ class ProductsSeeder extends Seeder
             [
                 'id_vineyard_area_fk' => 2,
                 'name' => 'El Tiet',
-                'winemaking' => 'ecològica respectant i expressant la varietat',
+                'image_path' => 'assets/img/products/joan-grill/el-tiet.jpg',
+                'winemaking' => 'Ecològica respectant i expressant la varietat',
                 'grade_alcohol' => 13,
                 'stock' => 100,
                 'price' => 17.50,
@@ -29,7 +30,8 @@ class ProductsSeeder extends Seeder
             [
                 'id_vineyard_area_fk' => 2,
                 'name' => 'El Journal',
-                'winemaking' => 'ecològica respectant i expressant la varietat',
+                'image_path' => 'assets/img/products/joan-grill/el-Jornal.jpg',
+                'winemaking' => 'Ecològica respectant i expressant la varietat',
                 'grade_alcohol' => 11.5,
                 'stock' => 100,
                 'price' => 19.70,
@@ -41,6 +43,7 @@ class ProductsSeeder extends Seeder
             [
                 'id_vineyard_area_fk' => 1,
                 'name' => 'GÈNIU XAREL.LO BRISAT 2023',
+                'image_path' => 'assets/img/products/geniu/brisat.jpg',
                 'winemaking' => 'Brisat de mínima intervenció, pigeage manual i fermentació amb les pròpies pells.',
                 'grade_alcohol' => 10.50,
                 'stock' => 100,

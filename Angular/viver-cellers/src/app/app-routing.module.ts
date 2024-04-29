@@ -12,6 +12,9 @@ import { UserManagementComponent } from './components/user-management/user-manag
 import { AdminGuard } from './guards/admin.guard';
 import { ProjectManagementComponent } from './components/project-management/project-management.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { ShopComponent } from './components/shop/shop.component';
+import { ClientGuard } from './guards/client.guard';
+import { CartComponent } from './components/cart/cart.component';
 import { InfoProjectComponent } from './components/info-project/info-project.component';
 
 const routes: Routes = [
@@ -26,6 +29,9 @@ const routes: Routes = [
 
   { path: 'register', component: RegisterComponent }, // Registration Page
   { path: 'login', component: LoginComponent }, // Login Page
+
+  { path: 'shop', component: ShopComponent, canActivate: [ClientGuard]}, // Shop Page
+  { path: 'cart', component: CartComponent, canActivate: [ClientGuard]}, // Cart Page
 
   { path: 'user_management', component: UserManagementComponent, canActivate: [AdminGuard]}, // User Management Page
   { path: 'project_management', component: ProjectManagementComponent, canActivate: [AdminGuard]}, // Project Management Page
