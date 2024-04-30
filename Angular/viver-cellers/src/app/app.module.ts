@@ -23,6 +23,7 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
 import { ShopComponent } from './components/shop/shop.component';
 import { CartComponent } from './components/cart/cart.component';
 import { InfoProjectComponent } from './components/info-project/info-project.component';
+import { InfoProductComponent } from './components/info-product/info-product.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { InfoProjectComponent } from './components/info-project/info-project.com
     ShopComponent,
     CartComponent,
     InfoProjectComponent,
+    InfoProductComponent,
   ],
   imports: [
     BrowserModule,

@@ -54,3 +54,4 @@ Route::prefix('project')->group(function () {
 
 //Route to display all products
 Route::get('/products', [ProductController::class, 'index']);
+Route::get('/productDetails/{id}', [ProductController::class, 'showProduct']);
