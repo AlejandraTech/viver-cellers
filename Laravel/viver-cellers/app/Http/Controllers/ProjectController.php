@@ -9,7 +9,6 @@ use App\Models\Project;
 use Exception;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Hash;
 
 class ProjectController extends Controller
 {

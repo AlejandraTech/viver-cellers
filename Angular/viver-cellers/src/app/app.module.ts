@@ -24,6 +24,7 @@ import { ShopComponent } from './components/shop/shop.component';
 import { CartComponent } from './components/cart/cart.component';
 import { InfoProjectComponent } from './components/info-project/info-project.component';
 import { InfoProductComponent } from './components/info-product/info-product.component';
+import { ProductManagementComponent } from './components/product-management/product-management.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { InfoProductComponent } from './components/info-product/info-product.com
     CartComponent,
     InfoProjectComponent,
     InfoProductComponent,
+    ProductManagementComponent,
   ],
   imports: [
     BrowserModule,

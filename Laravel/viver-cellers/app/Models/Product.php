@@ -12,7 +12,6 @@ class Product extends Model
     protected $fillable = [
         'id_vineyard_area_fk',
         'name',
-        'image_path',
         'winemaking',
         'grade_alcohol',
         'stock',
