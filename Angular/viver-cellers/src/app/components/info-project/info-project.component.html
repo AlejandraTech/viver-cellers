@@ -42,7 +42,7 @@
       <div *ngIf="product.project_id === project.id">
         <div class="mt-12">
           <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <img src="../../../assets/img/products/{{project.project_name}}/{{product.name}}.jpg" alt="{{product.name}}"
+            <img [src]="product.image_path" alt="{{product.name}}"
               class="object-contain w-full h-full">
             <div class="p-5">
               <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{product.name}}</h5>
