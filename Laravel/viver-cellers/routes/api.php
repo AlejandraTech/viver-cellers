@@ -41,8 +41,10 @@ Route::prefix('users')->group(function () {
     Route::put('/{id}', [AuthController::class, 'update']);
 });
 
+
 Route::get('/project-info', [ProjectController::class, 'index']);
 Route::get('/projectDetails/{id}', [ProjectController::class, 'showProject']);
+
 
 //Route to display all project
 Route::prefix('project')->group(function () {
@@ -52,6 +54,13 @@ Route::prefix('project')->group(function () {
     Route::put('/{id}', [ProjectController::class, 'update']);
 });
 
-//Route to display all products
-Route::get('/products', [ProductController::class, 'index']);
-Route::get('/productDetails/{id}', [ProductController::class, 'showProduct']);
+
+//Route to display all product
+Route::prefix('product')->group(function () {
+    Route::get('/information', [ProductController::class, 'index']);
+    Route::get('/details/{id}', [ProductController::class, 'showProduct']);
+    Route::get('/', [ProductController::class, 'getAll']);
+    Route::post('/', [ProductController::class, 'store']);
+    Route::delete('/{id}', [ProductController::class, 'destroy']);
+    Route::put('/{id}', [ProductController::class, 'update']);
+});
