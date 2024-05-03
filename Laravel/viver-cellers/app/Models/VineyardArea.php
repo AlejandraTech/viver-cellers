@@ -9,6 +9,8 @@ class VineyardArea extends Model
 {
     use HasFactory;
 
+    protected $table = 'vineyard_areas';
+
     protected $fillable = [
         'area',
     ];

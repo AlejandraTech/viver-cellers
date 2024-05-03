@@ -17,6 +17,7 @@ import { ClientGuard } from './guards/client.guard';
 import { CartComponent } from './components/cart/cart.component';
 import { InfoProjectComponent } from './components/info-project/info-project.component';
 import { InfoProductComponent } from './components/info-product/info-product.component';
+import { ProductManagementComponent } from './components/product-management/product-management.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent }, // Home Page
@@ -37,6 +38,7 @@ const routes: Routes = [
 
   { path: 'user_management', component: UserManagementComponent, canActivate: [AdminGuard] }, // User Management Page
   { path: 'project_management', component: ProjectManagementComponent, canActivate: [AdminGuard] }, // Project Management Page
+  { path: 'product_management', component: ProductManagementComponent, canActivate: [AdminGuard] }, // Product Management Page
 
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Page that loads first
   { path: '**', component: ErrorPageComponent }, // Incorrect URL

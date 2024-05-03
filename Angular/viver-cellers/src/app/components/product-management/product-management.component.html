@@ -1,0 +1,570 @@
+<section class="bg-neutral-200 dark:bg-neutral-700">
+  <div class="container mx-auto p-6">
+    <!-- Product table -->
+    <div class="overflow-x-auto rounded-lg shadow-md">
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-center text-xs uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th class="px-6 py-3">Nom</th>
+            <th class="px-6 py-3">Tipo</th>
+            <th class="px-6 py-3">Projecte pertanyent</th>
+            <th class="px-6 py-3">Modificar</th>
+            <th class="px-6 py-3">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bg-white dark:bg-gray-800 text-center" *ngFor="let product of products; let i = index">
+            <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">
+              {{product.name}}
+            </td>
+            <td class="px-6 py-4">{{product.type_wine.category}}</td>
+            <td class="px-6 py-4">{{product.project.project_name}}</td>
+            <td class="px-6 py-4 justify-center">
+              <div class="inline-block align-middle border border-red-600 rounded-full p-1 hover:bg-red-100">
+                <button (click)="toggleModifyFormVisibility(product.id)" [disabled]="modifyButtonsDisabled[i]">
+                  <img
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAR9JREFUSEu1lUFygzAMRZ8nOUhyCJjpDo6Sk+QoyU3IrgsuwUU6dJSiVjHYMqSw8iD5f+nr2w7s/IWd8fkXgk84HaCp4R4X/ELQQzPCLcDJ6ayt4CE5PXRAI+sRhi9oP2DQ/THBb3KGYAYuwJIvhcm6hnOKYJRA9czNf1q5Ak4ydRPJReWKOygiSMliSLcT2MqtLOFHJpnhNolEgiPcLIiVRYds9Z8K+NO6fxphPoMlcN0Vz8Kz6YxgLbhYXS3sdpACT/0XcKCzLsy6aKl9p6OZAh7By4Yc+HSqtxN44G8RWGfEPrexJRcWSaQgOfBNHXj3URxf3cEeBCXXtcf7qYBNXddyUK76gHhIcVxmFOCSPMlrAUvy3YelBCSXszvBN0nVohleaXBfAAAAAElFTkSuQmCC"
+                    alt="Modificar" class="rounded-full" />
+                </button>
+              </div>
+            </td>
+            <td class="px-6 py-4 justify-center">
+              <div class="inline-block align-middle border border-red-600 rounded-full p-1 hover:bg-red-100">
+                <button (click)="deleteProduct(product.id)">
+                  <img
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAJRJREFUSEvtlcsRgCAMBZeiuGspVqJWJneasBMdDoyKfEQGL5IjQ7LJ4/MElUNUrk8SoKEDlkAjs4Qp1mQUkCjOBquAQYIKQS4AjckpD8mhzLeA8t7vFbxn8FaqszQW9QOAHduVzbf+SqIGSN6iJtEPJMr5AHMemnEw42Q5oST0bkLoDEzx8Skk5mxJT84Zwbe3OmAH5BVSGbEiBo0AAAAASUVORK5CYII="
+                    alt="Eliminar" class="rounded-full" />
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Form to add product -->
+    <div class="mt-4" *ngIf="isAddFormVisible">
+      <form class="bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4" [formGroup]="addproduct">
+        <div class="flex justify-center items-center">
+          <div class="justify-center items-center inline-block align-middle border border-red-600 rounded-full p-1">
+            <img
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAP9JREFUSEvtlMsRgjAQQF8cC9Ei4KyViJWolaCVyM0ZsAftJLryGSDLJGGGm7my7Nu83Y1h4WMWzs8f4DWsKnrAZg2ZhYNkMHBL4OzNpgSogAruwK4fb+GdwjYW4gBKyAzkE4n2CRQxEAdQ1SpOE0kumqoKrMQnP5vDowFEjShyjoVjCtfxhyhA02BRFNyDKIBU106RqJLmGngnsO9X3iad6kera/YmzwZUtRppcqdIbrGCwtb74ExRsCLPiLY2nEkKAjSVq9OjeB7sQxDgCflXRRa4RMW46VP/dU0u4WVgEwKIeTY6gG8qxmBta7XiZo9pyE2blzg0dF7c/wZebx/ln0IZaZTTHgAAAABJRU5ErkJggg=="
+              alt="Afegir" class="rounded-full" />
+          </div>
+        </div>
+        <h2 class="text-lg font-semibold mb-4 text-center">Afegir product</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+          <!-- Name input -->
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="firstname">Nom</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="firstname" type="text" placeholder="Nom" formControlName="name" />
+
+            <!-- This field is required -->
+            <div *ngIf="this.addproduct.get('name')?.errors?.['required'] && this.addproduct.get('name')?.touched"
+              class="text-red-500 text-xs italic">
+              Aquest camp és obligatori.
+            </div>
+
+            <!-- MaxLength -->
+            <div *ngIf="this.addproduct.get('name')?.errors?.['maxlength'] &&
+          this.addproduct.get('name')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir un màxim de 50 caràcters.
+            </div>
+
+            <!-- MinLength -->
+            <div *ngIf="this.addproduct.get('name')?.errors?.['minlength'] &&
+          this.addproduct.get('name')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir com a mínim 2 caràcters.
+            </div>
+
+          </div>
+
+          <!-- winemaking input -->
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="winemaking">vinificació</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="text" placeholder="vinificació" formControlName="winemaking" />
+
+            <!-- This field is required -->
+            <div *ngIf="this.addproduct.get('winemaking')?.errors?.['required'] &&
+              this.addproduct.get('winemaking')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp és obligatori.
+            </div>
+
+            <!-- MaxLength -->
+            <div *ngIf="this.addproduct.get('winemaking')?.errors?.['maxlength'] &&
+                        this.addproduct.get('winemaking')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir un màxim de 255 caràcters.
+            </div>
+
+            <!-- MinLength -->
+            <div *ngIf="this.addproduct.get('winemaking')?.errors?.['minlength'] &&
+                        this.addproduct.get('winemaking')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir com a mínim 2 caràcters.
+            </div>
+          </div>
+
+
+          <!-- grade_alcohol input -->
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="grade_alcohol">Grau
+              alcohol</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="grade_alcohol" type="text" placeholder="Grau alcohol" formControlName="grade_alcohol" />
+
+            <!-- This field is required -->
+            <div *ngIf="this.addproduct.get('grade_alcohol')?.errors?.['required'] &&
+                this.addproduct.get('grade_alcohol')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp és obligatori.
+            </div>
+
+            <!-- min -->
+            <div *ngIf="this.addproduct.get('grade_alcohol')?.errors?.['min'] &&
+                                              this.addproduct.get('grade_alcohol')?.touched"
+              class="text-red-500 text-xs italic">
+              Aquest camp ha de ser de mínim 0
+            </div>
+
+            <!-- Only number -->
+            <div *ngIf="this.addproduct.get('grade_alcohol')?.errors?.['pattern'] &&
+                                              this.addproduct.get('grade_alcohol')?.touched"
+              class="text-red-500 text-xs italic">
+              Només s'accepten números.
+            </div>
+
+
+          </div>
+
+          <!-- price input -->
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="price">Preu</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="price" type="text" placeholder="Preu" formControlName="price" />
+
+            <!-- This field is required -->
+            <div *ngIf="this.addproduct.get('price')?.errors?.['required'] &&
+            this.addproduct.get('price')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp és obligatori.
+            </div>
+
+            <!-- min -->
+            <div *ngIf="this.addproduct.get('price')?.errors?.['min'] &&
+                                              this.addproduct.get('price')?.touched"
+              class="text-red-500 text-xs italic">
+              Aquest camp ha de ser de mínim 0
+            </div>
+
+            <!-- Only number -->
+            <div *ngIf="this.addproduct.get('price')?.errors?.['pattern'] &&
+                                              this.addproduct.get('price')?.touched"
+              class="text-red-500 text-xs italic">
+              Només s'accepten números.
+            </div>
+
+          </div>
+
+          <!-- iva input -->
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="iva">Iva</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="iva" type="text" placeholder="Iva" formControlName="iva" />
+
+            <!-- This field is required -->
+            <div *ngIf="this.addproduct.get('iva')?.errors?.['required'] &&
+            this.addproduct.get('iva')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp és obligatori.
+            </div>
+
+            <!-- min -->
+            <div *ngIf="this.addproduct.get('iva')?.errors?.['min'] &&
+                                             this.addproduct.get('iva')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp ha de ser de mínim 0
+            </div>
+
+            <!-- Only number -->
+            <div *ngIf="this.addproduct.get('iva')?.errors?.['pattern'] &&
+                                             this.addproduct.get('iva')?.touched" class="text-red-500 text-xs italic">
+              Només s'accepten números.
+            </div>
+          </div>
+
+          <!-- vineyard_area input -->
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="vineyard_area">Àrea de la
+              vinya</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="vineyard_area" type="text" placeholder="Àrea de la vinya" formControlName="vineyard_area" />
+
+            <!-- This field is required -->
+            <div
+              *ngIf="addproduct.get('vineyard_area')?.errors?.['required'] && addproduct.get('vineyard_area')?.touched"
+              class="text-red-500 text-xs italic">
+              Aquest camp és obligatori.
+            </div>
+
+            <!-- MaxLength -->
+            <div *ngIf="this.addproduct.get('vineyard_area')?.errors?.['maxlength'] &&
+                       this.addproduct.get('vineyard_area')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir un màxim de 150 caràcters.
+            </div>
+
+            <!-- MinLength -->
+            <div *ngIf="this.addproduct.get('vineyard_area')?.errors?.['minlength'] &&
+                       this.addproduct.get('vineyard_area')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir com a mínim 2 caràcters.
+            </div>
+
+            <!-- Only letters -->
+            <div *ngIf="this.addproduct.get('vineyard_area')?.errors?.['pattern'] &&
+                                             this.addproduct.get('vineyard_area')?.touched"
+              class="text-red-500 text-xs italic">
+              Només s'accepten lletres.
+            </div>
+          </div>
+
+          <!-- project_id input -->
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="project_name">
+              Projecte </label>
+            <select formControlName="project_name"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+              <option value="">Seleccionar projecte</option>
+              <option *ngFor="let project of projects" [value]="project.id">{{ project.project_name }}
+              </option>
+            </select>
+
+            <!-- This field is required -->
+            <div *ngIf="addproduct.get('project_name')?.errors?.['required'] && addproduct.get('project_name')?.touched"
+              class="text-red-500 text-xs italic">
+              Si us plau, seleccioni un projecte.
+            </div>
+          </div>
+
+
+          <!-- type_wine input -->
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="id_type_wine_fk">Tipus</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="type_wine" type="text" placeholder="Tipus" formControlName="type_wine" />
+
+            <!-- This field is required -->
+            <div *ngIf="addproduct.get('type_wine')?.errors?.['required'] && addproduct.get('type_wine')?.touched"
+              class="text-red-500 text-xs italic">
+              Aquest camp és obligatori.
+            </div>
+
+            <!-- MaxLength -->
+            <div *ngIf="this.addproduct.get('type_wine')?.errors?.['maxlength'] &&
+                                        this.addproduct.get('type_wine')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir un màxim de 150 caràcters.
+            </div>
+
+            <!-- MinLength -->
+            <div *ngIf="this.addproduct.get('type_wine')?.errors?.['minlength'] &&
+                                        this.addproduct.get('type_wine')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir com a mínim 2 caràcters.
+            </div>
+
+            <!-- Only letters -->
+            <div *ngIf="this.addproduct.get('type_wine')?.errors?.['pattern'] &&
+                                                              this.addproduct.get('type_wine')?.touched"
+              class="text-red-500 text-xs italic">
+              Només s'accepten lletres.
+            </div>
+          </div>
+
+          <!-- type_variety input -->
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="type_variety">Varietat</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="type_variety" type="text" placeholder="Varietat" formControlName="type_variety" />
+
+            <!-- This field is required -->
+            <div *ngIf="addproduct.get('type_variety')?.errors?.['required'] && addproduct.get('type_variety')?.touched"
+              class="text-red-500 text-xs italic">
+              Aquest camp és obligatori.
+            </div>
+            <!-- MaxLength -->
+            <div *ngIf="this.addproduct.get('type_variety')?.errors?.['maxlength'] &&
+                                              this.addproduct.get('type_variety')?.touched"
+              class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir un màxim de 150 caràcters.
+            </div>
+
+            <!-- MinLength -->
+            <div *ngIf="this.addproduct.get('type_variety')?.errors?.['minlength'] &&
+                                              this.addproduct.get('type_variety')?.touched"
+              class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir com a mínim 2 caràcters.
+            </div>
+
+            <!-- Only letters -->
+            <div *ngIf="this.addproduct.get('type_variety')?.errors?.['pattern'] &&
+                                                                    this.addproduct.get('type_variety')?.touched"
+              class="text-red-500 text-xs italic">
+              Només s'accepten lletres.
+            </div>
+          </div>
+          <!-- Field Stock -->
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="grade_alcohol">Quantitat</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="number" placeholder="Quantitat" formControlName="stock" />
+
+            <!-- This field is required -->
+            <div *ngIf="this.addproduct.get('stock')?.errors?.['required'] && this.addproduct.get('stock')?.touched"
+              class="text-red-500 text-xs italic">
+              Aquest camp és obligatori.
+            </div>
+
+            <!-- min -->
+            <div *ngIf="this.addproduct.get('stock')?.errors?.['min'] &&
+                       this.addproduct.get('stock')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp ha de ser de mínim 0
+            </div>
+
+            <!-- Only number -->
+            <div *ngIf="this.addproduct.get('stock')?.errors?.['pattern'] &&
+                       this.addproduct.get('stock')?.touched" class="text-red-500 text-xs italic">
+              Només s'accepten números.
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="mt-6">
+          <button (click)="submitAdd()"
+            class="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="button" [disabled]="addproduct.invalid">
+            Afegir Product
+          </button>
+        </div>
+
+        <!-- Success Message -->
+        <div class="text-green-500 text-sm mt-4" *ngIf="successMessage">{{ successMessage }}</div>
+
+        <!-- Error message -->
+        <div class="text-red-500 text-sm mt-4" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+      </form>
+    </div>
+
+    <!-- Form to modify product -->
+    <div class="mt-4" *ngIf="isModifyFormVisible">
+      <form class="bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4" [formGroup]="modifyproduct">
+        <div class="flex justify-center items-center">
+          <div class="justify-center items-center inline-block align-middle border border-red-600 rounded-full p-1">
+            <svg class="h-6 w-6 text-red-700" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+              stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" />
+              <polyline points="12 4 4 8 12 12 20 8 12 4" />
+              <polyline points="4 12 12 16 20 12" />
+              <polyline points="4 16 12 20 20 16" />
+            </svg>
+          </div>
+        </div>
+        <h2 class="text-lg font-semibold mb-4 text-center">Modificar producte</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+          <!-- Name input -->
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="firstname">Nom</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="firstname" type="text" placeholder="Nom" formControlName="name" />
+
+            <!-- This field is required -->
+            <div *ngIf="this.modifyproduct.get('name')?.errors?.['required'] && this.modifyproduct.get('name')?.touched"
+              class="text-red-500 text-xs italic">
+              Aquest camp és obligatori.
+            </div>
+
+          </div>
+
+          <!-- winemaking input -->
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="winemaking">vinificació</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="text" placeholder="vinificació" formControlName="winemaking" />
+
+            <!-- This field is required -->
+            <div *ngIf="this.modifyproduct.get('winemaking')?.errors?.['required'] &&
+                  this.modifyproduct.get('winemaking')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp és obligatori.
+            </div>
+          </div>
+
+
+          <!-- grade_alcohol input -->
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="grade_alcohol">Grau
+              alcohol</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="grade_alcohol" type="grade_alcohol" placeholder="Grau alcohol" formControlName="grade_alcohol" />
+
+            <!-- This field is required -->
+            <div *ngIf="this.modifyproduct.get('grade_alcohol')?.errors?.['required'] &&
+                    this.modifyproduct.get('grade_alcohol')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp és obligatori.
+            </div>
+          </div>
+
+          <!-- price input -->
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="price">Preu</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="price" type="text" placeholder="Preu" formControlName="price" />
+
+            <!-- This field is required -->
+            <div *ngIf="this.modifyproduct.get('iva')?.errors?.['required'] &&
+                this.modifyproduct.get('iva')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp és obligatori.
+            </div>
+          </div>
+
+          <!-- iva input -->
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="iva">Iva</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="iva" type="iva" placeholder="Iva" formControlName="iva" />
+
+            <!-- This field is required -->
+            <div *ngIf="this.modifyproduct.get('iva')?.errors?.['required'] &&
+                this.modifyproduct.get('iva')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp és obligatori.
+            </div>
+          </div>
+
+          <!-- vineyard_area input -->
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="vineyard_area">Àrea de la
+              vinya</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="vineyard_area" type="text" placeholder="Àrea de la vinya" formControlName="vineyard_area" />
+
+            <!-- This field is required -->
+            <div
+              *ngIf="modifyproduct.get('vineyard_area')?.errors?.['required'] && modifyproduct.get('vineyard_area')?.touched"
+              class="text-red-500 text-xs italic">
+              Aquest camp és obligatori.
+            </div>
+          </div>
+
+          <!-- project_id input -->
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="project_name">
+              Projecte </label>
+            <select formControlName="project_name"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+              <option value="">Seleccionar projecte</option>
+              <option *ngFor="let project of projects" [value]="project.id">{{ project.project_name }}
+              </option>
+            </select>
+
+            <!-- This field is required -->
+            <div
+              *ngIf="modifyproduct.get('project_name')?.errors?.['required'] && modifyproduct.get('project_name')?.touched"
+              class="text-red-500 text-xs italic">
+              Si us plau, seleccioni un projecte.
+            </div>
+          </div>
+
+
+          <!-- type_wine input -->
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="id_type_wine_fk">Tipus</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="type_wine" type="text" placeholder="Tipus" formControlName="type_wine" />
+
+            <!-- This field is required -->
+            <div *ngIf="modifyproduct.get('type_wine')?.errors?.['required'] && modifyproduct.get('type_wine')?.touched"
+              class="text-red-500 text-xs italic">
+              Aquest camp és obligatori.
+            </div>
+          </div>
+
+          <!-- type_variety input -->
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="type_variety">Varietat</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="type_variety" type="text" placeholder="Varietat" formControlName="type_variety" />
+
+            <!-- This field is required -->
+            <div
+              *ngIf="modifyproduct.get('type_variety')?.errors?.['required'] && modifyproduct.get('type_variety')?.touched"
+              class="text-red-500 text-xs italic">
+              Aquest camp és obligatori.
+            </div>
+          </div>
+          <!-- Field Stock -->
+          <div>
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="stock">Quantitat</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="number" placeholder="Quantitat" formControlName="stock" />
+
+            <!-- This field is required -->
+            <div
+              *ngIf="this.modifyproduct.get('stock')?.errors?.['required'] && this.modifyproduct.get('stock')?.touched"
+              class="text-red-500 text-xs italic">
+              Aquest camp és obligatori.
+            </div>
+
+
+            <!-- min -->
+            <div *ngIf="this.addproduct.get('stock')?.errors?.['min'] &&
+                                              this.addproduct.get('stock')?.touched"
+              class="text-red-500 text-xs italic">
+              Aquest camp ha de ser de mínim 0
+            </div>
+
+            <!-- Only number -->
+            <div *ngIf="this.addproduct.get('stock')?.errors?.['pattern'] &&
+                                              this.addproduct.get('stock')?.touched"
+              class="text-red-500 text-xs italic">
+              Només s'accepten números.
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 flex justify-center items-center space-x-4">
+          <button
+            class="flex-shrink-0 w-auto bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="button" (click)="onSubmit()">
+            Modificar Producte
+          </button>
+          <button
+            class="flex-shrink-0 w-auto bg-white hover:bg-gray-100 text-red-500 font-bold py-2 px-4 rounded border border-red-500 focus:outline-none focus:shadow-outline"
+            type="button" (click)="cancelar()">
+            Cancelar
+          </button>
+        </div>
+
+        <!-- Success Message -->
+        <div class="text-green-500 text-sm mt-4" *ngIf="successMessage">{{ successMessage }}</div>
+
+        <!-- Error message -->
+        <div class="text-red-500 text-sm mt-4" *ngIf="errorMessage">{{ errorMessage }}</div>
+      </form>
+    </div>
+  </div>
+</section>

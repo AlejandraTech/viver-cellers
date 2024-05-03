@@ -13,6 +13,8 @@ class TypeWine extends Model
         'category',
     ];
 
+    protected $table = 'types_wine';
+
     public function products()
     {
         return $this->hasMany(Product::class, 'id_type_wine_fk');

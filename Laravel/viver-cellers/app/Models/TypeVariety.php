@@ -13,6 +13,8 @@ class TypeVariety extends Model
         'variety',
     ];
 
+    protected $table = 'types_variet';
+
     public function products()
     {
         return $this->hasMany(Product::class, 'id_type_variety_fk');
