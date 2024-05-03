@@ -1,13 +1,32 @@
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-  <div *ngFor="let product of products" class="bg-white rounded-lg overflow-hidden shadow-md">
-    <div class="aspect-w-4 aspect-h-3">
-      <img [src]="product.image_path" [alt]="product.name + ' logo'" class="object-contain w-full h-full">
-    </div>
-    <div class="p-6">
-      <h2 class="text-xl font-semibold mb-2">{{ product.name }}</h2>
-      <p class="text-gray-700 text-base mb-4">{{ product.winemaking }}</p>
-      <p class="text-gray-500 text-sm">{{ product.grade_alcohol }}</p>
-      <p class="text-gray-500 text-sm">{{ product.price }}</p>
+<div class="bg-gray-100 dark:bg-gray-800 py-8">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" *ngFor="let product of products">
+    <div class="flex flex-col md:flex-row -mx-4">
+      <div class="md:flex-1 px-4">
+        <div>
+          <img [src]="product.image_path" [alt]="product.name + ' logo'" class="object-contain w-full h-full">
+        </div>
+      </div>
+      <div class="md:flex-1 px-4">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">{{ product.name }}</h2>
+        <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">
+          {{ product.winemaking }}
+        </p>
+        <div class="flex mb-4">
+          <div class="mr-4">
+            <span class=" font-semibold text-gray-700 dark:text-gray-300">Preu: </span>
+            <span class=" font-semibold text-gray-600 dark:text-gray-300">{{product.price}}€</span>
+          </div>
+          <div>
+            <span class=" font-semibold text-gray-700 dark:text-gray-300">Grau alcohòlic: </span>
+            <span class=" font-semibold text-gray-600 dark:text-gray-300">{{product.grade_alcohol}}</span>
+          </div>
+          <br>
+        </div>
+        <span
+          class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">{{product.type_wine.category}}</span>
+        <span
+          class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400 border border-gray-500">{{product.type_variety.variety}}</span>
+      </div>
     </div>
   </div>
 </div>
