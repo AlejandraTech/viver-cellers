@@ -42,12 +42,13 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if ($user && Hash::check($request->password, $user->password)) {
-            $token = $user->createToken('auth_token', ['name' => $user->name, 'rol' => $user->rol])->plainTextToken;
+            $token = $user->createToken('auth_token', ['id' => $user->id, 'name' => $user->name, 'rol' => $user->rol])->plainTextToken;
 
             return response()->json([
                 'access_token' => $token,
                 'token_type' => 'Bearer',
                 'user' => [
+                    'id' => $user->id,
                     'name' => $user->name,
                     'rol' => $user->rol,
                 ],
@@ -93,7 +94,6 @@ class AuthController extends Controller
             return ApiResponse::error('Error registering user: ' . $e->getMessage(), 500);
         }
     }
-
 
     /**
      * Retrieve the information of the currently authenticated user
@@ -212,5 +212,26 @@ class AuthController extends Controller
         } catch (ModelNotFoundException  $e) {
             return ApiResponse::error('User not found', 404);
         }
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user = $request->user();
+
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'lastname' => 'required|string',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'required|string|min:8',
+        ]);
+
+        $user->update([
+            'name' => $validatedData['name'],
+            'lastname' => $validatedData['lastname'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
+        ]);
+
+        return response()->json(['message' => 'Perfil actualizado con éxito'], 200);
     }
 }

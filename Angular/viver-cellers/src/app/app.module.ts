@@ -25,6 +25,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { InfoProjectComponent } from './components/info-project/info-project.component';
 import { InfoProductComponent } from './components/info-product/info-product.component';
 import { ProductManagementComponent } from './components/product-management/product-management.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ProductManagementComponent } from './components/product-management/prod
     InfoProjectComponent,
     InfoProductComponent,
     ProductManagementComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,
