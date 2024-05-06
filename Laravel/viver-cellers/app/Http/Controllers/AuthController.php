@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author: Alejandra Paz , Angel Rivera, Julia Prieto
  * This controller handles operations related to user authentication, such as registration, login, update, and deletion.
@@ -212,6 +213,4 @@ class AuthController extends Controller
             return ApiResponse::error('User not found', 404);
         }
     }
-
-
 }

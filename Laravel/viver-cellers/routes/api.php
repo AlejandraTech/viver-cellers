@@ -41,10 +41,8 @@ Route::prefix('users')->group(function () {
     Route::put('/{id}', [AuthController::class, 'update']);
 });
 
-
 Route::get('/project-info', [ProjectController::class, 'index']);
 Route::get('/projectDetails/{id}', [ProjectController::class, 'showProject']);
-
 
 //Route to display all project
 Route::prefix('project')->group(function () {
@@ -53,7 +51,6 @@ Route::prefix('project')->group(function () {
     Route::delete('/{id}', [ProjectController::class, 'destroy']);
     Route::put('/{id}', [ProjectController::class, 'update']);
 });
-
 
 //Route to display all product
 Route::prefix('product')->group(function () {
