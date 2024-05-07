@@ -31,6 +31,7 @@ export class LoginComponent {
       this.authService.login(email, password).subscribe(
         response => {
           localStorage.setItem('access_token', response.access_token);
+          localStorage.setItem('user_id', response.user.id);
           localStorage.setItem('user_name', response.user.name);
           localStorage.setItem('user_rol', response.user.rol);
           location.reload();

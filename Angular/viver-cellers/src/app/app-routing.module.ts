@@ -18,6 +18,8 @@ import { CartComponent } from './components/cart/cart.component';
 import { InfoProjectComponent } from './components/info-project/info-project.component';
 import { InfoProductComponent } from './components/info-product/info-product.component';
 import { ProductManagementComponent } from './components/product-management/product-management.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent }, // Home Page
@@ -32,6 +34,8 @@ const routes: Routes = [
 
   { path: 'register', component: RegisterComponent }, // Registration Page
   { path: 'login', component: LoginComponent }, // Login Page
+
+  { path: 'edit_profile', component: EditProfileComponent, canActivate: [AuthGuard] }, // Edit Profile Page
 
   { path: 'shop', component: ShopComponent, canActivate: [ClientGuard] }, // Shop Page
   { path: 'cart', component: CartComponent, canActivate: [ClientGuard] }, // Cart Page
