@@ -47,6 +47,7 @@ export class AuthService {
       map(() => {
         // Remove user data from localStorage
         localStorage.removeItem('access_token');
+        localStorage.removeItem('user_id');
         localStorage.removeItem('user_name');
         localStorage.removeItem('user_rol');
       }),
@@ -142,5 +143,13 @@ export class AuthService {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return throwError(errorMessage); // Throwing the error message as an Observable
+  }
+
+  updateProfile(profileData: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('access_token')}`
+    });
+    return this.http.put(`${this.apiUrl}/user`, profileData, { headers });
   }
 }
