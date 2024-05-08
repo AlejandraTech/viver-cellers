@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * @author: Alejandra Paz , Angel Rivera, Julia Prieto
+ * Global seeder class that allows to run all seeders of the project.
+ */
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;

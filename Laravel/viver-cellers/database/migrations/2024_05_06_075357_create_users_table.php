@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * @author: Alejandra Paz , Angel Rivera, Julia Prieto
+ * Migration to create the users table and all its fields
+ */
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,9 +23,9 @@ return new class extends Migration
             $table->string('password');
             $table->enum('rol', ['client', 'nurseryman', 'admin']);
             $table->string('address')->nullable();
-            $table->unsignedInteger('project_id_fk')->nullable();
+            $table->unsignedInteger('project_id_fk')->nullable(); // foreign key of the table projects
 
-            // Restricción condicional para vincular proyectos solo a usuarios con rol 'nurseryman'
+            // Conditional restriction to link projects only to users with role 'nurseryman'.
             $table->foreign('project_id_fk')->references('id')->on('projects')->onDelete('restrict')->onUpdate('cascade')->where('rol', 'nurseryman');
 
             $table->timestamps();

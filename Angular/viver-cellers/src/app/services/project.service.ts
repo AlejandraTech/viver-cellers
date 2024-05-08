@@ -1,65 +1,103 @@
-// Performing operations related to authentication and user management with linkage to Laravel.
-
+/**
+ * @author: Alejandra Paz , Angel Rivera, Julia Prieto
+ * Performing CRUD operations of projects with Laravel binding.
+ */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpErrorResponse,
+} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Project } from '../models/Project';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProjectService {
-
   private apiUrl: string = 'http://localhost:8000/api'; // Base URL for API requests
 
   // HTTP headers options for JSON content
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
+      'Content-Type': 'application/json',
+    }),
+  };
+
+  constructor(private http: HttpClient) {} // HttpClient injection into the constructor
+
+  /**
+   * Gets all projects from the api (ApiResponse format)
+   * @returns Observable containing the array with the data coming from the database.
+   */
+  getProjects(): Observable<any> {
+    return this.http
+      .get<any>(this.apiUrl + '/project')
+      .pipe(catchError(this.errorHandler));
   }
 
-  constructor(private http: HttpClient) { } // HttpClient injection into the constructor
-
-  getProjectDetails(id: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/projectDetails/${id}`);
-  }
-
-  // Método para obtener todos los productos desde el backend
+  /**
+   * Gets all projects from the api (json format)
+   * @returns Observable containing the array with the data coming from the database.
+   */
   getAllProjects(): Observable<Project[]> {
     return this.http.get<Project[]>(`${this.apiUrl}/project-info`);
   }
 
-  // Method to fetch projects from the API
-  getProjects(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + '/project').pipe(
-      catchError(this.errorHandler)
-    )
+  /**
+   * Gets the details of a specific project by ID from the API.
+   * @param id ID of the project
+   * @returns Observable containing the array with the data coming from the database.
+   */
+  getProjectDetails(id: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/projectDetails/${id}`);
   }
 
-  // Method to post project data to the API
+  /**
+   * Insert a project in the database
+   * @param projectData Data to be inserted
+   * @returns An Observable that emits the API response after insert the project.
+   */
   postProjects(projectData: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl + `/project`, projectData, this.httpOptions).pipe(
-      catchError(this.errorHandler)
-    )
+    return this.http
+      .post<any>(this.apiUrl + `/project`, projectData, this.httpOptions)
+      .pipe(catchError(this.errorHandler));
   }
 
-  // Method to update project data on the API
+
+  /**
+   * Update a project in the database
+   * @param projectData Data to be updated
+   * @param projectId id field of the project to be updated
+   * @returns An Observable that emits the API response after updating the project.
+   */
   updateProject(projectData: any, projectId: number): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/project/${projectId}`, projectData, this.httpOptions).pipe(
-      catchError(this.errorHandler)
-    );
+    return this.http
+      .put<any>(
+        `${this.apiUrl}/project/${projectId}`,
+        projectData,
+        this.httpOptions
+      )
+      .pipe(catchError(this.errorHandler));
   }
 
-  // Method to delete a project from the API
+   /**
+   * Delete a project in the database
+   * @param projectId id field of the project to be deleted
+   * @returns An Observable that emits the API response after deleting the project.
+   */
   deleteProject(projectId: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/project/${projectId}`, this.httpOptions).pipe(
-      catchError(this.errorHandler)
-    );
+    return this.http
+      .delete<any>(`${this.apiUrl}/project/${projectId}`, this.httpOptions)
+      .pipe(catchError(this.errorHandler));
   }
 
-  // Error handler method for HTTP errors
+  /**
+   * Handles HTTP errors
+   * @param error HTTP error response
+   * @returns  An Observable that emits the error message.
+   */
   errorHandler(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

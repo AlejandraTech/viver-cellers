@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * @author: Alejandra Paz , Angel Rivera, Julia Prieto
+ * This controller manages operations related to listing, adding, modifying and deleting projects.
+ */
 namespace App\Http\Controllers;
 
 use App\Http\Responses\ApiResponse;
@@ -15,7 +18,6 @@ class ProjectController extends Controller
 
     /**
      * Display a listing of the products.
-     *
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -25,7 +27,8 @@ class ProjectController extends Controller
     }
 
     /**
-     * Muestra los detalles de una casilla en concreto
+     * Collect all the fields of a specific project.
+     * @param $id project id field
      */
     public function showProject($id)
     {
@@ -79,7 +82,7 @@ class ProjectController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            // search project in the database by user id
+            // search project in the database by project id
             $data = Project::findOrFail($id);
 
             $request->validate([
@@ -109,8 +112,8 @@ class ProjectController extends Controller
     }
 
     /**
-     * Delete a user from the database.
-     * @param $id user id field
+     * Delete a project from the database.
+     * @param $id project id field
      */
     public function destroy($id)
     {

@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * @author: Alejandra Paz , Angel Rivera, Julia Prieto
+ * Seeder class inserting the initial data of the table order_statuses
+ */
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
@@ -13,12 +16,12 @@ class OrderStatusesSeeder extends Seeder
     public function run(): void
     {
         DB::table('order_statuses')->insert([
-            ['name' => 'Pendiente de pago', 'description' => 'El cliente aún no ha completado el pago por la orden.'],
-            ['name' => 'Pago recibido', 'description' => 'El pago por la orden ha sido recibido y confirmado.'],
-            ['name' => 'En proceso de preparación', 'description' => 'La orden está siendo preparada para su envío.'],
-            ['name' => 'En camino', 'description' => 'La orden ha sido enviada y está en camino hacia la dirección del cliente.'],
-            ['name' => 'Entregado', 'description' => 'La orden ha sido entregada con éxito al cliente.'],
-            ['name' => 'Cancelado', 'description' => 'La orden ha sido cancelada por alguna razón, como solicitud del cliente o problemas de inventario.'],
+            ['name' => 'Pendent de pagament', 'description' => 'El client encara no ha completat el pagament per l’ordre.'],
+            ['name' => 'Pagament rebut', 'description' => 'El pagament per l’ordre ha estat rebut i confirmat.'],
+            ['name' => 'En procés de preparació', 'description' => 'L’ordre està preparant-se per al seu enviament.'],
+            ['name' => 'En camí', 'description' => 'L’ordre ha estat enviada i està en camí cap a l’adreça del client.'],
+            ['name' => 'Lliurat', 'description' => 'L’ordre ha estat lliurada amb èxit al client.'],
+            ['name' => 'Cancel·lat', 'description' => 'L’ordre ha estat cancel·lada per alguna raó, com a sol·licitud del client o problemes d’inventari.'],
         ]);
     }
 }
