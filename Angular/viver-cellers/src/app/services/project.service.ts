@@ -65,7 +65,6 @@ export class ProjectService {
       .pipe(catchError(this.errorHandler));
   }
 
-
   /**
    * Update a project in the database
    * @param projectData Data to be updated

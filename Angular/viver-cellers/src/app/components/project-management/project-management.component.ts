@@ -157,6 +157,28 @@ export class ProjectManagementComponent implements OnInit {
   toggleModifyFormVisibility(projectId: any) {
     console.log(`Identificador de projecte seleccionat:`, projectId);
     this.projectId = projectId;
+
+    // Search for the selected project in the project list
+    const selectedProject = this.projects.find(p => p.id === projectId);
+
+    // Initialize the modification form with the selected project
+    if (selectedProject) {
+      this.modifyproject = new FormGroup({
+        project_name: new FormControl(selectedProject.project_name, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
+        definition: new FormControl(selectedProject.definition, [Validators.required, Validators.minLength(10), Validators.maxLength(150)]),
+        description: new FormControl(selectedProject.description, [Validators.required, Validators.minLength(10), Validators.maxLength(100)]),
+        stories: new FormControl(selectedProject.stories, [Validators.required, Validators.minLength(10), Validators.maxLength(150)]),
+      });
+    } else {
+      // If the project is not found, initialize the empty form.
+      this.modifyproject = new FormGroup({
+        project_name: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
+        definition: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(150)]),
+        description: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(100)]),
+        stories: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(150)]),
+      });
+    }
+    this.projectId = projectId;
     this.isModifyFormVisible = true;
     this.isAddFormVisible = false;
   }
