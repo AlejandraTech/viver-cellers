@@ -12,7 +12,7 @@ class OrderLine extends Model
 {
     use HasFactory;
 
-    //array containing the fields that can be assigned with a value from the application
+    // Array containing the fields that can be assigned with a value from the application
     protected $fillable = [
         'id_order_fk',
         'id_product_fk',

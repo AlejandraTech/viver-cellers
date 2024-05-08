@@ -17,7 +17,7 @@ class VineyardArea extends Model
     protected $table = 'vineyard_areas'; //Specify table name because it doesn't follow Laravel conventions
 
 
-    //array containing the fields that can be assigned with a value from the application
+    // Array containing the fields that can be assigned with a value from the application
     protected $fillable = [
         'area',
     ];

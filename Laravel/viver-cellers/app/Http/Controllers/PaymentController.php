@@ -12,15 +12,20 @@ use App\Models\OrderLine;
 
 class PaymentController extends Controller
 {
+    // Method to process payment
     public function checkout(Request $request)
     {
+        // Stripe API configuration
         Stripe::setApiKey(env('STRIPE_SECRET'));
 
-        DB::beginTransaction();  // Iniciar transacción de base de datos
+        // Start a database transaction
+        DB::beginTransaction();
         try {
+            // Check if the order total is greater than zero
             if ($request->total > 0) {
+                // Create a payment intent to charge the customer
                 $paymentIntent = PaymentIntent::create([
-                    'amount' => $request->total * 100, // Convertir a centavos
+                    'amount' => $request->total * 100,
                     'currency' => 'eur',
                     'description' => 'Compra de vinos',
                     'payment_method_data' => [
@@ -28,13 +33,16 @@ class PaymentController extends Controller
                         'card' => ['token' => $request->token]
                     ],
                     'confirm' => true,
-                    'return_url' => 'http://localhost:4200/api/home'  // URL a la que se redirige después del pago
+                    'return_url' => 'http://localhost:4200/api/home'
                 ]);
 
+                // If payment is successful
                 if ($paymentIntent->status === 'succeeded') {
+                    // Create an order in the database
                     $order = $this->createOrder($request, $paymentIntent->id);
                     if ($order) {
-                        DB::commit();  // Confirmar la transacción
+                        // Commit the database transaction
+                        DB::commit();
                         return response()->json(['success' => true, 'order_id' => $order->id]);
                     } else {
                         throw new \Exception("Error creating order in the database.");
@@ -43,26 +51,31 @@ class PaymentController extends Controller
                     throw new \Exception("Payment failed with status: " . $paymentIntent->status);
                 }
             } else {
+                // If order total is zero, create a setup intent for payment method
                 $setupIntent = SetupIntent::create([
                     'payment_method_data' => [
                         'type' => 'card',
                         'card' => ['token' => $request->token]
                     ],
                     'usage' => 'off_session',
-                    'return_url' => 'http://localhost:4200/api/home'  // URL para redirecciones después de configurar
+                    'return_url' => 'http://localhost:4200/api/home'
                 ]);
 
-                DB::commit();  // Confirmar la transacción
+                // Commit the database transaction
+                DB::commit();
                 return response()->json(['success' => true, 'setup_intent_id' => $setupIntent->id]);
             }
         } catch (\Exception $e) {
-            DB::rollBack();  // Revertir la transacción si hay error
+            // Roll back the database transaction if there is an error
+            DB::rollBack();
             return response()->json(['success' => false, 'error' => $e->getMessage()]);
         }
     }
 
+    // Private method to create an order in the database
     private function createOrder($request, $paymentToken)
     {
+        // Create a new order in the database
         $order = Order::create([
             'id_user_fk' => auth()->user()->id,
             'price' => $request->total,
@@ -73,6 +86,7 @@ class PaymentController extends Controller
             'updated_at' => now()
         ]);
 
+        // If order is created successfully, create corresponding order lines
         if ($order) {
             foreach ($request->items as $item) {
                 OrderLine::create([

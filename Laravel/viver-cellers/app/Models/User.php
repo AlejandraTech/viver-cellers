@@ -17,7 +17,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    //array containing the fields that can be assigned with a value from the application
+    // Array containing the fields that can be assigned with a value from the application
     protected $fillable = [
         'name',
         'dni',
