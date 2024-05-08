@@ -52,5 +52,11 @@ class TypeVarietySeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        DB::table('types_variet')->insert([
+            'variety' => 'Parellada',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }

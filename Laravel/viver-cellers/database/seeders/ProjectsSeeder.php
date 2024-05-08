@@ -39,6 +39,21 @@ class ProjectsSeeder extends Seeder
                 'stories' => 'A Mulet Viticultors fa més de 30 anys i dues generacions que fem de pagesos i viticultors a la comarca del Penedès. Portem 18 hectàrees de vinya i 200 oliveres amb parcel·les dins els municipis de Vilafranca, les Cabanyes i Olèrdola; totes certificades ecològiques des de fa 16 anys. Fins l’anyada 2014 venem el raïm a terceres bodegues, però és llavors quan comence a fer les nostres primeres vinificacions a la masia on fem de masovers, la Torreta dels Bous. Al 2018 s’incorpora oficialment la segona generació familiar i canviem la imatge dels nostres vins, els professionalitzem i comencem a comercialitzar-los a petita escala. Som inquiets i compaginem l’activitat agrària amb formacions i cursos, com el cicle d’enologia d’Espiells o per exemple formacions en agricultura biodinàmica i regenerativa, entre d’altres. Al 2023 comencem a fer els nostres vins i escumosos al nou viver de cellers del Penedès. És un canvi que ens obre l’oportunitat d’ampliar la nostra producció a 4.000 ampolles amb els nostre propis registres i amb maquinària i instal·lacions compartides totalment professionals. Esperem així poder consolidar-nos com a viticultors i com a elaboradors.',
                 'logo_path' => 'assets/img/projects/mulet-viticultors.png',
             ],
+            [
+                'project_name' => 'Heretat Baltà de Cela',
+                'definition' => "Heretat Baltà de Cela és el resultat de cultivar els somnis i desitjos que han anat passant de generació en generació, arrelant una tradició al cor del Penedès.
+                Les nostres vinyes, certificades ecològicament, ens permeten oferir uns vins excepcionals i una experiència enoturística única a la nostra finca envoltada d’un paisatge idíl·lic.
+                Per elaborar els nostres vins ecològics utilitzem únicament raïm de les nostres vinyes. Seleccionem els millors raïms i els collim a mà amb caixes per tal que arribin al celler en el millor estat. Macerem el raïm amb les seves pells durant unes hores abans de premsar-los suaument per tal que només el millor most, amb els aromes i sabors més purs de la varietat, acabi arribant a la copa.
+                Un procés de vinificació controlat, amb 6 mesos de criança amb les seves lies ens permet garantir l’essència més pura de les varietats autòctones del Penedès que cultivem a la nostra finca i la qualitat inigualable de cada ampolla que surt del nostre celler
+                Ens enorgulleix oferir vins i olis ecològics de primera qualitat i amb produccions limitades que cuidem i mimem de principi a fi. Des de la vinya fins a la copa, cada pas està impregnat d'il·lusió, passió i respecte per la terra i el medi ambient.
+                ",
+                'description' => 'Vins i olis ecològics de la finca Heretat Baltà de Cela.',
+                'stories' => "Heretat Baltà de Cela és un celler fundat l’any 1889 per Josep Baltà de Cela. Aquell any es va començar a embotellar vins sota la marca J. Baltà de Cela a la finca ubicada al barri de Grabuach de Guardiola de Font – Rubí, al cor del Penedès.
+                A la dècada dels 90, Jaume Baltà decideix fer-se càrrec del llegat de les generacions passades i empren el gran repte de reconstruir la finca familiar que, amb el pas del temps, s’havia anat deteriorant. 
+                La reforma de la finca és total, des de la masia a les propietats agrícoles que l’envolten. En aquesta etapa, el celler obsolet que hi havia, ja sense cap tipus de pràctica vitivinícola, desapareix per deixar pas a una vivienda adaptada als temps moderns i les vinyes i oliveres que havien estat greument malmeses es replanten. Poc a poc, la finca torna a ser novament productiva.
+                L’any 2022 la 5ª generación de la familia recuperem aquest llegat per posar en valor la terra i els cultius de la finca i donar nom als vins i olis ecològics que elaborem sota la marca Heretat Baltà de Cela.",
+                'logo_path' => 'assets/img/projects/heretat-balta-de-cela.png',
+            ],
 
             [
                 'project_name' => 'Vins de Sinergia',
@@ -53,13 +68,6 @@ class ProjectsSeeder extends Seeder
                 'description' => 'Elaboració de vins',
                 'stories' => 'Història del celler',
                 'logo_path' => 'assets/img/projects/heretat-can-serra.png',
-            ],
-            [
-                'project_name' => 'Heretat Baltà de Cela',
-                'definition' => 'Breu descripció o informació addicional sobre el celler.',
-                'description' => 'Elaboració de vins',
-                'stories' => 'Història del celler',
-                'logo_path' => 'assets/img/projects/heretat-balta-de-cela.png',
             ],
             [
                 'project_name' => 'Amat i Montané',
