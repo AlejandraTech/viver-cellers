@@ -16,7 +16,7 @@ import { Project } from '../models/Project';
   providedIn: 'root',
 })
 export class ProjectService {
-  private apiUrl: string = 'http://localhost:8000/api'; // Base URL for API requests
+  private apiUrl: string = 'http://localhost:8000/api/project'; // Base URL for API requests
 
   // HTTP headers options for JSON content
   httpOptions = {
@@ -33,7 +33,7 @@ export class ProjectService {
    */
   getProjects(): Observable<any> {
     return this.http
-      .get<any>(this.apiUrl + '/project')
+      .get<any>(this.apiUrl)
       .pipe(catchError(this.errorHandler));
   }
 
@@ -42,7 +42,7 @@ export class ProjectService {
    * @returns Observable containing the array with the data coming from the database.
    */
   getAllProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>(`${this.apiUrl}/project-info`);
+    return this.http.get<Project[]>(`${this.apiUrl}/information`);
   }
 
   /**
@@ -51,7 +51,7 @@ export class ProjectService {
    * @returns Observable containing the array with the data coming from the database.
    */
   getProjectDetails(id: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/projectDetails/${id}`);
+    return this.http.get<any[]>(`${this.apiUrl}/details/${id}`);
   }
 
   /**
@@ -61,7 +61,7 @@ export class ProjectService {
    */
   postProjects(projectData: any): Observable<any> {
     return this.http
-      .post<any>(this.apiUrl + `/project`, projectData, this.httpOptions)
+      .post<any>(this.apiUrl, projectData, this.httpOptions)
       .pipe(catchError(this.errorHandler));
   }
 
@@ -75,7 +75,7 @@ export class ProjectService {
   updateProject(projectData: any, projectId: number): Observable<any> {
     return this.http
       .put<any>(
-        `${this.apiUrl}/project/${projectId}`,
+        `${this.apiUrl}/${projectId}`,
         projectData,
         this.httpOptions
       )
@@ -89,7 +89,7 @@ export class ProjectService {
    */
   deleteProject(projectId: number): Observable<any> {
     return this.http
-      .delete<any>(`${this.apiUrl}/project/${projectId}`, this.httpOptions)
+      .delete<any>(`${this.apiUrl}/${projectId}`, this.httpOptions)
       .pipe(catchError(this.errorHandler));
   }
 

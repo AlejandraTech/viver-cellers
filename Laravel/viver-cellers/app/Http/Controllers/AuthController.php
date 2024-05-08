@@ -32,8 +32,6 @@ class AuthController extends Controller
         }
     }
 
-
-
     /**
      * Handles user authentication
      * @param $request contains the data sent by the client to the server
