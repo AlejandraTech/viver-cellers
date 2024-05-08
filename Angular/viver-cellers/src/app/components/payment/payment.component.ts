@@ -3,6 +3,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { PaymentService } from '../../services/payment.service';
 import { CartService } from '../../services/cart.service';
 import { Product } from 'src/app/models/Product';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment',
@@ -17,7 +18,7 @@ export class PaymentComponent implements OnInit {
   address: string = '';
   cart: Product[] = [];
 
-  constructor(private paymentService: PaymentService, private cartService: CartService) { }
+  constructor(private paymentService: PaymentService, private cartService: CartService, private router: Router) { }
 
   ngOnInit(): void {
     this.cartService.cartItems$.subscribe(items => {
@@ -46,9 +47,13 @@ export class PaymentComponent implements OnInit {
         total: this.cart.reduce((total, product) => total + product.price * product.quantity, 0)
       };
       this.paymentService.processPayment(orderData).subscribe({
-        next: (res) => console.log('Payment successful', res),
+        next: (res) => {
+          console.log('Payment successful', res);
+          this.router.navigate(['/user_order']);
+        },
         error: (err) => console.error('Payment error:', err)
       });
     }
   }
+
 }

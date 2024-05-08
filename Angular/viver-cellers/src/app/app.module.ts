@@ -28,6 +28,7 @@ import { InfoProductComponent } from './components/info-product/info-product.com
 import { ProductManagementComponent } from './components/product-management/product-management.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { UserOrdersComponent } from './components/user-orders/user-orders.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { PaymentComponent } from './components/payment/payment.component';
     ProductManagementComponent,
     EditProfileComponent,
     PaymentComponent,
+    UserOrdersComponent,
   ],
   imports: [
     BrowserModule,

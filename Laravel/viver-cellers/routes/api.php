@@ -4,6 +4,7 @@
  * File with all the api paths of the project
  */
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProjectController;
@@ -52,7 +53,7 @@ Route::prefix('users')->group(function () {
     Route::put('/{id}', [AuthController::class, 'update']);
 });
 
-//Route to display all project
+// Route to display all project
 Route::prefix('project')->group(function () {
     Route::get('/', [ProjectController::class, 'getAll']);
     Route::get('/information', [ProjectController::class, 'index']);
@@ -62,7 +63,7 @@ Route::prefix('project')->group(function () {
     Route::put('/{id}', [ProjectController::class, 'update']);
 });
 
-//Route to display all product
+// Route to display all product
 Route::prefix('product')->group(function () {
     Route::get('/information', [ProductController::class, 'index']);
     Route::get('/category', [ProductController::class, 'indexCategory']);
@@ -73,3 +74,6 @@ Route::prefix('product')->group(function () {
     Route::delete('/{id}', [ProductController::class, 'destroy']);
     Route::put('/{id}', [ProductController::class, 'update']);
 });
+
+// Path to access user orders
+Route::middleware('auth:sanctum')->get('/user/orders', [OrderController::class, 'userOrders']);
