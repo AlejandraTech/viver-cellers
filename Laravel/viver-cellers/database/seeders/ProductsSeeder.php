@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @author: Alejandra Paz , Angel Rivera, Julia Prieto
+ * Seeder class inserting the initial data of the table products
+ */
+
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
@@ -51,6 +56,45 @@ class ProductsSeeder extends Seeder
                 'project_id' => 2,
                 'id_type_wine_fk' => 1,
                 'id_type_variety_fk' => 1,
+            ],
+            [
+                'id_vineyard_area_fk' => 3,
+                'name' => 'L’ancestral 2023',
+                'image_path' => 'assets/img/products/mulet-viticultors/ancestral.jpg',
+                'winemaking' => 'Escumós elaborat pel mètode ancestral',
+                'grade_alcohol' => 12,
+                'stock' => 100,
+                'price' => 16,
+                'iva' => 21,
+                'project_id' => 3,
+                'id_type_wine_fk' => 2,
+                'id_type_variety_fk' => 5,
+            ],
+            [
+                'id_vineyard_area_fk' => 3,
+                'name' => 'Xarel·lo 2023',
+                'image_path' => 'assets/img/products/mulet-viticultors/xarello.jpg',
+                'winemaking' => 'Fermentació espontània i mínima intervenció',
+                'grade_alcohol' => 13,
+                'stock' => 100,
+                'price' => 14,
+                'iva' => 21,
+                'project_id' => 3,
+                'id_type_wine_fk' => 1,
+                'id_type_variety_fk' => 1,
+            ],
+            [
+                'id_vineyard_area_fk' => 4,
+                'name' => 'Macabeu 2023',
+                'image_path' => 'assets/img/products/mulet-viticultors/macabeu.jpg',
+                'winemaking' => 'Fermentació espontània i mínima intervenció',
+                'grade_alcohol' => 13.5,
+                'stock' => 100,
+                'price' => 12,
+                'iva' => 21,
+                'project_id' => 3,
+                'id_type_wine_fk' => 1,
+                'id_type_variety_fk' => 4,
             ],
         ];
 

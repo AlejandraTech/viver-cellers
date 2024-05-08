@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * @author: Alejandra Paz , Angel Rivera, Julia Prieto
+ * Seeder class inserting the initial data of the table users
+ */
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;

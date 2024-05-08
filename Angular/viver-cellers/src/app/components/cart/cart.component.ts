@@ -28,22 +28,13 @@ export class CartComponent implements OnInit {
 
   // Método para finalizar la compra
   checkout(): void {
+    // Obtener solo las IDs de los productos en el carrito
+    const productIds = this.cart.map(product => product.id);
 
-    console.log('Has clicado a finalizar compra');
+    // Obtener el precio total sumado de los productos en el carrito
+    const totalPrice = this.cart.reduce((total, product) => total + product.price, 0);
 
-    // // Obtener los productos del carrito directamente del observable
-    // const products = this.cart;
-
-    // // Realizar la solicitud POST al servicio de compra
-    // this.purchaseService.finalizePurchase(products).subscribe(
-    //   () => {
-    //     console.log('Compra realizada con éxito');
-    //     // Aquí podrías redirigir a una página de confirmación o realizar otras acciones necesarias
-    //   },
-    //   (error) => {
-    //     console.error('Error al finalizar la compra: ', error);
-    //     // Aquí podrías mostrar un mensaje de error al usuario o realizar otras acciones necesarias
-    //   }
-    // );
+    // Redirigir a la página de pago y pasar el precio total y las IDs como parámetros de consulta
+    this.router.navigate(['/payment'], { queryParams: { amount: totalPrice, productIds: JSON.stringify(productIds) } });
   }
 }

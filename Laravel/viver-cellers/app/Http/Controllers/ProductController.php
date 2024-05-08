@@ -19,15 +19,39 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ProductController extends Controller
 {
-
+    /**
+     * Display a listing of the products.
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $products = Product::all();
         return response()->json($products);
     }
 
+     /**
+     * Display a listing of the categories.
+     * @return \Illuminate\Http\Response
+     */
+    public function indexCategory()
+    {
+        $categories = TypeWine::all();
+            return response()->json($categories);
+    }
+
     /**
-     * Shows the details of a specific box
+     * Display a listing of the varieties.
+     * @return \Illuminate\Http\Response
+     */
+    public function indexVariety()
+    {
+        $varieties = TypeVariety::all();
+        return response()->json($varieties);
+    }
+
+    /**
+     * Collect all the fields of a specific product.
+     * @param $id product id field
      */
     public function showProduct($id)
     {
@@ -36,7 +60,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Get the list of all product with the project and the associated category
+     * Get the list of all product with the project and the associated category, variety and area
      * @return - Api response
      */
     function getAll()
@@ -179,7 +203,7 @@ class ProductController extends Controller
     {
 
         try {
-            // Search product in the database by project id
+            // Search product in the database by product id
             $product = Product::findOrFail($id);
             // Delete the product
             $product->delete();

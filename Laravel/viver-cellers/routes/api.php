@@ -1,6 +1,10 @@
 <?php
-
+/**
+ * @author: Alejandra Paz , Angel Rivera, Julia Prieto
+ * File with all the api paths of the project
+ */
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Http\Request;
@@ -17,11 +21,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::middleware('auth:sanctum')->put('/user', [AuthController::class, 'updateProfile']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/checkout', [PaymentController::class, 'checkout']);
+    // otras rutas protegidas
+});
 
 // Login and registration controller
 Route::post('/login', [AuthController::class, 'login']);
@@ -43,12 +52,14 @@ Route::prefix('users')->group(function () {
     Route::put('/{id}', [AuthController::class, 'update']);
 });
 
-Route::get('/project-info', [ProjectController::class, 'index']);
-Route::get('/projectDetails/{id}', [ProjectController::class, 'showProject']);
+// Route::get('/project-info', [ProjectController::class, 'index']);
+// Route::get('/projectDetails/{id}', [ProjectController::class, 'showProject']);
 
 //Route to display all project
 Route::prefix('project')->group(function () {
     Route::get('/', [ProjectController::class, 'getAll']);
+    Route::get('/information', [ProjectController::class, 'index']);
+    Route::get('/details/{id}', [ProjectController::class, 'showProject']);
     Route::post('/', [ProjectController::class, 'store']);
     Route::delete('/{id}', [ProjectController::class, 'destroy']);
     Route::put('/{id}', [ProjectController::class, 'update']);
@@ -57,8 +68,10 @@ Route::prefix('project')->group(function () {
 //Route to display all product
 Route::prefix('product')->group(function () {
     Route::get('/information', [ProductController::class, 'index']);
+    Route::get('/category', [ProductController::class, 'indexCategory']);
+    Route::get('/variety', [ProductController::class, 'indexVariety']);
     Route::get('/details/{id}', [ProductController::class, 'showProduct']);
-    Route::get('/', [ProductController::class, 'getAll']);
+    Route::get('/', [ProductController::class, 'getAll'])->name('product');
     Route::post('/', [ProductController::class, 'store']);
     Route::delete('/{id}', [ProductController::class, 'destroy']);
     Route::put('/{id}', [ProductController::class, 'update']);

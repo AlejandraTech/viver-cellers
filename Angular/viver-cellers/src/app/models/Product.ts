@@ -1,3 +1,7 @@
+/**
+ * @author: Alejandra Paz , Angel Rivera, Julia Prieto
+ * Product interface with the fields of the table products
+ */
 export interface Product {
   id: number;
   id_vineyard_area_fk: number;
