@@ -1,8 +1,10 @@
 <?php
+
 /**
  * @author: Alejandra Paz , Angel Rivera, Julia Prieto
  * Seeder class inserting the initial data of the table types_variet
  */
+
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
@@ -40,7 +42,13 @@ class TypeVarietySeeder extends Seeder
         ]);
 
         DB::table('types_variet')->insert([
-            'variety' => 'Merlot y xarel·lo',
+            'variety' => 'Merlot y Xarel·lo',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('types_variet')->insert([
+            'variety' => 'Merlot',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
