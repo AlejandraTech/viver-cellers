@@ -1,0 +1,15 @@
+<div class="max-w-lg mx-auto p-6 bg-white rounded shadow">
+  <h2 class="text-2xl font-bold mb-4">Detalles de Pago</h2>
+  <!-- Stripe Card Element -->
+  <div id="card-element" class="bg-gray-200 p-4 mb-4"></div>
+  <div id="card-errors" role="alert" class="text-red-500 mb-4"></div>
+
+  <!-- Address Input -->
+  <div class="mb-4">
+    <label for="address" class="block text-gray-700">Dirección de envío:</label>
+    <input type="text" id="address" [(ngModel)]="address" class="w-full p-2 border border-gray-300 rounded-md shadow-sm">
+  </div>
+
+  <!-- Submit Button -->
+  <button (click)="processPayment()" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Realizar Pago</button>
+</div>

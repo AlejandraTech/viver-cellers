@@ -18,31 +18,52 @@ export class ProductService {
 
   constructor(private http: HttpClient) { } // HttpClient injection into the constructor
 
-  // Method to fetch product from the API
+  /**
+   * Gets all products from the api (ApiResponse format)
+   * @returns Observable containing the array with the data coming from the database.
+   */
   getProduct(): Observable<any> {
     return this.http
       .get<any>(this.apiUrl)
       .pipe(catchError(this.errorHandler));
   }
 
-  // Método para obtener todos los productos desde el backend
+   /**
+   * Gets all products from the api (json format)
+   * @returns Observable containing the array with the data coming from the database.
+   */
   getAllProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.apiUrl}/information`);
   }
 
+    /**
+   * Gets the details of a specific product by ID from the API.
+   * @param id ID of the product
+   * @returns Observable containing the array with the data coming from the database.
+   */
   getProductDetails(id: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/details/${id}`);
   }
 
 
-  // Method to post product data to the API
+
+  /**
+   * Insert a product in the database
+   * @param productData Data to be inserted
+   * @returns An Observable that emits the API response after insert the product.
+   */
   postProduct(productData: any): Observable<any> {
     return this.http
       .post<any>(this.apiUrl, productData, this.httpOptions)
       .pipe(catchError(this.errorHandler));
   }
 
-  // Method to update product data on the API
+  /**
+   * Update a product in the database
+   * @param productData Data to be updated
+   * @param productId id field of the product to be updated
+   * @returns An Observable that emits the API response after updating the product.
+   */
   updateProduct(productData: any, productId: number): Observable<any> {
     return this.http
       .put<any>(
@@ -53,12 +74,37 @@ export class ProductService {
       .pipe(catchError(this.errorHandler));
   }
 
-  // Method to delete a product from the API
+  /**
+   * Delete a product in the database
+   * @param productId id field of the product to be deleted
+   * @returns An Observable that emits the API response after deleting the product.
+   */
   deleteProduct(productId: number): Observable<any> {
     return this.http
       .delete<any>(`${this.apiUrl}/${productId}`, this.httpOptions)
       .pipe(catchError(this.errorHandler));
   }
+
+  /**
+   * Gets all categories from the api (ApiResponse format)
+   * @returns Observable containing the array with the data coming from the database.
+   */
+  getCategory(): Observable<any> {
+    return this.http
+      .get<any>(`${this.apiUrl}/category`)
+      .pipe(catchError(this.errorHandler));
+  }
+
+  /**
+   * Gets all varieties from the api (ApiResponse format)
+   * @returns Observable containing the array with the data coming from the database.
+   */
+  getVariety(): Observable<any> {
+    return this.http
+      .get<any>(`${this.apiUrl}/variety`)
+      .pipe(catchError(this.errorHandler));
+  }
+
 
   // Error handler method for HTTP errors
   errorHandler(error: HttpErrorResponse) {

@@ -32,6 +32,8 @@ class AuthController extends Controller
         }
     }
 
+
+
     /**
      * Handles user authentication
      * @param $request contains the data sent by the client to the server
@@ -115,6 +117,7 @@ class AuthController extends Controller
 
     /**
      * Log out the current user.
+     * @param $request contains the data sent by the client to the server
      */
     public function logout(Request $request)
     {
@@ -214,6 +217,10 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * Update the information of an existing user in the database.
+     * @param $request contains the data sent by the client to the server
+     */
     public function updateProfile(Request $request)
     {
         $user = $request->user();

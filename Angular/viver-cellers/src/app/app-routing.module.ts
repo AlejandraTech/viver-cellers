@@ -20,7 +20,11 @@ import { InfoProductComponent } from './components/info-product/info-product.com
 import { ProductManagementComponent } from './components/product-management/product-management.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { AuthGuard } from './guards/auth.guard';
+import { PaymentComponent } from './components/payment/payment.component';
 
+/**
+ * Array with all the paths to the project components.
+ */
 const routes: Routes = [
   { path: 'home', component: HomeComponent }, // Home Page
   { path: 'requirements', component: RequirementsComponent }, // Requirements Page
@@ -39,6 +43,7 @@ const routes: Routes = [
 
   { path: 'shop', component: ShopComponent, canActivate: [ClientGuard] }, // Shop Page
   { path: 'cart', component: CartComponent, canActivate: [ClientGuard] }, // Cart Page
+  { path: 'payment', component: PaymentComponent, canActivate: [ClientGuard] }, // Payment Page
 
   { path: 'user_management', component: UserManagementComponent, canActivate: [AdminGuard] }, // User Management Page
   { path: 'project_management', component: ProjectManagementComponent, canActivate: [AdminGuard] }, // Project Management Page

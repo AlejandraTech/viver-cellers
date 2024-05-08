@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +15,7 @@ import { RegulationComponent } from './components/regulation/regulation.componen
 import { PectComponent } from './components/pect/pect.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DniDirective } from './directives/dni.directive';
 import { RepeatPasswordDirective } from './directives/repeat-password.directive';
 import { UserManagementComponent } from './components/user-management/user-management.component';
@@ -26,6 +27,7 @@ import { InfoProjectComponent } from './components/info-project/info-project.com
 import { InfoProductComponent } from './components/info-product/info-product.component';
 import { ProductManagementComponent } from './components/product-management/product-management.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -51,14 +53,16 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
     InfoProductComponent,
     ProductManagementComponent,
     EditProfileComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
