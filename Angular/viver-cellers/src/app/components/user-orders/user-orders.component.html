@@ -1,0 +1,28 @@
+<div *ngFor="let order of orders" class="mb-8 p-4 bg-white shadow-lg rounded-lg">
+  <h3 class="text-lg font-bold mb-2">Pedido ID: {{ order.id }}</h3>
+  <p>Total: ${{ order.price }}</p>
+  <p>Dirección: {{ order.address }}</p>
+
+  <!-- Status Progress -->
+  <div class="mt-4">
+    <ol class="flex items-center">
+      <ng-container *ngFor="let status of statusList; let i = index">
+        <li [ngClass]="{'text-green-500': order.status.id >= status.id, 'text-gray-400': order.status.id < status.id}"
+          class="flex items-center after:content-[''] after:flex-grow after:h-1 after:border-b"
+          [ngClass]="{'after:border-green-500': order.status.id > status.id, 'after:border-gray-300': order.status.id <= status.id}">
+          <div class="flex items-center justify-center w-10 h-10 rounded-full"
+            [ngClass]="{'bg-green-100': order.status.id >= status.id, 'bg-gray-100': order.status.id < status.id}">
+            <!-- SVG or IMG based on status -->
+            <svg *ngIf="order.status.id >= status.id" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+              <use xlink:href="#icon-checked"></use>
+            </svg>
+            <svg *ngIf="order.status.id < status.id" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+              <use xlink:href="#icon-unchecked"></use>
+            </svg>
+          </div>
+          <span class="text-sm ml-2">{{ status.name }}</span>
+        </li>
+      </ng-container>
+    </ol>
+  </div>
+</div>

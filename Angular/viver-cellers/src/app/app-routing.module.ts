@@ -21,6 +21,7 @@ import { ProductManagementComponent } from './components/product-management/prod
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { AuthGuard } from './guards/auth.guard';
 import { PaymentComponent } from './components/payment/payment.component';
+import { UserOrdersComponent } from './components/user-orders/user-orders.component';
 
 /**
  * Array with all the paths to the project components.
@@ -44,6 +45,7 @@ const routes: Routes = [
   { path: 'shop', component: ShopComponent, canActivate: [ClientGuard] }, // Shop Page
   { path: 'cart', component: CartComponent, canActivate: [ClientGuard] }, // Cart Page
   { path: 'payment', component: PaymentComponent, canActivate: [ClientGuard] }, // Payment Page
+  { path: 'user_order', component: UserOrdersComponent, canActivate: [ClientGuard] }, // Orders Page
 
   { path: 'user_management', component: UserManagementComponent, canActivate: [AdminGuard] }, // User Management Page
   { path: 'project_management', component: ProjectManagementComponent, canActivate: [AdminGuard] }, // Project Management Page
