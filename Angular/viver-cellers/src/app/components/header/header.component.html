@@ -94,6 +94,10 @@
               <a routerLink="/product_management" class="block py-2 px-3 rounded md:bg-transparent md:p-0"
                 aria-current="page">Gestió de Productes</a>
             </li>
+            <li *ngIf="isAuthenticated && isClient">
+              <a routerLink="/user_order" class="block py-2 px-3 rounded md:bg-transparent md:p-0"
+                aria-current="page">Comandes</a>
+            </li>
             <li *ngIf="isAuthenticated && (isAdmin || isClient || isNurseryman)">
               <a routerLink="/edit_profile" class="block py-2 px-3 rounded md:bg-transparent md:p-0"
                 aria-current="page">Modificar Perfil</a>
