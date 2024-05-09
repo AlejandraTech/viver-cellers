@@ -61,6 +61,8 @@
                     </div>
                   </div>
 
+                  <div *ngIf="errorMessage" class="text-red-500">{{ errorMessage }}</div>
+
                   <!-- Submit button -->
                   <div class="mb-12 pb-1 pt-1 text-center">
                     <button

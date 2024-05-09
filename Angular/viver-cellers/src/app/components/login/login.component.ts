@@ -9,9 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  /**
-   *
-   */
+
   loginForm: FormGroup;
   email!: string;
   password!: string;
@@ -26,6 +24,12 @@ export class LoginComponent {
 
   // Submit the login form.
   onSubmit() {
+    // Check if the user is not logged in
+    if (this.authService.isLoggedIn()) {
+      this.errorMessage = 'Necessites estar registrat per iniciar sessió.';
+      return; // Stop further execution
+    }
+
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
       this.authService.login(email, password).subscribe(

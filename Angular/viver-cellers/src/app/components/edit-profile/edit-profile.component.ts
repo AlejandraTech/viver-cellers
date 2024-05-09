@@ -15,7 +15,7 @@ export class EditProfileComponent implements OnInit {
       name: ['', Validators.required],
       lastname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required] // Asegúrate de manejar la contraseña adecuadamente
+      password: ['', Validators.required]
     });
   }
 
@@ -25,7 +25,7 @@ export class EditProfileComponent implements OnInit {
 
   loadUserProfile() {
     if (!this.profileForm) {
-      console.error('El formulario no está inicializado');
+      console.error('El formulari no está inicialitzat');
       return;
     }
 
@@ -34,7 +34,7 @@ export class EditProfileComponent implements OnInit {
         name: user.name,
         lastname: user.lastname,
         email: user.email,
-        password: '' // No asignamos la contraseña aquí por razones de seguridad
+        password: ''
       });
     });
   }
@@ -43,10 +43,10 @@ export class EditProfileComponent implements OnInit {
     if (this.profileForm.valid) {
       this.authService.updateProfile(this.profileForm.value).subscribe(
         response => {
-          console.log('Perfil actualizado con éxito');
+          console.log('Perfil actualitzat amb exit');
         },
         error => {
-          console.error('Error al actualizar el perfil:', error);
+          console.error('Error al actualitzar el perfil:', error);
         }
       );
     }

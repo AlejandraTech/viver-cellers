@@ -1,26 +1,26 @@
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()"
   class="max-w-md mx-auto mt-8 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
   <div class="mb-4">
-    <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nombre</label>
+    <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nom</label>
     <input type="text" formControlName="name" id="name"
       class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm" placeholder="Nombre">
   </div>
   <div class="mb-4">
-    <label for="lastname" class="block text-gray-700 text-sm font-bold mb-2">Apellido</label>
+    <label for="lastname" class="block text-gray-700 text-sm font-bold mb-2">Cognoms</label>
     <input type="text" formControlName="lastname" id="lastname"
       class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm" placeholder="Apellido">
   </div>
   <div class="mb-4">
-    <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Correo Electrónico</label>
+    <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Correu Electrònic</label>
     <input type="email" formControlName="email" id="email"
       class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm" placeholder="Correo Electrónico">
   </div>
   <div class="mb-6">
-    <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Contraseña</label>
+    <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Contrasenya</label>
     <input type="password" formControlName="password" id="password"
       class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm" placeholder="Contraseña">
   </div>
   <button type="submit"
     class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-    [disabled]="profileForm.invalid">Guardar Cambios</button>
+    [disabled]="profileForm.invalid">Guardar Canvis</button>
 </form>
