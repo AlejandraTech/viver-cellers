@@ -88,7 +88,7 @@ class ProductController extends Controller
                 'stock' => 'required|numeric|min:0',
                 'price' => 'required|numeric|min:0|decimal:2',
                 'iva' => 'required|numeric|min:0',
-                'project_name' => 'required|min:2|max:50',
+                'project_name' => 'required',
                 'vineyard_area' => 'required|string|min:2|max:150',
                 'type_wine' => 'required|string|min:2|max:150',
                 'type_variety' => 'required|string|min:2|max:150',

@@ -1,22 +1,25 @@
 <div *ngFor="let order of orders" class="mb-8 p-4 bg-white shadow-lg rounded-lg">
   <h3 class="text-lg font-bold mb-2">Pedido ID: {{ order.id }}</h3>
-  <p>Total: ${{ order.price }}</p>
-  <p>Dirección: {{ order.address }}</p>
-
   <!-- Status Progress -->
-  <div class="mt-4">
-    <ol class="flex items-center">
+  <div class="mt-4 relative">
+    <!-- Central Bar -->
+    <div class="absolute  transform -translate-x-1/2"></div>
+    <ol class="flex flex-wrap items-center justify-between z-10 relative">
       <ng-container *ngFor="let status of statusList; let i = index">
         <li [ngClass]="{'text-green-500': order.status.id >= status.id, 'text-gray-400': order.status.id < status.id}"
-          class="flex items-center after:content-[''] after:flex-grow after:h-1 after:border-b"
-          [ngClass]="{'after:border-green-500': order.status.id > status.id, 'after:border-gray-300': order.status.id <= status.id}">
-          <div class="flex items-center justify-center w-10 h-10 rounded-full"
+          class="flex items-center mb-2 sm:mb-0">
+          <div class="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full"
             [ngClass]="{'bg-green-100': order.status.id >= status.id, 'bg-gray-100': order.status.id < status.id}">
             <!-- SVG or IMG based on status -->
-            <svg *ngIf="order.status.id >= status.id" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-              <use xlink:href="#icon-checked"></use>
+            <svg *ngIf="order.status.id >= status.id" class="w-4 h-4 sm:w-6 sm:h-6" fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="fill: rgb(84, 83, 83);transform: msFilter">
+              <path
+                d="M7 5c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2V7c0-1.103-.897-2-2-2H7zm0 12V7h10l.002 10H7z">
+              </path>
+              <path d="M10.996 12.556 9.7 11.285l-1.4 1.43 2.704 2.647 4.699-4.651-1.406-1.422z"></path>
             </svg>
-            <svg *ngIf="order.status.id < status.id" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+            <svg *ngIf="order.status.id < status.id" class="w-4 h-4 sm:w-6 sm:h-6" fill="currentColor"
+              viewBox="0 0 20 20">
               <use xlink:href="#icon-unchecked"></use>
             </svg>
           </div>
@@ -25,4 +28,6 @@
       </ng-container>
     </ol>
   </div>
+  <p>Total: ${{ order.price }}</p>
+  <p>Dirección: {{ order.address }}</p>
 </div>

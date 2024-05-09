@@ -10,11 +10,8 @@ import { ProjectService } from 'src/app/services/project.service';
   styleUrls: ['./product-management.component.css']
 })
 export class ProductManagementComponent {
-
-  // Array to store product fetched from the database
-  products: any[] = [];
-  vineyards: any[] = [];
-  projects: any[] = [];
+  products: any[] = [];  // Array to store product fetched from the database
+  projects: any[] = []; // Array to store projects fetched from the database
 
   // Selected product identifier for modification
   productId: any;
@@ -36,11 +33,12 @@ export class ProductManagementComponent {
    * Method executed when the component initializes
    */
   ngOnInit(): void {
-    // Get the list of product and available vineyard
-    this.getproduct();
 
-    this.getProjects();
+    this.getproduct(); // Get the list of product and available vineyard
 
+    this.getProjects(); //Get the list of project
+
+    //Add product form with fields and validations
     this.addproduct = new FormGroup({
       name: new FormControl('', [
         Validators.required,
@@ -54,28 +52,26 @@ export class ProductManagementComponent {
       ]),
       grade_alcohol: new FormControl('', [
         Validators.required,
-        Validators.pattern('^[0-9]*$'),
+        Validators.pattern(/^\d+\.\d{2}$/),
         Validators.min(0)
       ]),
       stock: new FormControl('', [
         Validators.required,
-        Validators.pattern("/^[0-9]+$/;"),
+        Validators.pattern(/^\d+$/),
         Validators.min(0)
       ]),
       price: new FormControl('', [
         Validators.required,
-        Validators.pattern("/^[0-9]+[.,]{1,1}\[0]{2,2}$/"),
+        Validators.pattern(/^\d+\.\d{2}$/),
         Validators.min(0)
       ]),
       iva: new FormControl('', [
         Validators.required,
-        Validators.pattern("/^[0-9]+$/;"),
+        Validators.pattern(/^\d+$/),
         Validators.min(0)
       ]),
       project_name: new FormControl('', [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(50)
+        Validators.required
       ]),
       vineyard_area: new FormControl('', [
         Validators.required,
@@ -155,7 +151,7 @@ export class ProductManagementComponent {
             this.getproduct(); // Update the product list after adding a new one
             // Clear form fields after adding
             this.addproduct.reset();
-            this.successMessage = 'Productw afegit amb èxit.';
+            this.successMessage = 'Producte afegit amb èxit.';
             this.errorMessage = '';
           },
           error => {
@@ -213,7 +209,7 @@ export class ProductManagementComponent {
         this.errorMessage = '';
       },
       error => {
-        this.errorMessage = `S'ha produït un error mentre es modificava el producte. Si us plau, torni a intentar-ho més tard.`;
+        this.errorMessage = `S'ha produït un error mentre s'eliminava el producte. Si us plau, torni a intentar-ho més tard.`;
         this.successMessage = '';
       }
     );
@@ -238,30 +234,30 @@ export class ProductManagementComponent {
     // Initialize the modification form with the selected product
     if (selectedProduct) {
       this.modifyproduct = new FormGroup({
-        name: new FormControl(selectedProduct.name, [Validators.required]),
-        winemaking: new FormControl(selectedProduct.winemaking, [Validators.required]),
-        vineyard_area: new FormControl(selectedProduct.vineyard_area.area, [Validators.required]),
-        grade_alcohol: new FormControl(selectedProduct.grade_alcohol, [Validators.required]),
-        iva: new FormControl(selectedProduct.iva, [Validators.required]),
-        price: new FormControl(selectedProduct.price, [Validators.required]),
-        type_wine: new FormControl(selectedProduct.type_wine.category, [Validators.required]),
-        type_variety: new FormControl(selectedProduct.type_variety.variety, [Validators.required]),
-        stock: new FormControl(selectedProduct.stock, [Validators.required]),
+        name: new FormControl(selectedProduct.name, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
+        winemaking: new FormControl(selectedProduct.winemaking, [Validators.required, Validators.minLength(2), Validators.maxLength(255)]),
+        vineyard_area: new FormControl(selectedProduct.vineyard_area.area, [Validators.required, Validators.minLength(2), Validators.maxLength(150)]),
+        grade_alcohol: new FormControl(selectedProduct.grade_alcohol, [Validators.required, Validators.pattern(/^\d+\.\d{2}$/), Validators.min(0)]),
+        iva: new FormControl(selectedProduct.iva, [Validators.required, Validators.pattern(/^\d+$/), Validators.min(0)]),
+        price: new FormControl(selectedProduct.price, [Validators.required, Validators.pattern(/^\d+\.\d{2}$/), Validators.min(0)]),
+        type_wine: new FormControl(selectedProduct.type_wine.category, [Validators.required, Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$"), Validators.minLength(2), Validators.maxLength(150)]),
+        type_variety: new FormControl(selectedProduct.type_variety.variety, [Validators.required, Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$"), Validators.minLength(2), Validators.maxLength(150)]),
+        stock: new FormControl(selectedProduct.stock, [Validators.required, Validators.pattern(/^\d+$/), Validators.min(0)]),
         project_name: new FormControl(selectedProduct.project.id, [Validators.required]),
       });
     } else {
       // If the product is not found, initialize the empty form.
       this.modifyproduct = new FormGroup({
 
-        name: new FormControl('', [Validators.required]),
-        winemaking: new FormControl('', [Validators.required]),
-        vineyard_area: new FormControl('', [Validators.required]),
-        grade_alcohol: new FormControl('', [Validators.required]),
-        iva: new FormControl('', [Validators.required]),
-        price: new FormControl('', [Validators.required]),
-        type_wine: new FormControl('', [Validators.required]),
-        type_variety: new FormControl('', [Validators.required]),
-        stock: new FormControl('', [Validators.required]),
+        name: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
+        winemaking: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(255)]),
+        vineyard_area: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(150)]),
+        grade_alcohol: new FormControl('', [Validators.required, Validators.pattern(/^\d+\.\d{2}$/), Validators.min(0)]),
+        iva: new FormControl('', [Validators.required, Validators.pattern(/^\d+\.\d{2}$/), Validators.min(0)]),
+        price: new FormControl('', [Validators.required, Validators.pattern(/^\d+\.\d{2}$/), Validators.min(0)]),
+        type_wine: new FormControl('', [Validators.required, Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$"), Validators.minLength(2), Validators.maxLength(150)]),
+        type_variety: new FormControl('', [Validators.required, Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$"), Validators.minLength(2), Validators.maxLength(150)]),
+        stock: new FormControl('', [Validators.required, Validators.pattern(/^\d+$/), Validators.min(0)]),
         project_name: new FormControl('', [Validators.required]),
       });
     }

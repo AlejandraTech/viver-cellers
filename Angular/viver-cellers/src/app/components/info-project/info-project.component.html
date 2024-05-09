@@ -1,5 +1,4 @@
 <div *ngFor="let project of projects">
-
   <!--Project information-->
   <div class="bg-gray-100 dark:bg-gray-800 py-8">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,18 +31,19 @@
     </div>
   </div>
   <br>
-  <!------------------------------------------------------------------------------------------------------------------------------->
 
   <!-- Project Products -->
   <h1 class="text-center text-4xl font-bold mb-4">Productes de {{ project.project_name }}</h1>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 justify-items-center">
+    <div *ngIf="products.length === 0">
+      <p>No hi ha prductes disponibles actualment.</p>
+    </div>
     <div *ngFor="let product of products">
       <!--If the project.id of the product and the project.id of the project match, display image, name and winemaking-->
       <div *ngIf="product.project_id === project.id">
         <div class="mt-12">
           <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <img [src]="product.image_path" alt="{{product.name}}"
-              class="object-contain w-full h-full">
+            <img [src]="product.image_path" alt="{{product.name}}" class="object-contain w-full h-full">
             <div class="p-5">
               <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{product.name}}</h5>
               <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{product.winemaking}}</p>
@@ -53,27 +53,31 @@
       </div>
     </div>
   </div>
-  <!------------------------------------------------------------------------------------------------------------------------------->
+
   <br>
 
   <!--Project Gallery-->
   <div class="bg-gray-100 dark:bg-gray-800 py-8 text-center">
     <h1 class="text-4xl font-bold mb-4">Galeria</h1>
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+    <div *ngIf="project.length === 0">
+      <p>No hi ha imatges d'aquest viver.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4" *ngIf="project.length > 0">
       <div>
-        <img class="h-auto max-w-full rounded-lg" src="../../../assets/img/projects/{{ project.project_name }}/{{ project.project_name }}1.png"
+        <img class="h-auto max-w-full rounded-lg"
+          src="../../../assets/img/projects/{{ project.project_name }}/{{ project.project_name }}1.png"
           alt="{{ project.project_name }} integrants">
       </div>
       <div>
-        <img class="h-auto max-w-full rounded-lg" src="../../../assets/img/projects/{{ project.project_name }}/{{ project.project_name }}2.png"
+        <img class="h-auto max-w-full rounded-lg"
+          src="../../../assets/img/projects/{{ project.project_name }}/{{ project.project_name }}2.png"
           alt="{{ project.project_name }} producte">
       </div>
       <div>
-        <img class="h-auto max-w-full rounded-lg" src="../../../assets/img/projects/{{ project.project_name }}/{{ project.project_name }}3.png"
+        <img class="h-auto max-w-full rounded-lg"
+          src="../../../assets/img/projects/{{ project.project_name }}/{{ project.project_name }}3.png"
           alt="{{ project.project_name }} vinya">
       </div>
     </div>
   </div>
-  <!------------------------------------------------------------------------------------------------------------------------------->
-
 </div>

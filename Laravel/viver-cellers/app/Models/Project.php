@@ -1,8 +1,10 @@
 <?php
+
 /**
  * @author: Alejandra Paz , Angel Rivera, Julia Prieto
  * Model class that allows interacting (performing queries and CRUD operations) with the projects table.
  */
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,7 +24,7 @@ class Project extends Model
     ];
 
     /**
-     * The relationship N:M is defined with the table users
+     * The relationship 1:N is defined with the table users
      */
     public function users()
     {
@@ -30,7 +32,7 @@ class Project extends Model
     }
 
     /**
-     * The relationship N:M is defined with the table products
+     * The relationship 1:N is defined with the table products
      */
     public function products()
     {

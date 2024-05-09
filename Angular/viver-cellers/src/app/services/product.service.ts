@@ -45,8 +45,6 @@ export class ProductService {
     return this.http.get<any[]>(`${this.apiUrl}/details/${id}`);
   }
 
-
-
   /**
    * Insert a product in the database
    * @param productData Data to be inserted

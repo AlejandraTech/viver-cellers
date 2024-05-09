@@ -52,7 +52,7 @@
               alt="Afegir" class="rounded-full" />
           </div>
         </div>
-        <h2 class="text-lg font-semibold mb-4 text-center">Afegir product</h2>
+        <h2 class="text-lg font-semibold mb-4 text-center">Afegir producte</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
           <!-- Name input -->
@@ -70,13 +70,13 @@
 
             <!-- MaxLength -->
             <div *ngIf="this.addproduct.get('name')?.errors?.['maxlength'] &&
-          this.addproduct.get('name')?.touched" class="text-red-500 text-xs italic">
+              this.addproduct.get('name')?.touched" class="text-red-500 text-xs italic">
               Aquest camp només pot contenir un màxim de 50 caràcters.
             </div>
 
             <!-- MinLength -->
             <div *ngIf="this.addproduct.get('name')?.errors?.['minlength'] &&
-          this.addproduct.get('name')?.touched" class="text-red-500 text-xs italic">
+              this.addproduct.get('name')?.touched" class="text-red-500 text-xs italic">
               Aquest camp només pot contenir com a mínim 2 caràcters.
             </div>
 
@@ -91,19 +91,19 @@
 
             <!-- This field is required -->
             <div *ngIf="this.addproduct.get('winemaking')?.errors?.['required'] &&
-              this.addproduct.get('winemaking')?.touched" class="text-red-500 text-xs italic">
+                  this.addproduct.get('winemaking')?.touched" class="text-red-500 text-xs italic">
               Aquest camp és obligatori.
             </div>
 
             <!-- MaxLength -->
             <div *ngIf="this.addproduct.get('winemaking')?.errors?.['maxlength'] &&
-                        this.addproduct.get('winemaking')?.touched" class="text-red-500 text-xs italic">
+                            this.addproduct.get('winemaking')?.touched" class="text-red-500 text-xs italic">
               Aquest camp només pot contenir un màxim de 255 caràcters.
             </div>
 
             <!-- MinLength -->
             <div *ngIf="this.addproduct.get('winemaking')?.errors?.['minlength'] &&
-                        this.addproduct.get('winemaking')?.touched" class="text-red-500 text-xs italic">
+                            this.addproduct.get('winemaking')?.touched" class="text-red-500 text-xs italic">
               Aquest camp només pot contenir com a mínim 2 caràcters.
             </div>
           </div>
@@ -115,29 +115,27 @@
               alcohol</label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="grade_alcohol" type="text" placeholder="Grau alcohol" formControlName="grade_alcohol" />
+              id="grade_alcohol" type="number" placeholder="Grau alcohol" formControlName="grade_alcohol" />
 
             <!-- This field is required -->
             <div *ngIf="this.addproduct.get('grade_alcohol')?.errors?.['required'] &&
-                this.addproduct.get('grade_alcohol')?.touched" class="text-red-500 text-xs italic">
+                    this.addproduct.get('grade_alcohol')?.touched" class="text-red-500 text-xs italic">
               Aquest camp és obligatori.
             </div>
 
             <!-- min -->
             <div *ngIf="this.addproduct.get('grade_alcohol')?.errors?.['min'] &&
-                                              this.addproduct.get('grade_alcohol')?.touched"
+                                                  this.addproduct.get('grade_alcohol')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp ha de ser de mínim 0
             </div>
 
             <!-- Only number -->
             <div *ngIf="this.addproduct.get('grade_alcohol')?.errors?.['pattern'] &&
-                                              this.addproduct.get('grade_alcohol')?.touched"
+                                                  this.addproduct.get('grade_alcohol')?.touched"
               class="text-red-500 text-xs italic">
-              Només s'accepten números.
+              Format correcte: 00[.]00
             </div>
-
-
           </div>
 
           <!-- price input -->
@@ -145,28 +143,27 @@
             <label class="block text-sm font-bold mb-2 text-gray-700" for="price">Preu</label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="price" type="text" placeholder="Preu" formControlName="price" />
+              id="price" type="number" placeholder="Preu" formControlName="price" />
 
             <!-- This field is required -->
             <div *ngIf="this.addproduct.get('price')?.errors?.['required'] &&
-            this.addproduct.get('price')?.touched" class="text-red-500 text-xs italic">
+                this.addproduct.get('price')?.touched" class="text-red-500 text-xs italic">
               Aquest camp és obligatori.
             </div>
 
             <!-- min -->
             <div *ngIf="this.addproduct.get('price')?.errors?.['min'] &&
-                                              this.addproduct.get('price')?.touched"
+                                                  this.addproduct.get('price')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp ha de ser de mínim 0
             </div>
 
             <!-- Only number -->
             <div *ngIf="this.addproduct.get('price')?.errors?.['pattern'] &&
-                                              this.addproduct.get('price')?.touched"
+                                                  this.addproduct.get('price')?.touched"
               class="text-red-500 text-xs italic">
-              Només s'accepten números.
+              Format correcte: 00[.]00
             </div>
-
           </div>
 
           <!-- iva input -->
@@ -174,23 +171,25 @@
             <label class="block text-sm font-bold mb-2 text-gray-700" for="iva">Iva</label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="iva" type="text" placeholder="Iva" formControlName="iva" />
+              id="iva" type="number" placeholder="Iva" formControlName="iva" />
 
             <!-- This field is required -->
             <div *ngIf="this.addproduct.get('iva')?.errors?.['required'] &&
-            this.addproduct.get('iva')?.touched" class="text-red-500 text-xs italic">
+                this.addproduct.get('iva')?.touched" class="text-red-500 text-xs italic">
               Aquest camp és obligatori.
             </div>
 
             <!-- min -->
             <div *ngIf="this.addproduct.get('iva')?.errors?.['min'] &&
-                                             this.addproduct.get('iva')?.touched" class="text-red-500 text-xs italic">
+                                                 this.addproduct.get('iva')?.touched"
+              class="text-red-500 text-xs italic">
               Aquest camp ha de ser de mínim 0
             </div>
 
             <!-- Only number -->
             <div *ngIf="this.addproduct.get('iva')?.errors?.['pattern'] &&
-                                             this.addproduct.get('iva')?.touched" class="text-red-500 text-xs italic">
+                                                 this.addproduct.get('iva')?.touched"
+              class="text-red-500 text-xs italic">
               Només s'accepten números.
             </div>
           </div>
@@ -212,19 +211,19 @@
 
             <!-- MaxLength -->
             <div *ngIf="this.addproduct.get('vineyard_area')?.errors?.['maxlength'] &&
-                       this.addproduct.get('vineyard_area')?.touched" class="text-red-500 text-xs italic">
+                           this.addproduct.get('vineyard_area')?.touched" class="text-red-500 text-xs italic">
               Aquest camp només pot contenir un màxim de 150 caràcters.
             </div>
 
             <!-- MinLength -->
             <div *ngIf="this.addproduct.get('vineyard_area')?.errors?.['minlength'] &&
-                       this.addproduct.get('vineyard_area')?.touched" class="text-red-500 text-xs italic">
+                           this.addproduct.get('vineyard_area')?.touched" class="text-red-500 text-xs italic">
               Aquest camp només pot contenir com a mínim 2 caràcters.
             </div>
 
             <!-- Only letters -->
             <div *ngIf="this.addproduct.get('vineyard_area')?.errors?.['pattern'] &&
-                                             this.addproduct.get('vineyard_area')?.touched"
+                                                 this.addproduct.get('vineyard_area')?.touched"
               class="text-red-500 text-xs italic">
               Només s'accepten lletres.
             </div>
@@ -264,19 +263,21 @@
 
             <!-- MaxLength -->
             <div *ngIf="this.addproduct.get('type_wine')?.errors?.['maxlength'] &&
-                                        this.addproduct.get('type_wine')?.touched" class="text-red-500 text-xs italic">
+                                            this.addproduct.get('type_wine')?.touched"
+              class="text-red-500 text-xs italic">
               Aquest camp només pot contenir un màxim de 150 caràcters.
             </div>
 
             <!-- MinLength -->
             <div *ngIf="this.addproduct.get('type_wine')?.errors?.['minlength'] &&
-                                        this.addproduct.get('type_wine')?.touched" class="text-red-500 text-xs italic">
+                                            this.addproduct.get('type_wine')?.touched"
+              class="text-red-500 text-xs italic">
               Aquest camp només pot contenir com a mínim 2 caràcters.
             </div>
 
             <!-- Only letters -->
             <div *ngIf="this.addproduct.get('type_wine')?.errors?.['pattern'] &&
-                                                              this.addproduct.get('type_wine')?.touched"
+                                                                  this.addproduct.get('type_wine')?.touched"
               class="text-red-500 text-xs italic">
               Només s'accepten lletres.
             </div>
@@ -294,23 +295,24 @@
               class="text-red-500 text-xs italic">
               Aquest camp és obligatori.
             </div>
+
             <!-- MaxLength -->
             <div *ngIf="this.addproduct.get('type_variety')?.errors?.['maxlength'] &&
-                                              this.addproduct.get('type_variety')?.touched"
+                                                  this.addproduct.get('type_variety')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp només pot contenir un màxim de 150 caràcters.
             </div>
 
             <!-- MinLength -->
             <div *ngIf="this.addproduct.get('type_variety')?.errors?.['minlength'] &&
-                                              this.addproduct.get('type_variety')?.touched"
+                                                  this.addproduct.get('type_variety')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp només pot contenir com a mínim 2 caràcters.
             </div>
 
             <!-- Only letters -->
             <div *ngIf="this.addproduct.get('type_variety')?.errors?.['pattern'] &&
-                                                                    this.addproduct.get('type_variety')?.touched"
+                                                                        this.addproduct.get('type_variety')?.touched"
               class="text-red-500 text-xs italic">
               Només s'accepten lletres.
             </div>
@@ -330,25 +332,23 @@
 
             <!-- min -->
             <div *ngIf="this.addproduct.get('stock')?.errors?.['min'] &&
-                       this.addproduct.get('stock')?.touched" class="text-red-500 text-xs italic">
+                           this.addproduct.get('stock')?.touched" class="text-red-500 text-xs italic">
               Aquest camp ha de ser de mínim 0
             </div>
 
             <!-- Only number -->
             <div *ngIf="this.addproduct.get('stock')?.errors?.['pattern'] &&
-                       this.addproduct.get('stock')?.touched" class="text-red-500 text-xs italic">
+                           this.addproduct.get('stock')?.touched" class="text-red-500 text-xs italic">
               Només s'accepten números.
             </div>
           </div>
-
-
         </div>
 
         <div class="mt-6">
           <button (click)="submitAdd()"
             class="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="button" [disabled]="addproduct.invalid">
-            Afegir Product
+            Afegir Producte
           </button>
         </div>
 
@@ -391,6 +391,18 @@
               Aquest camp és obligatori.
             </div>
 
+            <!-- MaxLength -->
+            <div *ngIf="this.modifyproduct.get('name')?.errors?.['maxlength'] &&
+                        this.modifyproduct.get('name')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir un màxim de 50 caràcters.
+            </div>
+
+            <!-- MinLength -->
+            <div *ngIf="this.modifyproduct.get('name')?.errors?.['minlength'] &&
+                        this.modifyproduct.get('name')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir com a mínim 2 caràcters.
+            </div>
+
           </div>
 
           <!-- winemaking input -->
@@ -405,6 +417,18 @@
                   this.modifyproduct.get('winemaking')?.touched" class="text-red-500 text-xs italic">
               Aquest camp és obligatori.
             </div>
+
+            <!-- MaxLength -->
+            <div *ngIf="this.modifyproduct.get('winemaking')?.errors?.['maxlength'] &&
+                        this.modifyproduct.get('winemaking')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir un màxim de 255 caràcters.
+            </div>
+
+            <!-- MinLength -->
+            <div *ngIf="this.modifyproduct.get('winemaking')?.errors?.['minlength'] &&
+                        this.modifyproduct.get('winemaking')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir com a mínim 2 caràcters.
+            </div>
           </div>
 
 
@@ -414,12 +438,24 @@
               alcohol</label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="grade_alcohol" type="grade_alcohol" placeholder="Grau alcohol" formControlName="grade_alcohol" />
+              id="grade_alcohol" type="number" placeholder="Grau alcohol" formControlName="grade_alcohol" />
 
             <!-- This field is required -->
             <div *ngIf="this.modifyproduct.get('grade_alcohol')?.errors?.['required'] &&
                     this.modifyproduct.get('grade_alcohol')?.touched" class="text-red-500 text-xs italic">
               Aquest camp és obligatori.
+            </div>
+
+            <!-- min -->
+            <div *ngIf="this.modifyproduct.get('grade_alcohol')?.errors?.['min'] &&
+                        this.modifyproduct.get('grade_alcohol')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp ha de ser de mínim 0
+            </div>
+
+            <!-- Only number -->
+            <div *ngIf="this.modifyproduct.get('grade_alcohol')?.errors?.['pattern'] &&
+                        this.modifyproduct.get('grade_alcohol')?.touched" class="text-red-500 text-xs italic">
+              Format correcte: 00[.]00
             </div>
           </div>
 
@@ -431,9 +467,21 @@
               id="price" type="text" placeholder="Preu" formControlName="price" />
 
             <!-- This field is required -->
-            <div *ngIf="this.modifyproduct.get('iva')?.errors?.['required'] &&
-                this.modifyproduct.get('iva')?.touched" class="text-red-500 text-xs italic">
+            <div *ngIf="this.modifyproduct.get('price')?.errors?.['required'] &&
+                this.modifyproduct.get('price')?.touched" class="text-red-500 text-xs italic">
               Aquest camp és obligatori.
+            </div>
+
+            <!-- min -->
+            <div *ngIf="this.modifyproduct.get('price')?.errors?.['min'] &&
+                        this.modifyproduct.get('price')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp ha de ser de mínim 0
+            </div>
+
+            <!-- Only number -->
+            <div *ngIf="this.modifyproduct.get('price')?.errors?.['pattern'] &&
+                        this.modifyproduct.get('price')?.touched" class="text-red-500 text-xs italic">
+              Format correcte: 00[.]00
             </div>
           </div>
 
@@ -442,12 +490,24 @@
             <label class="block text-sm font-bold mb-2 text-gray-700" for="iva">Iva</label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="iva" type="iva" placeholder="Iva" formControlName="iva" />
+              id="iva" type="number" placeholder="Iva" formControlName="iva" />
 
             <!-- This field is required -->
             <div *ngIf="this.modifyproduct.get('iva')?.errors?.['required'] &&
                 this.modifyproduct.get('iva')?.touched" class="text-red-500 text-xs italic">
               Aquest camp és obligatori.
+            </div>
+
+            <!-- min -->
+            <div *ngIf="this.modifyproduct.get('iva')?.errors?.['min'] && this.modifyproduct.get('iva')?.touched"
+              class="text-red-500 text-xs italic">
+              Aquest camp ha de ser de mínim 0
+            </div>
+
+            <!-- Only number -->
+            <div *ngIf="this.modifyproduct.get('iva')?.errors?.['pattern'] && this.modifyproduct.get('iva')?.touched"
+              class="text-red-500 text-xs italic">
+              Només s'accepten números.
             </div>
           </div>
 
@@ -464,6 +524,25 @@
               *ngIf="modifyproduct.get('vineyard_area')?.errors?.['required'] && modifyproduct.get('vineyard_area')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp és obligatori.
+            </div>
+
+            <!-- MaxLength -->
+            <div *ngIf="this.modifyproduct.get('vineyard_area')?.errors?.['maxlength'] &&
+                        this.addproduct.get('vineyard_area')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir un màxim de 150 caràcters.
+            </div>
+
+            <!-- MinLength -->
+            <div *ngIf="this.modifyproduct.get('vineyard_area')?.errors?.['minlength'] &&
+                        this.addproduct.get('vineyard_area')?.touched" class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir com a mínim 2 caràcters.
+            </div>
+
+            <!-- Only letters -->
+            <div *ngIf="this.modifyproduct.get('vineyard_area')?.errors?.['pattern'] &&
+                                              this.addproduct.get('vineyard_area')?.touched"
+              class="text-red-500 text-xs italic">
+              Només s'accepten lletres.
             </div>
           </div>
 
@@ -486,7 +565,6 @@
             </div>
           </div>
 
-
           <!-- type_wine input -->
           <div>
             <label class="block text-sm font-bold mb-2 text-gray-700" for="id_type_wine_fk">Tipus</label>
@@ -498,6 +576,27 @@
             <div *ngIf="modifyproduct.get('type_wine')?.errors?.['required'] && modifyproduct.get('type_wine')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp és obligatori.
+            </div>
+
+            <!-- MaxLength -->
+            <div
+              *ngIf="this.modifyproduct.get('type_wine')?.errors?.['maxlength'] && this.modifyproduct.get('type_wine')?.touched"
+              class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir un màxim de 150 caràcters.
+            </div>
+
+            <!-- MinLength -->
+            <div
+              *ngIf="this.modifyproduct.get('type_wine')?.errors?.['minlength'] && this.modifyproduct.get('type_wine')?.touched"
+              class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir com a mínim 2 caràcters.
+            </div>
+
+            <!-- Only letters -->
+            <div
+              *ngIf="this.modifyproduct.get('type_wine')?.errors?.['pattern'] && this.modifyproduct.get('type_wine')?.touched"
+              class="text-red-500 text-xs italic">
+              Només s'accepten lletres.
             </div>
           </div>
 
@@ -514,7 +613,29 @@
               class="text-red-500 text-xs italic">
               Aquest camp és obligatori.
             </div>
+
+            <!-- MaxLength -->
+            <div
+              *ngIf="this.modifyproduct.get('type_variety')?.errors?.['maxlength'] && this.modifyproduct.get('type_variety')?.touched"
+              class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir un màxim de 150 caràcters.
+            </div>
+
+            <!-- MinLength -->
+            <div
+              *ngIf="this.modifyproduct.get('type_variety')?.errors?.['minlength'] && this.modifyproduct.get('type_variety')?.touched"
+              class="text-red-500 text-xs italic">
+              Aquest camp només pot contenir com a mínim 2 caràcters.
+            </div>
+
+            <!-- Only letters -->
+            <div
+              *ngIf="this.modifyproduct.get('type_variety')?.errors?.['pattern'] && this.modifyproduct.get('type_variety')?.touched"
+              class="text-red-500 text-xs italic">
+              Només s'accepten lletres.
+            </div>
           </div>
+
           <!-- Field Stock -->
           <div>
             <label class="block text-sm font-bold mb-2 text-gray-700" for="stock">Quantitat</label>
@@ -529,17 +650,14 @@
               Aquest camp és obligatori.
             </div>
 
-
             <!-- min -->
-            <div *ngIf="this.addproduct.get('stock')?.errors?.['min'] &&
-                                              this.addproduct.get('stock')?.touched"
+            <div *ngIf="this.addproduct.get('stock')?.errors?.['min'] && this.addproduct.get('stock')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp ha de ser de mínim 0
             </div>
 
             <!-- Only number -->
-            <div *ngIf="this.addproduct.get('stock')?.errors?.['pattern'] &&
-                                              this.addproduct.get('stock')?.touched"
+            <div *ngIf="this.addproduct.get('stock')?.errors?.['pattern'] && this.addproduct.get('stock')?.touched"
               class="text-red-500 text-xs italic">
               Només s'accepten números.
             </div>
