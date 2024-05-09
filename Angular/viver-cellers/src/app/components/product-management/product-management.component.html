@@ -115,7 +115,7 @@
               alcohol</label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="grade_alcohol" type="number" placeholder="Grau alcohol" formControlName="grade_alcohol" />
+              id="grade_alcohol" type="text" placeholder="Grau alcohol" formControlName="grade_alcohol" />
 
             <!-- This field is required -->
             <div *ngIf="this.addproduct.get('grade_alcohol')?.errors?.['required'] &&
@@ -143,7 +143,7 @@
             <label class="block text-sm font-bold mb-2 text-gray-700" for="price">Preu</label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="price" type="number" placeholder="Preu" formControlName="price" />
+              id="price" type="text" placeholder="Preu" formControlName="price" />
 
             <!-- This field is required -->
             <div *ngIf="this.addproduct.get('price')?.errors?.['required'] &&
@@ -453,9 +453,8 @@
             </div>
 
             <!-- Only number -->
-            <div
-              *ngIf="this.modifyproduct.get('grade_alcohol')?.errors?.['pattern'] && this.modifyproduct.get('grade_alcohol')?.touched"
-              class="text-red-500 text-xs italic">
+            <div *ngIf="this.modifyproduct.get('grade_alcohol')?.errors?.['pattern'] &&
+                        this.modifyproduct.get('grade_alcohol')?.touched" class="text-red-500 text-xs italic">
               Format correcte: 00[.]00
             </div>
           </div>
@@ -529,19 +528,19 @@
 
             <!-- MaxLength -->
             <div *ngIf="this.modifyproduct.get('vineyard_area')?.errors?.['maxlength'] &&
-                        this.addproduct.get('vineyard_area')?.touched" class="text-red-500 text-xs italic">
+                        this.modifyproduct.get('vineyard_area')?.touched" class="text-red-500 text-xs italic">
               Aquest camp només pot contenir un màxim de 150 caràcters.
             </div>
 
             <!-- MinLength -->
             <div *ngIf="this.modifyproduct.get('vineyard_area')?.errors?.['minlength'] &&
-                        this.addproduct.get('vineyard_area')?.touched" class="text-red-500 text-xs italic">
+                        this.modifyproduct.get('vineyard_area')?.touched" class="text-red-500 text-xs italic">
               Aquest camp només pot contenir com a mínim 2 caràcters.
             </div>
 
             <!-- Only letters -->
             <div *ngIf="this.modifyproduct.get('vineyard_area')?.errors?.['pattern'] &&
-                                              this.addproduct.get('vineyard_area')?.touched"
+                                              this.modifyproduct.get('vineyard_area')?.touched"
               class="text-red-500 text-xs italic">
               Només s'accepten lletres.
             </div>
@@ -652,13 +651,14 @@
             </div>
 
             <!-- min -->
-            <div *ngIf="this.addproduct.get('stock')?.errors?.['min'] && this.addproduct.get('stock')?.touched"
+            <div *ngIf="this.modifyproduct.get('stock')?.errors?.['min'] && this.modifyproduct.get('stock')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp ha de ser de mínim 0
             </div>
 
             <!-- Only number -->
-            <div *ngIf="this.addproduct.get('stock')?.errors?.['pattern'] && this.addproduct.get('stock')?.touched"
+            <div
+              *ngIf="this.modifyproduct.get('stock')?.errors?.['pattern'] && this.modifyproduct.get('stock')?.touched"
               class="text-red-500 text-xs italic">
               Només s'accepten números.
             </div>
@@ -667,7 +667,7 @@
 
         <div class="mt-6 flex justify-center items-center space-x-4">
           <button
-            class="flex-shrink-0 w-auto bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            class="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="button" (click)="onSubmit()">
             Modificar Producte
           </button>

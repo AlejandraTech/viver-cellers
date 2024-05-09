@@ -1,6 +1,5 @@
 // This component handles project management, including adding, modifying, and deleting projects.
 
-
 // Necessary imports from Angular and related services
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -12,7 +11,7 @@ import { ProjectService } from 'src/app/services/project.service';
   styleUrls: ['./project-management.component.css']
 })
 export class ProjectManagementComponent implements OnInit {
-  // Array to store users fetched from the database
+  // Array to store projects fetched from the database
   projects: any[] = [];
 
   // Selected project identifier for modification
@@ -28,18 +27,19 @@ export class ProjectManagementComponent implements OnInit {
 
   // Define form control
   addproject!: FormGroup; // Define form control property of type formGroup to add projects
-  modifyproject!: FormGroup; // Define form control property of type formGroup to modify users
-
+  modifyproject!: FormGroup; // Define form control property of type formGroup to modify projects
 
   constructor(private service: ProjectService) { }
 
-  // Method executed when the component initializes
+  /**
+   * Method executed when the component initializes
+   */
   ngOnInit(): void {
     // Get the list of projects
     this.getProjects();
 
 
-    // Initialize the form for adding users
+    // Initialize the form for adding projects
     this.addproject = new FormGroup({
       project_name: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
       definition: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(150)]),
@@ -47,7 +47,7 @@ export class ProjectManagementComponent implements OnInit {
       stories: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(150)])
     });
 
-    // Initialize the form for modifying users
+    // Initialize the form for modifying project
     this.modifyproject = new FormGroup({
       project_name: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
       definition: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(150)]),
@@ -59,7 +59,9 @@ export class ProjectManagementComponent implements OnInit {
   }
 
 
-  // Method to fetch the list of users from the service
+  /**
+   * Method to fetch the list of project from the service
+   */
   getProjects(): void {
     this.service.getProjects().subscribe(
       data => {
@@ -105,7 +107,9 @@ export class ProjectManagementComponent implements OnInit {
     }
   }
 
-  // Method to submit the project modification form
+  /**
+   * Method to submit the project modification form
+   */
   onSubmit(): void {
     if (this.modifyproject.valid) {
       const projectData = {
@@ -133,7 +137,10 @@ export class ProjectManagementComponent implements OnInit {
     }
   }
 
-  // Method to delete a user
+  /**
+   * Method to delete a project
+   * @param projectId project identifier
+   */
   deleteProject(projectId: number): void {
     this.service.deleteProject(projectId).subscribe(
       response => {
@@ -153,7 +160,10 @@ export class ProjectManagementComponent implements OnInit {
   isAddFormVisible: boolean = true;
   modifyButtonsDisabled: boolean[] = [];
 
-  // Method to toggle the visibility of the modification form
+  /**
+   * Method to toggle the visibility of the modification form
+   * @param projectId project identifier
+   */
   toggleModifyFormVisibility(projectId: any) {
     console.log(`Identificador de projecte seleccionat:`, projectId);
     this.projectId = projectId;
@@ -178,7 +188,7 @@ export class ProjectManagementComponent implements OnInit {
         stories: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(150)]),
       });
     }
-    this.projectId = projectId;
+
     this.isModifyFormVisible = true;
     this.isAddFormVisible = false;
   }
@@ -191,5 +201,3 @@ export class ProjectManagementComponent implements OnInit {
   }
 
 }
-
-
