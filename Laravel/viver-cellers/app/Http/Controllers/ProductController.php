@@ -150,16 +150,16 @@ class ProductController extends Controller
 
             // Initial validations
             $request->validate([
-                'name' => 'required|string|max:255',
-                'winemaking' => 'required|string|max:255',
-                'grade_alcohol' => 'required|integer|min:0',
+                'name' => 'required|string|min:2|max:50',
+                'winemaking' => 'required|string||min:2|max:255',
+                'grade_alcohol' => 'required|numeric|min:0|decimal:2',
                 'stock' => 'required|numeric|min:0',
-                'price' => 'required|numeric|min:0',
-                'iva' => 'required|integer|min:0',
+                'price' => 'required|numeric|min:0|decimal:2',
+                'iva' => 'required|numeric|min:0',
                 'project_name' => 'required',
-                'vineyard_area' => 'required|string|max:255',
-                'type_wine' => 'required|string|max:255',
-                'type_variety' => 'required|string|max:255',
+                'vineyard_area' => 'required|string|min:2|max:150',
+                'type_wine' => 'required|string|min:2|max:150',
+                'type_variety' => 'required|string|min:2|max:150',
             ]);
 
             // Add or find vineyard area

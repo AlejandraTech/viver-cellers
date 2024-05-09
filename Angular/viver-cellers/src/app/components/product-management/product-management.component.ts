@@ -140,7 +140,6 @@ export class ProductManagementComponent {
         type_variety: this.addproduct.value.type_variety,
         stock: this.addproduct.value.stock,
         project_name: this.addproduct.value.project_name,
-
       };
 
 
@@ -253,7 +252,7 @@ export class ProductManagementComponent {
         winemaking: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(255)]),
         vineyard_area: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(150)]),
         grade_alcohol: new FormControl('', [Validators.required, Validators.pattern(/^\d+\.\d{2}$/), Validators.min(0)]),
-        iva: new FormControl('', [Validators.required, Validators.pattern(/^\d+\.\d{2}$/), Validators.min(0)]),
+        iva: new FormControl('', [Validators.required, Validators.pattern(/^\d+$/), Validators.min(0)]),
         price: new FormControl('', [Validators.required, Validators.pattern(/^\d+\.\d{2}$/), Validators.min(0)]),
         type_wine: new FormControl('', [Validators.required, Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$"), Validators.minLength(2), Validators.maxLength(150)]),
         type_variety: new FormControl('', [Validators.required, Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$"), Validators.minLength(2), Validators.maxLength(150)]),

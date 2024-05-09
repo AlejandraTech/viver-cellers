@@ -438,7 +438,7 @@
               alcohol</label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="grade_alcohol" type="number" placeholder="Grau alcohol" formControlName="grade_alcohol" />
+              id="grade_alcohol" type="text" placeholder="Grau alcohol" formControlName="grade_alcohol" />
 
             <!-- This field is required -->
             <div *ngIf="this.modifyproduct.get('grade_alcohol')?.errors?.['required'] &&
@@ -453,8 +453,9 @@
             </div>
 
             <!-- Only number -->
-            <div *ngIf="this.modifyproduct.get('grade_alcohol')?.errors?.['pattern'] &&
-                        this.modifyproduct.get('grade_alcohol')?.touched" class="text-red-500 text-xs italic">
+            <div
+              *ngIf="this.modifyproduct.get('grade_alcohol')?.errors?.['pattern'] && this.modifyproduct.get('grade_alcohol')?.touched"
+              class="text-red-500 text-xs italic">
               Format correcte: 00[.]00
             </div>
           </div>
