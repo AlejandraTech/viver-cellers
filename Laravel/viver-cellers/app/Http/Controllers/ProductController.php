@@ -29,14 +29,14 @@ class ProductController extends Controller
         return response()->json($products);
     }
 
-     /**
+    /**
      * Display a listing of the categories.
      * @return \Illuminate\Http\Response
      */
     public function indexCategory()
     {
         $categories = TypeWine::all();
-            return response()->json($categories);
+        return response()->json($categories);
     }
 
     /**
@@ -55,8 +55,14 @@ class ProductController extends Controller
      */
     public function showProduct($id)
     {
-        $products = Product::with('project', 'typeWine', 'TypeVariety')->find($id);
-        return response()->json($products, 200);
+        try {
+            $products = Product::with('project', 'typeWine', 'TypeVariety')->findOrFail($id);
+            return response()->json($products, 200);
+        } catch (ModelNotFoundException $e) {
+            return ApiResponse::error('Product not found', 404);
+        } catch (Exception $e) {
+            return ApiResponse::error('Error getting product details: ' . $e->getMessage(), 500);
+        }
     }
 
     /**
@@ -201,7 +207,6 @@ class ProductController extends Controller
      */
     function destroy($id)
     {
-
         try {
             // Search product in the database by product id
             $product = Product::findOrFail($id);

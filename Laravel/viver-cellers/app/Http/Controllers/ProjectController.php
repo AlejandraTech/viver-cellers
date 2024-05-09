@@ -1,8 +1,10 @@
 <?php
+
 /**
  * @author: Alejandra Paz , Angel Rivera, Julia Prieto
  * This controller manages operations related to listing, adding, modifying and deleting projects.
  */
+
 namespace App\Http\Controllers;
 
 use App\Http\Responses\ApiResponse;
@@ -32,8 +34,14 @@ class ProjectController extends Controller
      */
     public function showProject($id)
     {
-        $projects = Project::find($id);
-        return response()->json($projects, 200);
+        try {
+            $project = Project::findOrFail($id);
+            return response()->json($project, 200);
+        } catch (ModelNotFoundException $e) {
+            return ApiResponse::error('Project not found', 404);
+        } catch (Exception $e) {
+            return ApiResponse::error('Error getting project details: ' . $e->getMessage(), 500);
+        }
     }
 
     /**

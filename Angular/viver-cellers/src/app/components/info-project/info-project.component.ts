@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Project } from 'src/app/models/Project';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { ProjectService } from 'src/app/services/project.service';
 
@@ -10,44 +9,37 @@ import { ProjectService } from 'src/app/services/project.service';
   styleUrls: ['./info-project.component.css']
 })
 export class InfoProjectComponent implements OnInit {
-  // Array to store projects fetched from the database
   projects: any[] = [];
-
-  // Array to store products fetched from the database
   products: any[] = [];
-
   project_id!: number;
 
-  constructor(private service: ProjectService, private serviceProducts: ProductService, private route: ActivatedRoute) { }
+  constructor(private projectService: ProjectService,
+    private productService: ProductService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
-  /**
-   * Method executed when the component initializes
-   */
   ngOnInit(): void {
-
-    //get the project id and convert it to number
     this.project_id = Number(this.route.snapshot.paramMap.get('id'));
-
-    //call the service to get all the information about the project
-    this.service.getProjectDetails(this.project_id).subscribe(data => {
-      this.projects = [data];
-    });
-
-    // Get the list of product and available vineyard
+    this.projectService.getProjectDetails(this.project_id).subscribe(
+      data => {
+        this.projects = [data];
+      },
+      error => {
+        console.error(`Error retrieving project details:`, error);
+        // Redirect to error page if project not found
+        this.router.navigate(['/error']);
+      }
+    );
     this.getProduct();
   }
 
-  /**
-   * Method to fetch the list of product from the service
-   */
   getProduct(): void {
-    this.serviceProducts.getProduct().subscribe(
+    this.productService.getProduct().subscribe(
       data => {
         this.products = data.data;
-        console.log(this.products);
       },
       error => {
-        console.error(`Error en la recuperació de productes:`, error);
+        console.error(`Error retrieving products:`, error);
       }
     );
   }
