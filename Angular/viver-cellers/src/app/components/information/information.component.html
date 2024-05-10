@@ -33,35 +33,13 @@
     </div>
   </div>
 
-  <div class="flex justify-center">
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
-      <div class="col-span-1 md:col-span-1 lg:col-span-1 row-span-5">
-        <img class="w-full h-auto md:w-auto lg:w-full" src="./../../../assets/img/projects/amat-i-montane.png"
-          alt="Projecte 1">
-      </div>
-      <div class="col-span-1 md:col-span-1 lg:col-span-1 row-span-5">
-        <img class="w-full h-auto md:w-auto lg:w-full" src="./../../../assets/img/projects/heretat-balta-de-cela.png"
-          alt="Projecte 2">
-      </div>
-      <div class="col-span-1 md:col-span-1 lg:col-span-1 row-span-5">
-        <img class="w-full h-auto md:w-auto lg:w-full" src="./../../../assets/img/projects/heretat-can-serra.png"
-          alt="Projecte 3">
-      </div>
-      <div class="col-span-1 md:col-span-1 lg:col-span-1 row-span-5">
-        <img class="w-full h-auto md:w-auto lg:w-full" src="./../../../assets/img/projects/joan-grill.png"
-          alt="Projecte 4">
-      </div>
-      <div class="col-span-1 md:col-span-1 lg:col-span-1 row-span-5">
-        <img class="w-full h-auto md:w-auto lg:w-full" src="./../../../assets/img/projects/mulet-viticultors.png"
-          alt="Projecte 5">
-      </div>
-      <div class="col-span-1 md:col-span-1 lg:col-span-1 row-span-5">
-        <img class="w-full h-auto md:w-auto lg:w-full" src="./../../../assets/img/projects/vins-de-sinergia.png"
-          alt="Projecte 6">
-      </div>
-      <div class="col-span-1 md:col-span-1 lg:col-span-1 row-span-5">
-        <img class="w-full h-auto md:w-auto lg:w-full" src="./../../../assets/img/projects/vins-geniu.png"
-          alt="Projecte 7">
+  <div class="py-10">
+    <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div *ngFor="let project of projects"
+        class="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col justify-between">
+        <div class="bg-gray-200">
+          <img class="w-full h-48 object-cover" [src]="project.logo_path" [alt]="project.project_name + ' logo'">
+        </div>
       </div>
     </div>
   </div>

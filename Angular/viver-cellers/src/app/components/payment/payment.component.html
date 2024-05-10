@@ -4,14 +4,27 @@
   <div id="card-element" class="bg-gray-200 p-4 mb-4"></div>
   <div id="card-errors" role="alert" class="text-red-500 mb-4"></div>
 
-  <!-- Address Input -->
+  <!-- Angular Template for Address Inputs -->
   <div class="mb-4">
-    <label for="address" class="block text-gray-700">Adreça d'enviament:</label>
-    <input type="text" id="address" [(ngModel)]="address"
-      class="w-full p-2 border border-gray-300 rounded-md shadow-sm">
+    <label class="block text-gray-700">Detalls de l'Adreça d'enviament:</label>
+
+    <input type="text" placeholder="Població" [(ngModel)]="city"
+      class="w-full p-2 border border-gray-300 rounded-md shadow-sm mb-2">
+
+    <input type="text" placeholder="Carrer" [(ngModel)]="street"
+      class="w-full p-2 border border-gray-300 rounded-md shadow-sm mb-2">
+
+    <input type="text" placeholder="Número Portal" [(ngModel)]="streetNumber"
+      class="w-full p-2 border border-gray-300 rounded-md shadow-sm mb-2">
+
+    <input type="text" placeholder="Número Pis i Porta" [(ngModel)]="apartmentNumber"
+      class="w-full p-2 border border-gray-300 rounded-md shadow-sm mb-2">
+
+    <input type="text" placeholder="Codi Postal" [(ngModel)]="postalCode"
+      class="w-full p-2 border border-gray-300 rounded-md shadow-sm mb-2">
   </div>
 
   <!-- Submit Button -->
-  <button (click)="processPayment()" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Realitzar
+  <button (click)="processPayment()" class="w-full bg-red-500 text-white p-2 rounded hover:bg-red-600">Realitzar
     Pagament</button>
 </div>

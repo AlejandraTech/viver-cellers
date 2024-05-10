@@ -16,6 +16,11 @@ export class PaymentComponent implements OnInit {
   stripe: any;
   elements: any;
   address: string = '';
+  city: string = '';
+  street: string = '';
+  streetNumber: string = '';
+  apartmentNumber: string = '';
+  postalCode: string = '';
   cart: Product[] = [];
 
   constructor(private paymentService: PaymentService, private cartService: CartService, private router: Router) { }
@@ -39,21 +44,25 @@ export class PaymentComponent implements OnInit {
 
     if (error) {
       console.error('Error:', error);
-    } else {
-      const orderData = {
-        token: token.id,
-        address: this.address,
-        items: this.cart.map(item => ({ id: item.id, quantity: item.quantity })),
-        total: this.cart.reduce((total, product) => total + product.price * product.quantity, 0)
-      };
-      this.paymentService.processPayment(orderData).subscribe({
-        next: (res) => {
-          console.log('Payment successful', res);
-          this.router.navigate(['/user_order']);
-        },
-        error: (err) => console.error('Payment error:', err)
-      });
+      return;
     }
-  }
 
+    const fullAddress = `${this.street} ${this.streetNumber}, ${this.apartmentNumber}, ${this.postalCode}, ${this.city}`;
+    const orderData = {
+      token: token.id,
+      address: fullAddress,
+      items: this.cart.map(item => ({ id: item.id, quantity: item.quantity })),
+      total: this.cart.reduce((total, product) => total + product.price * product.quantity, 0)
+    };
+
+    this.paymentService.processPayment(orderData).subscribe({
+      next: (res) => {
+        console.log('Payment successful', res);
+        this.router.navigate(['/user_order']);
+      },
+      error: (err) => {
+        console.error('Payment error:', err);
+      }
+    });
+  }
 }
