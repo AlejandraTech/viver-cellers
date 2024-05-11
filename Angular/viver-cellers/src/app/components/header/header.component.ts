@@ -10,9 +10,9 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
- /**
-  * Variables used in different methods
-  */
+  /**
+   * Variables used in different methods
+   */
   backgroundImage: string = '/assets/img/header-background/home-background.jpg'; // Ruta predeterminada de la imagen de fondo
   isAdmin = false;
   isClient = false;

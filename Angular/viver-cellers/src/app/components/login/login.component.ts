@@ -39,7 +39,6 @@ export class LoginComponent {
           localStorage.setItem('user_name', response.user.name);
           localStorage.setItem('user_rol', response.user.rol);
           location.reload();
-          this.router.navigate(['/home']);
         },
         error => {
           if (error.status === 401) {

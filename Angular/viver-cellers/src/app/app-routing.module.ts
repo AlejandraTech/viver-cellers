@@ -22,6 +22,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { AuthGuard } from './guards/auth.guard';
 import { PaymentComponent } from './components/payment/payment.component';
 import { UserOrdersComponent } from './components/user-orders/user-orders.component';
+import { GuestGuard } from './guards/guest.guard';
 
 /**
  * Array with all the paths to the project components.
@@ -37,8 +38,8 @@ const routes: Routes = [
   { path: 'info-project/:id', component: InfoProjectComponent }, // Information Projects Page
   { path: 'info-product/:id', component: InfoProductComponent }, // Information Product Page
 
-  { path: 'register', component: RegisterComponent }, // Registration Page
-  { path: 'login', component: LoginComponent }, // Login Page
+  { path: 'register', component: RegisterComponent, canActivate: [GuestGuard] }, // Registration Page
+  { path: 'login', component: LoginComponent, canActivate: [GuestGuard] }, // Login Page
 
   { path: 'edit_profile', component: EditProfileComponent, canActivate: [AuthGuard] }, // Edit Profile Page
 
