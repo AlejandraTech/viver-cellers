@@ -9,10 +9,11 @@ use Stripe\PaymentIntent;
 use Stripe\SetupIntent;
 use App\Models\Order;
 use App\Models\OrderLine;
+use App\Models\Product;
 
 class PaymentController extends Controller
 {
-    // Method to process payment
+    // Method to process the payment
     public function checkout(Request $request)
     {
         // Stripe API configuration
@@ -41,14 +42,17 @@ class PaymentController extends Controller
                     // Create an order in the database
                     $order = $this->createOrder($request, $paymentIntent->id);
                     if ($order) {
+                        // Update the stock of the purchased products
+                        $this->updateProductStock($request->items);
+
                         // Commit the database transaction
                         DB::commit();
                         return response()->json(['success' => true, 'order_id' => $order->id]);
                     } else {
-                        throw new \Exception("Error creating order in the database.");
+                        throw new \Exception("Error al crear el pedido en la base de datos.");
                     }
                 } else {
-                    throw new \Exception("Payment failed with status: " . $paymentIntent->status);
+                    throw new \Exception("El pago falló con estado: " . $paymentIntent->status);
                 }
             } else {
                 // If order total is zero, create a setup intent for payment method
@@ -98,6 +102,18 @@ class PaymentController extends Controller
             return $order;
         } else {
             return false;
+        }
+    }
+
+    // Private method to update the stock of products
+    private function updateProductStock($items)
+    {
+        foreach ($items as $item) {
+            $product = Product::find($item['id']);
+            if ($product) {
+                $product->stock -= $item['quantity'];
+                $product->save();
+            }
         }
     }
 }
