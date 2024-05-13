@@ -18,7 +18,7 @@ export class ClientGuard implements CanActivate {
       return true;
     } else {
       // If not authenticated or not a client, redirect to the home page
-      this.router.navigate(['/']);
+      this.router.navigate(['/login']);
       return false;
     }
   }

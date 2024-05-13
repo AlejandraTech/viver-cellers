@@ -17,7 +17,7 @@ export class GuestGuard implements CanActivate {
       return true;
     } else {
       // If the user is authenticated, redirect to the home page
-      this.router.navigate(['/home']);
+      this.router.navigate(['/']);
       return false;
     }
   }

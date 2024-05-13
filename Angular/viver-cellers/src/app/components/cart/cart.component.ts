@@ -10,6 +10,7 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class CartComponent implements OnInit {
   cart: Product[] = [];
+  isCartEmpty: boolean = true;
 
   constructor(
     private cartService: CartService,
@@ -19,6 +20,7 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.cartItems$.subscribe(items => {
       this.cart = items;
+      this.isCartEmpty = this.cart.length === 0;
     });
   }
 
