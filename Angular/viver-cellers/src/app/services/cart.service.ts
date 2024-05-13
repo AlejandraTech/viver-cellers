@@ -17,13 +17,24 @@ export class CartService {
     const existingItem = currentCart.find(item => item.id === product.id);
 
     if (existingItem) {
-      // If the product is already in the cart, increase the quantity
-      existingItem.quantity++;
-      this.cartItemsSubject.next([...currentCart]);
+      // Check if adding more will exceed stock
+      if (existingItem.quantity < product.stock) {
+        existingItem.quantity++;
+        this.cartItemsSubject.next([...currentCart]);
+      } else {
+        // If exceeding stock, show an alert or handle it as you prefer
+        console.log('Cannot add more. Stock limit reached.');
+      }
     } else {
-      // If it's a new product, add it to the cart
-      product.quantity = 1;
-      this.cartItemsSubject.next([...currentCart, product]);
+      // Check if stock is available
+      if (product.stock > 0) {
+        // If it's a new product and there's stock, add it to the cart
+        product.quantity = 1;
+        this.cartItemsSubject.next([...currentCart, product]);
+      } else {
+        // If there's no stock, show an alert or handle it as you prefer
+        console.log('Cannot add. Product out of stock.');
+      }
     }
   }
 
