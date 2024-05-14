@@ -1,20 +1,83 @@
-<div class="container mx-auto px-4 py-8">
-  <h2 class="text-3xl font-bold text-center mb-8">Cistell de la Compra</h2>
-  <ul>
-    <li *ngFor="let item of cart" class="bg-white rounded-lg shadow-md overflow-hidden mb-4">
-      <div class="p-6">
-        <h3 class="text-xl font-semibold text-gray-800 mb-4">{{ item.name }}</h3>
-        <p class="text-sm text-gray-600 mb-2">Quantitat: {{ item.quantity }}</p>
-        <p class="text-lg font-semibold text-gray-900 mb-4">Preu: ${{ item.price * item.quantity }}</p>
-        <button (click)="removeFromCart(item)" class="bg-red-500 text-white py-2 px-4 rounded">Treure del
-          cistell</button>
+<section
+  class=" relative z-10 after:contents-[''] after:absolute after:z-0 after:h-full xl:after:w-1/3 after:top-0 after:right-0 after:bg-gray-50">
+  <div class="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto relative z-10">
+    <div class="grid grid-cols-12">
+      <div class="col-span-12 xl:col-span-8 lg:pr-8 pt-14 pb-8 lg:py-24 w-full max-xl:max-w-3xl max-xl:mx-auto">
+        <div class="grid grid-cols-12 mt-8 max-md:hidden pb-6 border-b border-gray-200">
+          <div class="col-span-12 md:col-span-7">
+            <p class="font-normal text-lg leading-8 text-gray-400">Producte</p>
+          </div>
+          <div class="col-span-12 md:col-span-5">
+            <div class="grid grid-cols-5">
+              <div class="col-span-3">
+                <p class="font-normal text-lg leading-8 text-gray-400 text-center">Quantitat</p>
+              </div>
+              <div class="col-span-2">
+                <p class="font-normal text-lg leading-8 text-gray-400 text-center">Preu</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Products----------------------------------------------------------------------------------------------------------->
+        <div *ngFor="let item of cart"
+          class="flex flex-col min-[500px]:flex-row min-[500px]:items-center gap-5 py-6  border-b border-gray-200 group">
+          <div class="w-full md:max-w-[126px]">
+            <img [src]="item.image_path" alt="imagen del producto" class="mx-auto">
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-4 w-full">
+            <div class="md:col-span-2">
+              <div class="flex flex-col max-[500px]:items-center gap-3">
+                <h6 class="font-semibold text-base leading-7 text-black">{{ item.name }}</h6>
+                <h6 class="font-normal text-base leading-7 text-gray-500">{{ item.winemaking }}</h6>
+                <h6 class="font-medium text-base leading-7 text-gray-600">{{ item.price }}€</h6>
+              </div>
+            </div>
+            <div class="flex items-center justify-center h-full max-md:mt-3">
+              <div class="flex items-center justify-center h-full">
+                <button (click)="removeFromCart(item)"
+                  class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-l focus:outline-none focus:shadow-outline">
+                  -
+                </button>
+                <span class="text-lg mx-2">{{ getQuantityInCart(item) }}</span>
+                <button (click)="addToCart(item)"
+                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:shadow-outline">
+                  +
+                </button>
+              </div>
+            </div>
+            <div class="flex items-center justify-center max-[500px]:justify-end md:justify-end max-md:mt-3 h-full">
+              <p class="font-bold text-lg leading-8 text-gray-600 text-center">{{ item.price * item.quantity }}€</p>
+            </div>
+          </div>
+        </div>
+        <br>
+        <button
+          class="w-full bg-white hover:bg-gray-100 text-red-500 font-bold py-2 px-4 rounded border border-red-500 focus:outline-none focus:shadow-outline"
+          type="button" (click)="clearCart()">
+          Cancelar compra
+        </button>
       </div>
-    </li>
-  </ul>
-  <div class="text-center mt-8">
-    <button (click)="checkout()" [disabled]="isCartEmpty"
-      class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-      Finalitzar compra
-    </button>
+      <!---------------------------------------------------------------------------------------------------------------------------------->
+
+      <!--Order-------------------------------------------------------------------------------------------------------------------------->
+      <div class=" col-span-12 xl:col-span-4 bg-gray-50 w-full max-xl:px-6 max-w-3xl xl:max-w-lg mx-auto lg:pl-8 py-24">
+        <h2 class="font-manrope font-bold text-3xl leading-10 text-black pb-8 border-b border-gray-300">
+          Comanda</h2>
+        <div class="mt-8">
+          <div class="flex items-center justify-between pb-6">
+            <p class="font-normal text-lg leading-8 text-black">{{totalItems}} productes</p>
+            <p class="font-medium text-lg leading-8 text-black">{{ getTotalPrice() | currency: 'EUR'}}€</p>
+          </div>
+
+          <button
+            class="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="button" (click)="checkout()" [disabled]="isCartEmpty">
+            Finalitzar compra
+          </button>
+        </div>
+      </div>
+      <!---------------------------------------------------------------------------------------------------------------------------------->
+    </div>
   </div>
-</div>
+</section>

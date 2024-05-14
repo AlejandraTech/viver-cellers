@@ -1,101 +1,103 @@
-<div class="container mx-auto px-4 py-8">
-  <h2 class="text-3xl font-bold text-center mb-8">Productes de la botiga</h2>
-  <!-- Filters -->
-  <div class="flex flex-col lg:flex-row">
-    <div class="lg:w-1/4 lg:pr-4">
-      <div class="flex flex-col space-y-4">
-        <div>
-          <h3 class="mb-4 font-semibold text-gray-900 dark:text-white">Projectes</h3>
-          <ul
-            class="text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-            <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-              <div class="flex items-center ps-3" *ngFor="let project of projects">
-                <input id="project-radio-id" type="radio" value="project.id" name="project.project_name"
-                  (change)="selectProject(project.id)"
-                  [class]="projectFilterSelected ? 'w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500' : 'w-4 h-4'">
-                <label for="list-radio-id"
-                  class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{project.project_name}}</label>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <!-------------------------------------------------------------------------------------------->
-        <!-- Filter Category -->
-        <div>
-          <h3 class="mb-4 font-semibold text-gray-900 dark:text-white">Categories</h3>
-          <ul
-            class="text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-            <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-              <div class="flex items-center ps-3" *ngFor="let category of categories">
-                <input id="category-radio-id" type="radio" value="category.id" name="category.category"
-                  (change)="selectCategory(category.id)"
-                  [class]="categoryFilterSelected ? 'w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500' : 'w-4 h-4'">
-                <label for="list-radio-id"
-                  class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{category.category}}</label>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <!-------------------------------------------------------------------------------------------->
-        <!-- Filter Variety -->
-        <div>
-          <h3 class="mb-4 font-semibold text-gray-900 dark:text-white">Varietats</h3>
-          <ul
-            class="text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-            <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-              <div class="flex items-center ps-3" *ngFor="let variety of varieties">
-                <input id="variety-radio-id" type="radio" value="variety.id" name="variety.variety"
-                  (change)="selectVariety(variety.id)"
-                  [class]="varietyFilterSelected ? 'w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500' : 'w-4 h-4'">
-                <label for="list-radio-id"
-                  class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{variety.variety}}</label>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <br>
-      <button
-        class="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        (click)="toggleFilters()">Deshabilitar filtres</button>
-    </div>
-
-    <!-------------------------------------------------------------------------------------------->
-    <!-- Products -->
-    <div class="lg:w-3/4 mt-8 lg:mt-0">
-      <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <li *ngFor="let product of products" class="bg-white rounded-lg shadow-md overflow-hidden">
-          <div class="p-6">
-            <div class="aspect-w-4 aspect-h-3 mb-4">
-              <img [src]="product.image_path" alt="Imagen del producto" class="object-contain w-full h-full">
-            </div>
-            <h3 class="text-xl font-semibold text-gray-800 mb-4">{{ product.name }}</h3>
-            <p class="text-sm text-gray-600 mb-2">{{ product.winemaking }}</p>
-            <p class="text-sm text-gray-600 mb-2">Grau alcohòlic: {{ product.grade_alcohol }}%</p>
-            <p class="text-lg font-semibold text-gray-900 mb-4">Preu: ${{ product.price }}</p>
-            <div class="flex justify-between items-center">
-              <div class="flex items-center">
-                <button (click)="removeFromCart(product)"
-                  class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-l focus:outline-none focus:shadow-outline">
-                  -
-                </button>
-                <span class="text-lg mx-2">{{ getQuantityInCart(product) }}</span>
-                <button (click)="addToCart(product)"
-                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:shadow-outline">
-                  +
-                </button>
-              </div>
-              <div>
-                <span *ngIf="isInCart(product)">Quantitat: {{ getQuantityInCart(product) }}</span>
-              </div>
-            </div>
-            <a [routerLink]="['/info-product' , product.id]"
-              class="text-sm text-gray-600 mb-2 underline hover:text-gray-900 hover:underline">
-              Més informació
-            </a>
+<section class="bg-neutral-200 dark:bg-neutral-700">
+  <div class="container mx-auto px-4 py-8">
+    <h2 class="text-3xl font-bold text-center mb-8">Productes de la botiga</h2>
+    <!-- Filters -->
+    <div class="flex flex-col lg:flex-row">
+      <div class="lg:w-1/4 lg:pr-4">
+        <div class="flex flex-col space-y-4">
+          <div>
+            <h3 class="mb-4 font-semibold text-gray-900 dark:text-white">Projectes</h3>
+            <ul
+              class="text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+              <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                <div class="flex items-center ps-3" *ngFor="let project of projects">
+                  <input id="project-radio-id" type="radio" value="project.id" name="project.project_name"
+                    (change)="selectProject(project.id)"
+                    [class]="projectFilterSelected ? 'w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500' : 'w-4 h-4'">
+                  <label for="list-radio-id"
+                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{project.project_name}}</label>
+                </div>
+              </li>
+            </ul>
           </div>
-        </li>
-      </ul>
+          <!-------------------------------------------------------------------------------------------->
+          <!-- Filter Category -->
+          <div>
+            <h3 class="mb-4 font-semibold text-gray-900 dark:text-white">Categories</h3>
+            <ul
+              class="text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+              <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                <div class="flex items-center ps-3" *ngFor="let category of categories">
+                  <input id="category-radio-id" type="radio" value="category.id" name="category.category"
+                    (change)="selectCategory(category.id)"
+                    [class]="categoryFilterSelected ? 'w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500' : 'w-4 h-4'">
+                  <label for="list-radio-id"
+                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{category.category}}</label>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!-------------------------------------------------------------------------------------------->
+          <!-- Filter Variety -->
+          <div>
+            <h3 class="mb-4 font-semibold text-gray-900 dark:text-white">Varietats</h3>
+            <ul
+              class="text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+              <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                <div class="flex items-center ps-3" *ngFor="let variety of varieties">
+                  <input id="variety-radio-id" type="radio" value="variety.id" name="variety.variety"
+                    (change)="selectVariety(variety.id)"
+                    [class]="varietyFilterSelected ? 'w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500' : 'w-4 h-4'">
+                  <label for="list-radio-id"
+                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{variety.variety}}</label>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <br>
+        <button
+          class="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          (click)="toggleFilters()">Deshabilitar filtres</button>
+      </div>
+
+      <!-------------------------------------------------------------------------------------------->
+      <!-- Products -->
+      <div class="lg:w-3/4 mt-8 lg:mt-0">
+        <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <li *ngFor="let product of products" class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="p-6">
+              <div class="aspect-w-4 aspect-h-3 mb-4">
+                <img [src]="product.image_path" alt="Imagen del producto" class="object-contain w-full h-full">
+              </div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-4">{{ product.name }}</h3>
+              <p class="text-sm text-gray-600 mb-2">{{ product.winemaking }}</p>
+              <p class="text-sm text-gray-600 mb-2">Grau alcohòlic: {{ product.grade_alcohol }}%</p>
+              <p class="text-lg font-semibold text-gray-900 mb-4">Preu: {{ product.price }}€</p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <button (click)="removeFromCart(product)"
+                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-l focus:outline-none focus:shadow-outline">
+                    -
+                  </button>
+                  <span class="text-lg mx-2">{{ getQuantityInCart(product) }}</span>
+                  <button (click)="addToCart(product)"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:shadow-outline">
+                    +
+                  </button>
+                </div>
+                <div>
+                  <span *ngIf="isInCart(product)">Quantitat: {{ getQuantityInCart(product) }}</span>
+                </div>
+              </div>
+              <a [routerLink]="['/info-product' , product.id]"
+                class="text-sm text-gray-600 mb-2 underline hover:text-gray-900 hover:underline">
+                Més informació
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
+</section>
