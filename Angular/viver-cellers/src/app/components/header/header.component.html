@@ -1,126 +1,202 @@
-<header class="relative bg-cover bg-center" [style.backgroundImage]="'url(' + backgroundImage + ')'"
-  style="background-size: cover; background-position: center; background-repeat: no-repeat; width: 100%; height: 70vh;">
-  <div>
-    <div class="hidden md:block">
-      <div class="flex justify-center items-center">
-        <img src="../../../assets/img/logo.png" alt="logotipo" width="250" height="250">
-      </div>
-    </div>
-    <nav class="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
-      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <div class="flex items-center">
-          <img class="md:hidden" src="../../../assets/img/logo.png" alt="logotipo" width="85" height="85">
-        </div>
-        <button data-collapse-toggle="navbar-dropdown" type="button"
-          class="ml-auto inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-          aria-controls="navbar-dropdown" aria-expanded="false">
-          <span class="sr-only">Open main menu</span>
-          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M1 1h15M1 7h15M1 13h15" />
-          </svg>
-        </button>
-        <div class="hidden w-full md:block md:w-auto md:text-center mx-auto" id="navbar-dropdown">
-          <ul
-            class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li>
-              <a routerLink="/home"
-                class="block py-2 px-3 text-custom-red rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent"
-                aria-current="page">Home</a>
-            </li>
-            <li>
-              <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
-                class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-custom-red-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Viver
-                <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                  viewBox="0 0 10 6">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="m1 1 4 4 4-4" />
-                </svg></button>
+<nav class="bg-white border-gray-200 dark:bg-gray-900">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <a routerLink="/home" class="flex items-center space-x-3 rtl:space-x-reverse">
+      <img src="../../../assets/img/logo.png" class="h-8" alt="Viver Cellers Logo">
+    </a>
 
-              <div id="dropdownNavbar"
-                class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
-                  <li>
-                    <a routerLink="/information"
-                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Informació</a>
-                  </li>
-                  <li>
-                    <a routerLink="/services"
-                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Serveis</a>
-                  </li>
-                  <li>
-                    <a routerLink="/requirements"
-                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Qui
-                      pot ser viverista?</a>
-                  </li>
-                  <li>
-                    <a routerLink="/regulation"
-                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reglament
-                      del
-                      viver</a>
-                  </li>
-                  <li>
-                    <a routerLink="/pect"
-                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">PECT</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li *ngIf="isAuthenticated && isClient">
-              <a routerLink="/shop"
-                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Botiga</a>
-            </li>
-            <li *ngIf="isAuthenticated && isClient">
-              <a routerLink="/cart"
-                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Cistella</a>
-            </li>
-            <li *ngIf="!isAuthenticated">
-              <a routerLink="/login" class="block py-2 px-3 rounded md:bg-transparent md:p-0"
-                aria-current="page">Iniciar
-                Sessió</a>
-            </li>
-            <li *ngIf="isAuthenticated">
-              <a (click)="logout()" class="block py-2 px-3 rounded md:bg-transparent md:p-0">Tancar sessió</a>
+    <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+      <!-- Client dropdown -->
+      <button *ngIf="isAuthenticated && isClient" id="client-menu-button" data-dropdown-toggle="client-dropdown"
+        class="flex text-sm rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+          style="fill: rgba(0, 0, 0, 1);transform: msFilter">
+          <circle cx="10.5" cy="19.5" r="1.5"></circle>
+          <circle cx="17.5" cy="19.5" r="1.5"></circle>
+          <path
+            d="M21 7H7.334L6.18 4.23A1.995 1.995 0 0 0 4.333 3H2v2h2.334l4.743 11.385c.155.372.52.615.923.615h8c.417 0 .79-.259.937-.648l3-8A1.003 1.003 0 0 0 21 7zm-7 8-3-3h2V9h2v3h2l-3 3z">
+          </path>
+        </svg>
+      </button>
+
+      <div
+        class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+        id="client-dropdown">
+        <ul class="py-2" aria-labelledby="client-menu-button">
+          <li>
+            <a routerLink="/cart"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Cistella</a>
+          </li>
+          <li>
+            <a routerLink="/user_order"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Comandes</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- User dropdown -->
+      <button type="button"
+        class="flex text-sm rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+        id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
+        data-dropdown-placement="bottom">
+        <span class="sr-only">Open user menu</span>
+        <svg *ngIf="isAuthenticated" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+          style="fill: rgba(0, 0, 0, 1);transform: msFilter">
+          <path
+            d="M12 2A10.13 10.13 0 0 0 2 12a10 10 0 0 0 4 7.92V20h.1a9.7 9.7 0 0 0 11.8 0h.1v-.08A10 10 0 0 0 22 12 10.13 10.13 0 0 0 12 2zM8.07 18.93A3 3 0 0 1 11 16.57h2a3 3 0 0 1 2.93 2.36 7.75 7.75 0 0 1-7.86 0zm9.54-1.29A5 5 0 0 0 13 14.57h-2a5 5 0 0 0-4.61 3.07A8 8 0 0 1 4 12a8.1 8.1 0 0 1 8-8 8.1 8.1 0 0 1 8 8 8 8 0 0 1-2.39 5.64z">
+          </path>
+          <path
+            d="M12 6a3.91 3.91 0 0 0-4 4 3.91 3.91 0 0 0 4 4 3.91 3.91 0 0 0 4-4 3.91 3.91 0 0 0-4-4zm0 6a1.91 1.91 0 0 1-2-2 1.91 1.91 0 0 1 2-2 1.91 1.91 0 0 1 2 2 1.91 1.91 0 0 1-2 2z">
+          </path>
+        </svg>
+      </button>
+
+      <div
+        class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+        id="user-dropdown">
+        <div class="px-4 py-3">
+          <span class="block text-sm text-gray-900 dark:text-white">{{ user.name }}</span>
+          <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">{{ user.email }}</span>
+        </div>
+        <ul class="py-2" aria-labelledby="user-menu-button">
+          <li *ngIf="isAuthenticated && (isAdmin || isClient || isNurseryman)">
+            <a routerLink="/edit_profile"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Modificar
+              Perfil</a>
+          </li>
+          <li *ngIf="isAuthenticated">
+            <a (click)="logout()"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Tancar
+              sessió</a>
+          </li>
+          <li>
+            <div class="flex items-center block px-4 py-2 text-sm">
+              <svg class="w-5 h-5 rounded-full me-3" viewBox="0 0 100 100">
+                <rect x="0" y="0" width="100" height="12.5" fill="#FFCC00" />
+                <rect x="0" y="12.5" width="100" height="12.5" fill="#CC0000" />
+                <rect x="0" y="25" width="100" height="12.5" fill="#FFCC00" />
+                <rect x="0" y="37.5" width="100" height="12.5" fill="#CC0000" />
+                <rect x="0" y="50" width="100" height="12.5" fill="#FFCC00" />
+                <rect x="0" y="62.5" width="100" height="12.5" fill="#CC0000" />
+                <rect x="0" y="75" width="100" height="12.5" fill="#FFCC00" />
+                <rect x="0" y="87.5" width="100" height="12.5" fill="#CC0000" />
+              </svg>
+              Català
+            </div>
+          </li>
+        </ul>
+      </div>
+      <button data-collapse-toggle="navbar-user" type="button"
+        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        aria-controls="navbar-user" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M1 1h15M1 7h15M1 13h15" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
+      <ul
+        class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+
+        <!-- Home -->
+        <li>
+          <a routerLink="/home"
+            class="block py-2 px-3 text-white bg-red-700 rounded md:bg-transparent md:text-red-700 md:p-0 md:dark:text-red-500"
+            aria-current="page">Home</a>
+        </li>
+
+        <!-- Viver -->
+        <li>
+          <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
+            class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-red-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-red-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Sobre
+            el Viver
+            <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+              viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 1 4 4 4-4" />
+            </svg></button>
+          <div id="dropdownNavbar"
+            class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+            <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
+              <li>
+                <a routerLink="/information"
+                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Informació</a>
+              </li>
+              <li>
+                <a routerLink="/services"
+                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Serveis</a>
+              </li>
+              <li>
+                <a routerLink="/requirements"
+                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Qui
+                  pot ser viverista?</a>
+              </li>
+              <li>
+                <a routerLink="/regulation"
+                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reglament
+                  del
+                  viver</a>
+              </li>
+              <li>
+                <a routerLink="/pect"
+                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">PECT</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Login -->
+        <li *ngIf="!isAuthenticated">
+          <a routerLink="/login"
+            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0 dark:text-white md:dark:hover:text-red-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Iniciar
+            Sessió</a>
+        </li>
+
+        <!-- Admin dropdown -->
+        <button *ngIf="isAuthenticated && isAdmin" id="admin-menu-button" data-dropdown-toggle="admin-dropdown"
+          class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-red-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-red-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+            style="fill: rgba(0, 0, 0, 1);transform: msFilter">
+            <path
+              d="M12 16c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4zm0-6c1.084 0 2 .916 2 2s-.916 2-2 2-2-.916-2-2 .916-2 2-2z">
+            </path>
+            <path
+              d="m2.845 16.136 1 1.73c.531.917 1.809 1.261 2.73.73l.529-.306A8.1 8.1 0 0 0 9 19.402V20c0 1.103.897 2 2 2h2c1.103 0 2-.897 2-2v-.598a8.132 8.132 0 0 0 1.896-1.111l.529.306c.923.53 2.198.188 2.731-.731l.999-1.729a2.001 2.001 0 0 0-.731-2.732l-.505-.292a7.718 7.718 0 0 0 0-2.224l.505-.292a2.002 2.002 0 0 0 .731-2.732l-.999-1.729c-.531-.92-1.808-1.265-2.731-.732l-.529.306A8.1 8.1 0 0 0 15 4.598V4c0-1.103-.897-2-2-2h-2c-1.103 0-2 .897-2 2v.598a8.132 8.132 0 0 0-1.896 1.111l-.529-.306c-.924-.531-2.2-.187-2.731.732l-.999 1.729a2.001 2.001 0 0 0 .731 2.732l.505.292a7.683 7.683 0 0 0 0 2.223l-.505.292a2.003 2.003 0 0 0-.731 2.733zm3.326-2.758A5.703 5.703 0 0 1 6 12c0-.462.058-.926.17-1.378a.999.999 0 0 0-.47-1.108l-1.123-.65.998-1.729 1.145.662a.997.997 0 0 0 1.188-.142 6.071 6.071 0 0 1 2.384-1.399A1 1 0 0 0 11 5.3V4h2v1.3a1 1 0 0 0 .708.956 6.083 6.083 0 0 1 2.384 1.399.999.999 0 0 0 1.188.142l1.144-.661 1 1.729-1.124.649a1 1 0 0 0-.47 1.108c.112.452.17.916.17 1.378 0 .461-.058.925-.171 1.378a1 1 0 0 0 .471 1.108l1.123.649-.998 1.729-1.145-.661a.996.996 0 0 0-1.188.142 6.071 6.071 0 0 1-2.384 1.399A1 1 0 0 0 13 18.7l.002 1.3H11v-1.3a1 1 0 0 0-.708-.956 6.083 6.083 0 0 1-2.384-1.399.992.992 0 0 0-1.188-.141l-1.144.662-1-1.729 1.124-.651a1 1 0 0 0 .471-1.108z">
+            </path>
+          </svg>
+          Gestió
+        </button>
+
+        <div
+          class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+          id="admin-dropdown">
+          <ul class="py-2" aria-labelledby="admin-menu-button">
+            <li *ngIf="isAuthenticated && isAdmin">
+              <a routerLink="/user_management"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Gestió
+                d'usuaris</a>
             </li>
             <li *ngIf="isAuthenticated && isAdmin">
-              <a routerLink="/user_management" class="block py-2 px-3 rounded md:bg-transparent md:p-0"
-                aria-current="page">Gestió d'usuaris</a>
+              <a routerLink="/project_management"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Gestió
+                de Projectes</a>
             </li>
             <li *ngIf="isAuthenticated && isAdmin">
-              <a routerLink="/project_management" class="block py-2 px-3 rounded md:bg-transparent md:p-0"
-                aria-current="page">Gestió de Projectes</a>
-            </li>
-            <li *ngIf="isAuthenticated && isAdmin">
-              <a routerLink="/product_management" class="block py-2 px-3 rounded md:bg-transparent md:p-0"
-                aria-current="page">Gestió de Productes</a>
-            </li>
-            <li *ngIf="isAuthenticated && isClient">
-              <a routerLink="/user_order" class="block py-2 px-3 rounded md:bg-transparent md:p-0"
-                aria-current="page">Comandes</a>
-            </li>
-            <li *ngIf="isAuthenticated && (isAdmin || isClient || isNurseryman)">
-              <a routerLink="/edit_profile" class="block py-2 px-3 rounded md:bg-transparent md:p-0"
-                aria-current="page">Modificar Perfil</a>
-            </li>
-            <!--languages-->
-            <li>
-              <div class="flex items-center md:order-2 space-x-1 md:space-x-0 rtl:space-x-reverse">
-                <svg class="w-5 h-5 rounded-full me-3" viewBox="0 0 100 100">
-                  <rect x="0" y="0" width="100" height="12.5" fill="#FFCC00" />
-                  <rect x="0" y="12.5" width="100" height="12.5" fill="#CC0000" />
-                  <rect x="0" y="25" width="100" height="12.5" fill="#FFCC00" />
-                  <rect x="0" y="37.5" width="100" height="12.5" fill="#CC0000" />
-                  <rect x="0" y="50" width="100" height="12.5" fill="#FFCC00" />
-                  <rect x="0" y="62.5" width="100" height="12.5" fill="#CC0000" />
-                  <rect x="0" y="75" width="100" height="12.5" fill="#FFCC00" />
-                  <rect x="0" y="87.5" width="100" height="12.5" fill="#CC0000" />
-                </svg>
-                Català
-              </div>
+              <a routerLink="/product_management"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Gestió
+                de Productes</a>
             </li>
           </ul>
         </div>
-      </div>
-    </nav>
+
+        <li *ngIf="isAuthenticated && isClient">
+          <a routerLink="/shop"
+            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0 dark:text-white md:dark:hover:text-red-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Botiga</a>
+        </li>
+      </ul>
+    </div>
   </div>
-</header>
+</nav>
+<hr>
