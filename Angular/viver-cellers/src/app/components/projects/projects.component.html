@@ -1,0 +1,23 @@
+<section>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center py-10">
+      <h2 class="text-2xl font-semibold text-gray-900">Projectes Participants</h2>
+      <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div *ngFor="let project of projects"
+          class="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col justify-between">
+          <a class="bg-gray-200" [routerLink]="['/info-project' , project.id]">
+            <img class="w-full h-48 object-cover" [src]="project.logo_path" [alt]="project.project_name + ' logo'">
+          </a>
+          <div class="p-6">
+            <h3 class="font-semibold text-lg text-gray-900">{{ project.project_name }}</h3>
+            <p class="text-gray-600">{{ project.description }}</p>
+          </div>
+          <button class="mt-auto bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+            [routerLink]="['/info-project' , project.id]">
+            Més Informació
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
