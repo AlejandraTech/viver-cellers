@@ -29,6 +29,8 @@ import { ProductManagementComponent } from './components/product-management/prod
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { UserOrdersComponent } from './components/user-orders/user-orders.component';
+import { ProjectsComponent } from './components/projects/projects.component';
+import { InformationNurserymanComponent } from './components/information-nurseryman/information-nurseryman.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { UserOrdersComponent } from './components/user-orders/user-orders.compon
     EditProfileComponent,
     PaymentComponent,
     UserOrdersComponent,
+    ProjectsComponent,
+    InformationNurserymanComponent,
   ],
   imports: [
     BrowserModule,

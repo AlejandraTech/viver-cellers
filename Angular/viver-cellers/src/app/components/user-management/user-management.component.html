@@ -12,8 +12,9 @@
             <th class="px-6 py-3">Eliminar</th>
           </tr>
         </thead>
-        <tbody>
-          <tr class="bg-white dark:bg-gray-800 text-center" *ngFor="let user of users; let i = index">
+        <tbody *ngFor="let user of users; let i = index">
+          <tr class="bg-white dark:bg-gray-800 text-center" *ngIf="user.id !== logedId && user.token !== logedToken && user.name !== logedName">
+
             <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">
               {{user.name}}
             </td>
