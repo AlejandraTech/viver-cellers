@@ -1,0 +1,80 @@
+<section class="bg-neutral-200 dark:bg-neutral-700">
+  <div class="container mx-auto p-6">
+    <div class="overflow-x-auto rounded-lg shadow-md">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th class="px-6 py-3">Nombre de Usuario</th>
+            <th class="px-6 py-3">Dirección</th>
+            <th class="px-6 py-3">Precio</th>
+            <th class="px-6 py-3">Estado</th>
+            <th class="px-6 py-3">Ver Detalles</th>
+            <th class="px-6 py-3">Modificar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders; let i = index" class="bg-white dark:bg-gray-800">
+            <td class="px-6 py-4">{{ order.name }}</td>
+            <td class="px-6 py-4">{{ order.address }}</td>
+            <td class="px-6 py-4">{{ order.price }}</td>
+            <td class="px-6 py-4">{{ order.order_status_id }}</td>
+            <td class="px-6 py-4">
+              <button class="bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-700"
+                (click)="showDetails(order)">Ver Detalles Específicos</button>
+            </td>
+            <td class="px-6 py-4">
+              <button class="bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-700"
+                (click)="showModifyForm(order)">Modificar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- More information for the Order -->
+    <div *ngIf="isDetailsVisible && selectedOrder" class="container mx-auto p-6">
+      <div class="overflow-x-auto rounded-lg shadow-md">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead>
+            <tr>
+              <th class="px-6 py-3">Producto</th>
+              <th class="px-6 py-3">Cantidad</th>
+              <th class="px-6 py-3">Precio Producto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let detail of selectedOrder.order_lines">
+              <td class="px-6 py-4">{{ detail.product.name }}</td>
+              <td class="px-6 py-4">{{ detail.quantity }}</td>
+              <td class="px-6 py-4">{{ detail.product.price }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- Form to modify order -->
+    <div *ngIf="isModifyFormVisible && selectedOrder" class="mt-4">
+      <form [formGroup]="modifyOrderForm" class="bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4">
+        <h2 class="text-lg font-semibold mb-4 text-center">Modificar Orden</h2>
+        <div>
+          <label for="status" class="block text-sm font-bold mb-2 text-gray-700">Estado del Pedido</label>
+          <select formControlName="status"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            <option *ngFor="let status of statuses" [value]="status.id">{{ status.name }}</option>
+          </select>
+          <div *ngIf="modifyOrderForm.get('status')?.errors?.['required'] && modifyOrderForm.get('status')?.touched"
+            class="text-red-500 text-xs italic">
+            Por favor, seleccione un estado.
+          </div>
+        </div>
+        <div class="mt-6 flex justify-center items-center space-x-4">
+          <button type="button"
+            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            (click)="onSubmit()" [disabled]="modifyOrderForm.invalid">Modificar Orden</button>
+          <button type="button"
+            class="bg-white hover:bg-gray-100 text-red-500 font-bold py-2 px-4 rounded border border-red-500 focus:outline-none focus:shadow-outline"
+            (click)="cancelar()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
