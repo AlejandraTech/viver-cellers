@@ -5,3 +5,13 @@
 nav a:hover {
   color: #a2121b;
 }
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+  top: 100%;
+  right: 0;
+}
