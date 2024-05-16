@@ -16,4 +16,24 @@ export class OrderService {
   getUserOrders(): Observable<any> {
     return this.http.get(this.apiUrl + '/user/orders');
   }
+
+  // Method to obtain orders from a nurseryman
+  getNurserymanOrders(): Observable<any> {
+    return this.http.get(this.apiUrl + '/user/ordersNurseryman');
+  }
+
+  // Method to display specific sizes of the status of an order
+  showOrderDetails(orderId: number): Observable<any> {
+    return this.http.get(this.apiUrl + `/user/ordersNurseryman/${orderId}`);
+  }
+
+  // Method to obtain order statuses
+  getOrderStatuses(): Observable<any> {
+    return this.http.get(this.apiUrl + '/order-statuses');
+  }
+
+  // Method to update the status of an order
+  updateOrderStatus(orderId: number, statusId: number): Observable<any> {
+    return this.http.put(this.apiUrl + `/orders/${orderId}/status`, { status_id: statusId });
+  }
 }

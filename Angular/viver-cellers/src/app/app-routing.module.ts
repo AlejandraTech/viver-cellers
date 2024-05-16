@@ -26,6 +26,7 @@ import { GuestGuard } from './guards/guest.guard';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { NurserymanGuard } from './guards/nurseryman.guard';
 import { InformationNurserymanComponent } from './components/information-nurseryman/information-nurseryman.component';
+import { OrderNurserymanComponent } from './components/order-nurseryman/order-nurseryman.component';
 
 /**
  * Array with all the paths to the project components.
@@ -53,6 +54,7 @@ const routes: Routes = [
   { path: 'user_order', component: UserOrdersComponent, canActivate: [ClientGuard] }, // Orders Page
 
   { path: 'information_nurseryman', component: InformationNurserymanComponent, canActivate: [NurserymanGuard] }, // Information Nurseryman Page
+  { path: 'order_nurseryman', component: OrderNurserymanComponent, canActivate: [NurserymanGuard] }, // Order Nurseryman Page
 
   { path: 'user_management', component: UserManagementComponent, canActivate: [AdminGuard] }, // User Management Page
   { path: 'project_management', component: ProjectManagementComponent, canActivate: [AdminGuard] }, // Project Management Page

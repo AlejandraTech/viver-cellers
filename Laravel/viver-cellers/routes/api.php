@@ -1,14 +1,15 @@
 <?php
+
 /**
  * @author: Alejandra Paz , Angel Rivera, Julia Prieto
  * File with all the api paths of the project
  */
+
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProjectController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,15 +23,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
 Route::middleware('auth:sanctum')->put('/user', [AuthController::class, 'updateProfile']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/checkout', [PaymentController::class, 'checkout']);
-    // otras rutas protegidas
 });
 
 // Login and registration controller
@@ -77,3 +73,13 @@ Route::prefix('product')->group(function () {
 
 // Path to access user orders
 Route::middleware('auth:sanctum')->get('/user/orders', [OrderController::class, 'userOrders']);
+
+// Route to obtain order statuses
+Route::middleware('auth:sanctum')->get('/order-statuses', [OrderController::class, 'getOrderStatuses']);
+
+// Path to access nurseryman orders
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user/ordersNurseryman', [OrderController::class, 'nurserymanOrders']);
+    Route::get('/user/ordersNurseryman/{id}', [OrderController::class, 'showOrderDetails']);
+    Route::put('/orders/{id}/status', [OrderController::class, 'updateOrderStatus']);
+});
