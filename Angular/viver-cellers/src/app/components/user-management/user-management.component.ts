@@ -2,8 +2,9 @@
 
 // Necessary imports from Angular and related services
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
   selector: 'app-user-management',
@@ -16,6 +17,8 @@ export class UserManagementComponent implements OnInit {
   users: any[] = [];
   // Array to store available roles
   roles: string[] = [];
+  // Array to store available projects
+  projects: any[] = [];
   // Selected user identifier for modification
   userId: any;
 
@@ -37,7 +40,7 @@ export class UserManagementComponent implements OnInit {
   adduser!: FormGroup; // Define form control property of type formGroup to add users
   modifyuser!: FormGroup; // Define form control property of type formGroup to modify users
 
-  constructor(private service: AuthService) { }
+  constructor(private authService: AuthService, private projectService: ProjectService) { }
 
   /**
    * Method executed when the component initializes
@@ -52,6 +55,7 @@ export class UserManagementComponent implements OnInit {
     // Get the list of users and available roles
     this.getUsers();
     this.getRoles();
+    this.getProjects();
 
     // Initialize the form for adding users
     this.adduser = new FormGroup({
@@ -60,21 +64,36 @@ export class UserManagementComponent implements OnInit {
       dni: new FormControl('', [Validators.minLength(9), Validators.maxLength(9)]),
       email: new FormControl('', [Validators.required, Validators.pattern("^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$")]),
       password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-      rol: new FormControl('', [Validators.required])
-    });
+      rol: new FormControl('', [Validators.required]),
+      project_id_fk: new FormControl('')
+    }, { validators: this.projectRequiredIfNurseryman });
 
     // Initialize the form for modifying users
     this.modifyuser = new FormGroup({
       password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-      rol: new FormControl('', [Validators.required])
-    });
+      rol: new FormControl('', [Validators.required]),
+      project_id_fk: new FormControl('')
+    }, { validators: this.projectRequiredIfNurseryman });
+  }
+
+  /**
+   * Custom validator to make project_id_fk required only if role is "nurseryman"
+   */
+  projectRequiredIfNurseryman(control: AbstractControl): { [key: string]: any } | null {
+    const roleControl = control.get('rol');
+    const projectIdControl = control.get('project_id_fk');
+
+    if (roleControl && projectIdControl) {
+      return roleControl.value === 'nurseryman' && !projectIdControl.value ? { projectRequired: true } : null;
+    }
+    return null;
   }
 
   /**
    * Method to fetch the list of roles from the service
    */
   getRoles(): void {
-    this.service.getRoles().subscribe(
+    this.authService.getRoles().subscribe(
       (response) => {
         this.roles = response.data;
       },
@@ -88,12 +107,26 @@ export class UserManagementComponent implements OnInit {
    * Method to fetch the list of users from the service
    */
   getUsers(): void {
-    this.service.getUsers().subscribe(
+    this.authService.getUsers().subscribe(
       data => {
         this.users = data.data;
       },
       error => {
         console.error(`Error en la recuperació d'usuaris:`, error);
+      }
+    );
+  }
+
+  /**
+   * Method to fetch the list of projects from the service
+   */
+  getProjects(): void {
+    this.projectService.getProjects().subscribe(
+      (response) => {
+        this.projects = response.data;
+      },
+      (error) => {
+        console.error(error);
       }
     );
   }
@@ -109,17 +142,20 @@ export class UserManagementComponent implements OnInit {
         dni: this.adduser.value.dni,
         email: this.adduser.value.email,
         password: this.adduser.value.password,
-        rol: this.adduser.value.rol
+        rol: this.adduser.value.rol,
+        project_id_fk: this.adduser.value.rol === 'nurseryman' ? this.adduser.value.project_id_fk : null
       };
-      this.service.addUser(userData)
+
+      // Call the service to add the user
+      this.authService.addUser(userData)
         .subscribe(
           response => {
-            this.getUsers(); // Update the list of users after addition
+            this.getUsers();
             this.successMessage = 'Usuari afegit amb èxit.';
             this.errorMessage = '';
           },
           error => {
-            if (error.status == 422) {
+            if (error.status === 422) {
               this.successMessage = '';
               this.errorMessage = `S'ha produït un error. Si us plau, torna-ho a provar més tard.`;
             } else {
@@ -138,15 +174,16 @@ export class UserManagementComponent implements OnInit {
     if (this.modifyuser.valid) {
       const userData = {
         password: this.modifyuser.value.password,
-        rol: this.modifyuser.value.rol
+        rol: this.modifyuser.value.rol,
+        project_id_fk: this.modifyuser.value.rol === 'nurseryman' ? this.modifyuser.value.project_id_fk : null
       };
-      // Call the service to update user data
-      this.service.updateUser(userData, this.userId)
+      // Llamar al servicio para actualizar los datos del usuario
+      this.authService.updateUser(userData, this.userId)
         .subscribe(
           response => {
-            this.getUsers(); // Update the list of users after modification
-            this.isModifyFormVisible = false; // Hide the modification form after sending the request
-            this.isAddFormVisible = true; // Show add form
+            this.getUsers(); // Actualizar la lista de usuarios después de la modificación
+            this.isModifyFormVisible = false; // Ocultar el formulario de modificación
+            this.isAddFormVisible = true; // Mostrar el formulario de adición
             this.successMessage = 'Usuari modificat amb èxit.';
             this.errorMessage = '';
           },
@@ -163,7 +200,7 @@ export class UserManagementComponent implements OnInit {
    * @param userId identifier of the user to delete
    */
   deleteUser(userId: number): void {
-    this.service.deleteUser(userId).subscribe(
+    this.authService.deleteUser(userId).subscribe(
       response => {
         this.getUsers();
         this.successMessage = `L'usuari s'ha eliminat amb èxit.`;

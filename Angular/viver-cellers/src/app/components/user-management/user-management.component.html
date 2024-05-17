@@ -204,6 +204,16 @@
           </div>
         </div>
 
+        <!-- Project dropdown for nurseryman role -->
+        <div *ngIf="adduser.get('rol')?.value === 'nurseryman'">
+          <label class="block text-sm font-bold mb-2 text-gray-700" for="project">Projecte</label>
+          <select formControlName="project_id_fk"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            <option value="">Seleccionar Projecte</option>
+            <option *ngFor="let project of projects" [value]="project.id">{{ project.project_name }}</option>
+          </select>
+        </div>
+
         <div class="mt-6">
           <button (click)="submitAdd()" routerlink="/register"
             class="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -214,27 +224,27 @@
 
         <!-- Success Message -->
         <div class="bg-green-50 border border-green-400 rounded text-green-800 text-sm p-4 flex justify-between"
-        *ngIf="successMessage">
-        <div>
-          <div class="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd"
-                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                clip-rule="evenodd" />
+          *ngIf="successMessage">
+          <div>
+            <div class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                  clip-rule="evenodd" />
+              </svg>
+              <p>
+                <span class="font-bold">Info:</span>
+                {{ successMessage }}
+              </p>
+            </div>
+          </div>
+          <div>
+            <svg (click)="closeSuccessMessage()" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
-            <p>
-              <span class="font-bold">Info:</span>
-              {{ successMessage }}
-            </p>
           </div>
         </div>
-        <div>
-          <svg (click)="closeSuccessMessage()" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer"
-            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </div>
-      </div>
 
         <!-- Error message -->
         <div class="text-red-500 text-sm mt-4" *ngIf="errorMessage">{{ errorMessage }}</div>
@@ -279,7 +289,7 @@
             </div>
           </div>
 
-          <!-- Roll input -->
+          <!-- Role input -->
           <div>
             <label class="block text-sm font-bold mb-2 text-gray-700" for="rol">Rol</label>
             <select formControlName="rol"
@@ -294,6 +304,17 @@
               Si us plau, seleccioni un rol.
             </div>
           </div>
+
+          <!-- Project dropdown for nurseryman role -->
+          <div *ngIf="modifyuser.get('rol')?.value === 'nurseryman'">
+            <label class="block text-sm font-bold mb-2 text-gray-700" for="project">Projecte</label>
+            <select formControlName="project_id_fk"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+              <option value="">Seleccionar Projecte</option>
+              <option *ngFor="let project of projects" [value]="project.id">{{ project.project_name }}</option>
+            </select>
+          </div>
+
         </div>
 
         <div class="mt-6 flex justify-center items-center space-x-4">

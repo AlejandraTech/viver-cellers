@@ -134,7 +134,6 @@ class AuthController extends Controller
     public function store(Request $request)
     {
         try {
-            // user field validations
             $request->validate([
                 'name' => 'required|min:3|max:20|regex:/^[A-ZÑa-zñáéíóúÁÉÍÓÚ\'° ]+$/',
                 'lastname' => 'required|min:3|max:20|regex:/^[A-ZÑa-zñáéíóúÁÉÍÓÚ\'° ]+$/',
@@ -142,43 +141,85 @@ class AuthController extends Controller
                 'email' => 'required|string|email|unique:users',
                 'password' => 'required|string|min:8',
                 'rol' => 'required|in:admin,client,nurseryman',
+                'project_id_fk' => 'nullable|exists:projects,id'
             ]);
 
-            // add user to database
-            $data = User::create($request->all());
-            return ApiResponse::success('User created successfully', 201, $data);
-        } catch (ValidationException  $e) {
-            return ApiResponse::error('Error of validation' . $e->getMessage(), 422);
+            $data = $request->all();
+
+            // Si el rol no es 'nurseryman', se debe actualizar project_id_fk a null
+            if ($data['rol'] !== 'nurseryman') {
+                $data['project_id_fk'] = null;
+            }
+
+            $data['password'] = bcrypt($data['password']);
+            $user = User::create($data);
+
+            return ApiResponse::success('User created successfully', 201, $user);
+        } catch (ValidationException $e) {
+            return ApiResponse::error('Validation error: ' . $e->getMessage(), 422);
+        } catch (Exception $e) {
+            return ApiResponse::error('Error creating user: ' . $e->getMessage(), 500);
         }
     }
+
+    // public function store(Request $request)
+    // {
+    //     try {
+    //         // user field validations
+    //         $request->validate([
+    //             'name' => 'required|min:3|max:20|regex:/^[A-ZÑa-zñáéíóúÁÉÍÓÚ\'° ]+$/',
+    //             'lastname' => 'required|min:3|max:20|regex:/^[A-ZÑa-zñáéíóúÁÉÍÓÚ\'° ]+$/',
+    //             'dni' => 'string|min:9|max:9',
+    //             'email' => 'required|string|email|unique:users',
+    //             'password' => 'required|string|min:8',
+    //             'rol' => 'required|in:admin,client,nurseryman',
+    //             'project_id_fk' => 'nullable|exists:projects,id',
+    //         ]);
+
+    //         // add user to database
+    //         $data = User::create($request->all());
+    //         return ApiResponse::success('User created successfully', 201, $data);
+    //     } catch (ValidationException  $e) {
+    //         return ApiResponse::error('Error of validation' . $e->getMessage(), 422);
+    //     }
+    // }
 
     /**
      * Update the information of an existing user in the database.
      * @param $request contains the data sent by the client to the server
      * @param $id user id field
      */
-    function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
         try {
-            // search user in the database by user id
-            $data = User::findOrFail($id);
+            // Search user in database by ID
+            $user = User::findOrFail($id);
 
-            // user field validations
+            // User Field Validations
             $request->validate([
                 'password' => 'required|string|min:8',
                 'rol' => 'required|in:admin,client,nurseryman',
+                'project_id_fk' => 'nullable|exists:projects,id'
             ]);
 
-            // update user in the database
-            $data->update([
-                'password' => bcrypt($request->input('password')), // Make sure to encrypt the password if necessary
-                'rol' => $request->input('rol')
+            // If the role is not 'nurseryman', you must update project_id_fk to null
+            if ($request->input('rol') !== 'nurseryman') {
+                $user->project_id_fk = null;
+            } else {
+                $user->project_id_fk = $request->input('project_id_fk');
+            }
+
+            // Update user in database
+            $user->update([
+                'password' => bcrypt($request->input('password')),
+                'rol' => $request->input('rol'),
+                'project_id_fk' => $user->project_id_fk
             ]);
 
-            return ApiResponse::success('User updated successfully', 200, $data);
-        } catch (ValidationException  $e) {
+            return ApiResponse::success('User updated successfully', 200, $user);
+        } catch (ValidationException $e) {
             return ApiResponse::error('Validation error: ' . $e->getMessage(), 422);
-        } catch (ModelNotFoundException  $e) {
+        } catch (ModelNotFoundException $e) {
             return ApiResponse::error('User not found', 404);
         } catch (Exception $e) {
             return ApiResponse::error('Error updating user: ' . $e->getMessage(), 500);
