@@ -38,7 +38,6 @@ export class ProjectManagementComponent implements OnInit {
     // Get the list of projects
     this.getProjects();
 
-
     // Initialize the form for adding projects
     this.addproject = new FormGroup({
       project_name: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
@@ -58,7 +57,6 @@ export class ProjectManagementComponent implements OnInit {
 
   }
 
-
   /**
    * Method to fetch the list of project from the service
    */
@@ -72,7 +70,6 @@ export class ProjectManagementComponent implements OnInit {
       }
     );
   }
-
 
   /**
   * Method to add a new project from the form, only allowed for the administrator
@@ -198,6 +195,10 @@ export class ProjectManagementComponent implements OnInit {
     this.isModifyFormVisible = false;
     this.isAddFormVisible = true;
     this.modifyButtonsDisabled = this.modifyButtonsDisabled.map(() => false);
+  }
+
+  closeSuccessMessage(): void {
+    this.successMessage = '';
   }
 
 }

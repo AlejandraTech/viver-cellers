@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
   isAuthenticated = false;
   user: any = {};
   isMenuOpen = false;
+  isAdminMenuOpen = false;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -62,6 +63,16 @@ export class HeaderComponent implements OnInit {
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
+    if (this.isMenuOpen && this.isAdminMenuOpen) {
+      this.isAdminMenuOpen = false;
+    }
+  }
+
+  toggleAdminMenu(): void {
+    this.isAdminMenuOpen = !this.isAdminMenuOpen;
+    if (this.isAdminMenuOpen && this.isMenuOpen) {
+      this.isMenuOpen = false;
+    }
   }
 
   @HostListener('document:click', ['$event'])
@@ -69,6 +80,8 @@ export class HeaderComponent implements OnInit {
     if (!event.target.closest('#client-menu-button')) {
       this.isMenuOpen = false;
     }
+    if (!event.target.closest('#admin-menu-button')) {
+      this.isAdminMenuOpen = false;
+    }
   }
-
 }

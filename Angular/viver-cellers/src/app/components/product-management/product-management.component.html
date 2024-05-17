@@ -90,20 +90,23 @@
               type="text" placeholder="vinificació" formControlName="winemaking" />
 
             <!-- This field is required -->
-            <div *ngIf="this.addproduct.get('winemaking')?.errors?.['required'] &&
-                  this.addproduct.get('winemaking')?.touched" class="text-red-500 text-xs italic">
+            <div
+              *ngIf="this.addproduct.get('winemaking')?.errors?.['required'] && this.addproduct.get('winemaking')?.touched"
+              class="text-red-500 text-xs italic">
               Aquest camp és obligatori.
             </div>
 
             <!-- MaxLength -->
-            <div *ngIf="this.addproduct.get('winemaking')?.errors?.['maxlength'] &&
-                            this.addproduct.get('winemaking')?.touched" class="text-red-500 text-xs italic">
+            <div
+              *ngIf="this.addproduct.get('winemaking')?.errors?.['maxlength'] && this.addproduct.get('winemaking')?.touched"
+              class="text-red-500 text-xs italic">
               Aquest camp només pot contenir un màxim de 255 caràcters.
             </div>
 
             <!-- MinLength -->
-            <div *ngIf="this.addproduct.get('winemaking')?.errors?.['minlength'] &&
-                            this.addproduct.get('winemaking')?.touched" class="text-red-500 text-xs italic">
+            <div
+              *ngIf="this.addproduct.get('winemaking')?.errors?.['minlength'] && this.addproduct.get('winemaking')?.touched"
+              class="text-red-500 text-xs italic">
               Aquest camp només pot contenir com a mínim 2 caràcters.
             </div>
           </div>
@@ -118,21 +121,22 @@
               id="grade_alcohol" type="text" placeholder="Grau alcohol" formControlName="grade_alcohol" />
 
             <!-- This field is required -->
-            <div *ngIf="this.addproduct.get('grade_alcohol')?.errors?.['required'] &&
-                    this.addproduct.get('grade_alcohol')?.touched" class="text-red-500 text-xs italic">
+            <div
+              *ngIf="this.addproduct.get('grade_alcohol')?.errors?.['required'] && this.addproduct.get('grade_alcohol')?.touched"
+              class="text-red-500 text-xs italic">
               Aquest camp és obligatori.
             </div>
 
             <!-- min -->
-            <div *ngIf="this.addproduct.get('grade_alcohol')?.errors?.['min'] &&
-                                                  this.addproduct.get('grade_alcohol')?.touched"
+            <div
+              *ngIf="this.addproduct.get('grade_alcohol')?.errors?.['min'] && this.addproduct.get('grade_alcohol')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp ha de ser de mínim 0
             </div>
 
             <!-- Only number -->
-            <div *ngIf="this.addproduct.get('grade_alcohol')?.errors?.['pattern'] &&
-                                                  this.addproduct.get('grade_alcohol')?.touched"
+            <div
+              *ngIf="this.addproduct.get('grade_alcohol')?.errors?.['pattern'] && this.addproduct.get('grade_alcohol')?.touched"
               class="text-red-500 text-xs italic">
               Format correcte: 00[.]00
             </div>
@@ -152,15 +156,13 @@
             </div>
 
             <!-- min -->
-            <div *ngIf="this.addproduct.get('price')?.errors?.['min'] &&
-                                                  this.addproduct.get('price')?.touched"
+            <div *ngIf="this.addproduct.get('price')?.errors?.['min'] && this.addproduct.get('price')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp ha de ser de mínim 0
             </div>
 
             <!-- Only number -->
-            <div *ngIf="this.addproduct.get('price')?.errors?.['pattern'] &&
-                                                  this.addproduct.get('price')?.touched"
+            <div *ngIf="this.addproduct.get('price')?.errors?.['pattern'] && this.addproduct.get('price')?.touched"
               class="text-red-500 text-xs italic">
               Format correcte: 00[.]00
             </div>
@@ -180,15 +182,13 @@
             </div>
 
             <!-- min -->
-            <div *ngIf="this.addproduct.get('iva')?.errors?.['min'] &&
-                                                 this.addproduct.get('iva')?.touched"
+            <div *ngIf="this.addproduct.get('iva')?.errors?.['min'] && this.addproduct.get('iva')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp ha de ser de mínim 0
             </div>
 
             <!-- Only number -->
-            <div *ngIf="this.addproduct.get('iva')?.errors?.['pattern'] &&
-                                                 this.addproduct.get('iva')?.touched"
+            <div *ngIf="this.addproduct.get('iva')?.errors?.['pattern'] && this.addproduct.get('iva')?.touched"
               class="text-red-500 text-xs italic">
               Només s'accepten números.
             </div>
@@ -210,20 +210,22 @@
             </div>
 
             <!-- MaxLength -->
-            <div *ngIf="this.addproduct.get('vineyard_area')?.errors?.['maxlength'] &&
-                           this.addproduct.get('vineyard_area')?.touched" class="text-red-500 text-xs italic">
+            <div
+              *ngIf="this.addproduct.get('vineyard_area')?.errors?.['maxlength'] && this.addproduct.get('vineyard_area')?.touched"
+              class="text-red-500 text-xs italic">
               Aquest camp només pot contenir un màxim de 150 caràcters.
             </div>
 
             <!-- MinLength -->
-            <div *ngIf="this.addproduct.get('vineyard_area')?.errors?.['minlength'] &&
-                           this.addproduct.get('vineyard_area')?.touched" class="text-red-500 text-xs italic">
+            <div
+              *ngIf="this.addproduct.get('vineyard_area')?.errors?.['minlength'] && this.addproduct.get('vineyard_area')?.touched"
+              class="text-red-500 text-xs italic">
               Aquest camp només pot contenir com a mínim 2 caràcters.
             </div>
 
             <!-- Only letters -->
-            <div *ngIf="this.addproduct.get('vineyard_area')?.errors?.['pattern'] &&
-                                                 this.addproduct.get('vineyard_area')?.touched"
+            <div
+              *ngIf="this.addproduct.get('vineyard_area')?.errors?.['pattern'] && this.addproduct.get('vineyard_area')?.touched"
               class="text-red-500 text-xs italic">
               Només s'accepten lletres.
             </div>
@@ -353,7 +355,28 @@
         </div>
 
         <!-- Success Message -->
-        <div class="text-green-500 text-sm mt-4" *ngIf="successMessage">{{ successMessage }}</div>
+        <div class="bg-green-50 border border-green-400 rounded text-green-800 text-sm p-4 flex justify-between"
+          *ngIf="successMessage">
+          <div>
+            <div class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                  clip-rule="evenodd" />
+              </svg>
+              <p>
+                <span class="font-bold">Info:</span>
+                {{ successMessage }}
+              </p>
+            </div>
+          </div>
+          <div>
+            <svg (click)="closeSuccessMessage()" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </div>
+        </div>
 
         <!-- Error message -->
         <div class="text-red-500 text-sm mt-4" *ngIf="errorMessage">{{ errorMessage }}</div>
@@ -679,7 +702,28 @@
         </div>
 
         <!-- Success Message -->
-        <div class="text-green-500 text-sm mt-4" *ngIf="successMessage">{{ successMessage }}</div>
+        <div class="bg-green-50 border border-green-400 rounded text-green-800 text-sm p-4 flex justify-between"
+          *ngIf="successMessage">
+          <div>
+            <div class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                  clip-rule="evenodd" />
+              </svg>
+              <p>
+                <span class="font-bold">Info:</span>
+                {{ successMessage }}
+              </p>
+            </div>
+          </div>
+          <div>
+            <svg (click)="closeSuccessMessage()" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </div>
+        </div>
 
         <!-- Error message -->
         <div class="text-red-500 text-sm mt-4" *ngIf="errorMessage">{{ errorMessage }}</div>

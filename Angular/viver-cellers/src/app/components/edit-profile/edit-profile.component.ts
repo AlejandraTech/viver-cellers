@@ -71,4 +71,8 @@ export class EditProfileComponent implements OnInit {
       );
     }
   }
+
+  closeSuccessMessage(): void {
+    this.successMessage = '';
+  }
 }

@@ -56,27 +56,6 @@ class OrderController extends Controller
             return ApiResponse::error('Error to get the list of orders: ' . $e->getMessage(), 500);
         }
     }
-    // public function nurserymanOrders()
-    // {
-    //     try {
-    //         $orderLines = OrderLine::with(['order'])->get();
-
-    //         $orders = $orderLines->groupBy('order.id')->map(function ($orderLines) {
-    //             $order = $orderLines->first()->order;
-    //             return [
-    //                 'id' => $order->id,
-    //                 'name' => $order->user->name,
-    //                 'address' => $order->address,
-    //                 'price' => $order->price,
-    //                 'order_status_id' => $order->status->name
-    //             ];
-    //         });
-
-    //         return ApiResponse::success('List of orders by fk_order_id', 200, $orders->values()->all());
-    //     } catch (Exception $e) {
-    //         return ApiResponse::error('Error to get the list of orders: ' . $e->getMessage(), 500);
-    //     }
-    // }
 
     /**
      * Get details of a specific order including product names, quantities, and prices.

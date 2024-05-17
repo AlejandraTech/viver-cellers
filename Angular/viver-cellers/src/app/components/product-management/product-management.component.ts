@@ -271,4 +271,8 @@ export class ProductManagementComponent {
     this.isAddFormVisible = true;
     this.modifyButtonsDisabled = this.modifyButtonsDisabled.map(() => false);
   }
+
+  closeSuccessMessage(): void {
+    this.successMessage = '';
+  }
 }

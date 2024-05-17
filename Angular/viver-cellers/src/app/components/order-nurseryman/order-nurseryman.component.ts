@@ -14,6 +14,8 @@ export class OrderNurserymanComponent implements OnInit {
   isDetailsVisible: boolean = false;
   selectedOrder: any = null;
   modifyOrderForm: FormGroup;
+  successMessage: string = '';
+  errorMessage: string = '';
 
   constructor(private orderService: OrderService, private fb: FormBuilder) {
     this.modifyOrderForm = this.fb.group({
@@ -74,11 +76,15 @@ export class OrderNurserymanComponent implements OnInit {
       this.orderService.updateOrderStatus(this.selectedOrder.id, statusId).subscribe({
         next: (response) => {
           console.log('Order status updated successfully', response);
+          this.successMessage = 'Perfil actualitzat amb exit';
+          this.errorMessage = '';
           this.isModifyFormVisible = false;
           this.loadNurserymanOrders();
         },
         error: (error) => {
           console.error('Error updating order status', error);
+          this.errorMessage = "Error al actualitzar el perfil. Si us plau, torna-ho a intentar més tard";
+          this.successMessage = '';
         }
       });
     }
@@ -87,5 +93,13 @@ export class OrderNurserymanComponent implements OnInit {
   cancelar(): void {
     this.isModifyFormVisible = false;
     this.selectedOrder = null;
+  }
+
+  closeSuccessMessage(): void {
+    this.successMessage = '';
+  }
+
+  closeErrorMessage(): void {
+    this.errorMessage = '';
   }
 }
