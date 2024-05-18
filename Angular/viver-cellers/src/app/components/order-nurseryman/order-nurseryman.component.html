@@ -42,12 +42,32 @@
             <td class="px-6 py-4">{{ order.price }}</td>
             <td class="px-6 py-4">{{ order.order_status_id }}</td>
             <td class="px-6 py-4">
-              <button class="bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-700"
-                (click)="showDetails(order)">Ver Detalles Específicos</button>
+              <div class="inline-block align-middle border border-red-600 rounded-full p-1 hover:bg-red-100">
+                <button (click)="showDetails(order)">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    style="fill: rgba(206, 3, 3, 1);transform: msFilter">
+                    <path d="M11 6H9v3H6v2h3v3h2v-3h3V9h-3z"></path>
+                    <path
+                      d="M10 2c-4.411 0-8 3.589-8 8s3.589 8 8 8a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8zm0 14c-3.309 0-6-2.691-6-6s2.691-6 6-6 6 2.691 6 6-2.691 6-6 6z">
+                    </path>
+                  </svg>
+                </button>
+              </div>
             </td>
-            <td class="px-6 py-4">
-              <button class="bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-700"
-                (click)="showModifyForm(order)">Modificar</button>
+            <td class="px-6 py-4 justify-center">
+              <div class="inline-block align-middle border border-red-600 rounded-full p-1 hover:bg-red-100">
+                <button (click)="showModifyForm(order)">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="rounded-full" width="24" height="24"
+                    viewBox="0 0 24 24" style="fill: rgba(206, 3, 3, 1);transform: msFilter">
+                    <path
+                      d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z">
+                    </path>
+                    <path
+                      d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z">
+                    </path>
+                  </svg>
+                </button>
+              </div>
             </td>
           </tr>
         </tbody>

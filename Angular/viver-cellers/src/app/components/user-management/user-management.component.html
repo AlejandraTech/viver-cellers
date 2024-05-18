@@ -24,18 +24,27 @@
             <td class="px-6 py-4 justify-center">
               <div class="inline-block align-middle border border-red-600 rounded-full p-1 hover:bg-red-100">
                 <button (click)="toggleModifyFormVisibility(user.id)" [disabled]="modifyButtonsDisabled[i]">
-                  <img
-                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAR9JREFUSEu1lUFygzAMRZ8nOUhyCJjpDo6Sk+QoyU3IrgsuwUU6dJSiVjHYMqSw8iD5f+nr2w7s/IWd8fkXgk84HaCp4R4X/ELQQzPCLcDJ6ayt4CE5PXRAI+sRhi9oP2DQ/THBb3KGYAYuwJIvhcm6hnOKYJRA9czNf1q5Ak4ydRPJReWKOygiSMliSLcT2MqtLOFHJpnhNolEgiPcLIiVRYds9Z8K+NO6fxphPoMlcN0Vz8Kz6YxgLbhYXS3sdpACT/0XcKCzLsy6aKl9p6OZAh7By4Yc+HSqtxN44G8RWGfEPrexJRcWSaQgOfBNHXj3URxf3cEeBCXXtcf7qYBNXddyUK76gHhIcVxmFOCSPMlrAUvy3YelBCSXszvBN0nVohleaXBfAAAAAElFTkSuQmCC"
-                    alt="Modificar" class="rounded-full" />
+                  <svg xmlns="http://www.w3.org/2000/svg" class="rounded-full" width="24" height="24"
+                    viewBox="0 0 24 24" style="fill: rgba(206, 3, 3, 1);transform: msFilter">
+                    <path
+                      d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z">
+                    </path>
+                    <path
+                      d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z">
+                    </path>
+                  </svg>
                 </button>
               </div>
             </td>
             <td class="px-6 py-4 justify-center">
               <div class="inline-block align-middle border border-red-600 rounded-full p-1 hover:bg-red-100">
                 <button (click)="deleteUser(user.id)">
-                  <img
-                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAJRJREFUSEvtlcsRgCAMBZeiuGspVqJWJneasBMdDoyKfEQGL5IjQ7LJ4/MElUNUrk8SoKEDlkAjs4Qp1mQUkCjOBquAQYIKQS4AjckpD8mhzLeA8t7vFbxn8FaqszQW9QOAHduVzbf+SqIGSN6iJtEPJMr5AHMemnEw42Q5oST0bkLoDEzx8Skk5mxJT84Zwbe3OmAH5BVSGbEiBo0AAAAASUVORK5CYII="
-                    alt="Eliminar" class="rounded-full" />
+                  <svg xmlns="http://www.w3.org/2000/svg" class="rounded-full" width="24" height="24"
+                    viewBox="0 0 24 24" style="fill: rgba(206, 3, 3, 1);transform: msFilter">
+                    <path
+                      d="M6 7H5v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7H6zm4 12H8v-9h2v9zm6 0h-2v-9h2v9zm.618-15L15 2H9L7.382 4H3v2h18V4z">
+                    </path>
+                  </svg>
                 </button>
               </div>
             </td>
