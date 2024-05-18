@@ -83,3 +83,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user/ordersNurseryman/{id}', [OrderController::class, 'showOrderDetails']);
     Route::put('/orders/{id}/status', [OrderController::class, 'updateOrderStatus']);
 });
+
+Route::middleware('auth:sanctum')->get('/nurseryman/sales-cancellations', [OrderController::class, 'getSalesAndCancellations']);
