@@ -36,4 +36,9 @@ export class OrderService {
   updateOrderStatus(orderId: number, statusId: number): Observable<any> {
     return this.http.put(this.apiUrl + `/orders/${orderId}/status`, { status_id: statusId });
   }
+
+  // Method to obtain sales and cancellations
+  getSalesAndCancellations(): Observable<any> {
+    return this.http.get(this.apiUrl + '/nurseryman/sales-cancellations');
+  }
 }

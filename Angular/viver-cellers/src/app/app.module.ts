@@ -32,6 +32,7 @@ import { UserOrdersComponent } from './components/user-orders/user-orders.compon
 import { ProjectsComponent } from './components/projects/projects.component';
 import { InformationNurserymanComponent } from './components/information-nurseryman/information-nurseryman.component';
 import { OrderNurserymanComponent } from './components/order-nurseryman/order-nurseryman.component';
+import { SalesGraphComponent } from './components/sales-graph/sales-graph.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { OrderNurserymanComponent } from './components/order-nurseryman/order-nu
     ProjectsComponent,
     InformationNurserymanComponent,
     OrderNurserymanComponent,
+    SalesGraphComponent,
   ],
   imports: [
     BrowserModule,
