@@ -103,4 +103,45 @@ class OrderController extends Controller
             return ApiResponse::error('Error updating order status: ' . $e->getMessage(), 500);
         }
     }
+
+    /**
+     * Get sales and cancellations of products for a nurseryman's project.
+     * @return - Api response
+     */
+    public function getSalesAndCancellations()
+    {
+        try {
+            $user = auth()->user();
+            $projectId = $user->project_id_fk;
+
+            $sales = OrderLine::with(['order', 'product'])
+                ->whereHas('product', function ($query) use ($projectId) {
+                    $query->where('project_id', $projectId);
+                })
+                ->whereHas('order', function ($query) {
+                    $query->where('order_status_id', '!=', 6); // exclude cancelled orders
+                })
+                ->selectRaw('id_product_fk, COUNT(*) as count')
+                ->groupBy('id_product_fk')
+                ->get();
+
+            $cancellations = OrderLine::with(['order', 'product'])
+                ->whereHas('product', function ($query) use ($projectId) {
+                    $query->where('project_id', $projectId);
+                })
+                ->whereHas('order', function ($query) {
+                    $query->where('order_status_id', '=', 6); // only cancelled orders
+                })
+                ->selectRaw('id_product_fk, COUNT(*) as count')
+                ->groupBy('id_product_fk')
+                ->get();
+
+            return ApiResponse::success('Sales and cancellations data retrieved successfully', 200, [
+                'sales' => $sales,
+                'cancellations' => $cancellations
+            ]);
+        } catch (Exception $e) {
+            return ApiResponse::error('Error retrieving sales and cancellations data: ' . $e->getMessage(), 500);
+        }
+    }
 }
