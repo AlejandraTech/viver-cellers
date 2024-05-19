@@ -83,7 +83,7 @@ export class OrderNurserymanComponent implements OnInit {
         },
         error: (error) => {
           console.error('Error updating order status', error);
-          this.errorMessage = "Error al actualitzar el perfil. Si us plau, torna-ho a intentar més tard";
+          this.errorMessage = "Error en actualitzar el perfil. Si us plau, torna-ho a intentar més tard";
           this.successMessage = '';
         }
       });

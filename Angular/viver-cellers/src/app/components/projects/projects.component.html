@@ -1,23 +1,29 @@
-<section>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center py-10">
-      <h2 class="text-2xl font-semibold text-gray-900">Projectes Participants</h2>
-      <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <div *ngFor="let project of projects"
-          class="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col justify-between">
-          <a class="bg-gray-200" [routerLink]="['/info-project' , project.id]">
-            <img class="w-full h-48 object-cover" [src]="project.logo_path" [alt]="project.project_name + ' logo'">
-          </a>
-          <div class="p-6">
-            <h3 class="font-semibold text-lg text-gray-900">{{ project.project_name }}</h3>
-            <p class="text-gray-600">{{ project.description }}</p>
+<div class="bg-neutral-200 py-16">
+  <div class="container mx-auto px-4">
+    <h1 class="text-center py-10 text-3xl font-bold text-gray-900 sm:text-4xl">Projectes 2023-2024</h1>
+    <p class="text-center text-lg text-gray-600">
+      Llista de projectes admesos al Viver de Cellers del Penedès
+    </p>
+    <br>
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+      <div class="bg-white rounded-lg shadow-lg p-8" *ngFor="let project of projects">
+        <div class="relative overflow-hidden" [routerLink]="['/info-project' , project.id]">
+          <img class="w-full h-48 object-cover" [src]="project.logo_path" [alt]="project.project_name + ' logo'">
+          <div
+            class="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+            <button class="bg-white text-gray-900 py-2 px-6 rounded-full font-bold hover:bg-gray-300">Detalls del
+              projecte</button>
           </div>
-          <button class="mt-auto bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-            [routerLink]="['/info-project' , project.id]">
-            Més Informació
-          </button>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mt-4">{{ project.project_name }}</h3>
+        <div class="h-10">
+          <p class="text-gray-500 text-sm mt-2">{{ project.description }}</p>
+        </div>
+        <div class="flex items-center justify-between mt-4">
+          <button class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded-full font-bold"
+            [routerLink]="['/info-project' , project.id]">Més informació</button>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>

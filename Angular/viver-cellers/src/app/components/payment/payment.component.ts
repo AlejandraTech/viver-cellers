@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { loadStripe } from '@stripe/stripe-js';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PaymentService } from '../../services/payment.service';
 import { CartService } from '../../services/cart.service';
 import { Product } from 'src/app/models/Product';
@@ -23,6 +24,10 @@ export class PaymentComponent implements OnInit {
   postalCode: string = ''; // User's postal code
   cart: Product[] = []; // Array to hold items in the cart
 
+  payment!: FormGroup;
+
+  errorMessage: string = '';
+
   constructor(private paymentService: PaymentService, private cartService: CartService, private router: Router) { }
 
   ngOnInit(): void {
@@ -32,6 +37,14 @@ export class PaymentComponent implements OnInit {
     });
     // Initialize Stripe.js when component initializes
     this.initStripe();
+
+    this.payment = new FormGroup({
+      city: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$")]),
+      street: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$")]),
+      streetNumber: new FormControl('', [Validators.required, Validators.pattern(/^\d+$/)]),
+      apartmentNumber: new FormControl('', [Validators.pattern(/^\d+ \d+$/)]),
+      postalCode: new FormControl('', [Validators.required, Validators.pattern(/^\d{5}$/)]),
+    });
   }
   async initStripe() {
     // Load Stripe.js library
@@ -54,28 +67,41 @@ export class PaymentComponent implements OnInit {
       return;
     }
 
-    // Construct full address from input fields
-    const fullAddress = `${this.street} ${this.streetNumber}, ${this.apartmentNumber}, ${this.postalCode}, ${this.city}`;
+    if (this.payment.valid) {
+      this.city = this.payment.value.city;
+      this.street = this.payment.value.street;
+      this.streetNumber = this.payment.value.streetNumber;
+      this.apartmentNumber = this.payment.value.apartmentNumber;
+      this.postalCode = this.payment.value.postalCode;
 
-    // Prepare data for the order
-    const orderData = {
-      token: token.id,
-      address: fullAddress,
-      items: this.cart.map(item => ({ id: item.id, quantity: item.quantity })),
-      total: this.cart.reduce((total, product) => total + product.price * product.quantity, 0)
-    };
-
-    // Process the payment using the payment service
-    this.paymentService.processPayment(orderData).subscribe({
-      next: (res) => {
-        console.log('Payment successful', res);
-        // Clear the cart and navigate to the order confirmation page
-        this.cartService.clearCart();
-        this.router.navigate(['/user_order']);
-      },
-      error: (err) => {
-        console.error('Payment error:', err);
+      // Construct full address from input fields
+      let fullAddress = `${this.street} ${this.streetNumber}, ${this.postalCode}, ${this.city}`;
+      if (this.apartmentNumber.trim() !== '') {
+        fullAddress += `, ${this.apartmentNumber}`;
       }
-    });
+
+      // Prepare data for the order
+      const orderData = {
+        token: token.id,
+        address: fullAddress,
+        items: this.cart.map(item => ({ id: item.id, quantity: item.quantity })),
+        total: this.cart.reduce((total, product) => total + product.price * product.quantity, 0)
+      };
+
+      // Process the payment using the payment service
+      this.paymentService.processPayment(orderData).subscribe({
+        next: (res) => {
+          console.log('Payment successful', res);
+          // Clear the cart and navigate to the order confirmation page
+          this.cartService.clearCart();
+          this.router.navigate(['/user_order']);
+        },
+        error: (err) => {
+          console.error('Payment error:', err);
+        }
+      });
+    } else {
+      this.errorMessage = `S'ha produït un error en realitzar el pagament de la compra`;
+    }
   }
 }

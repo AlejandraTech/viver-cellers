@@ -1,7 +1,7 @@
 <section class="bg-neutral-200 dark:bg-neutral-700">
   <div class="container h-full p-10">
     <div *ngFor="let order of orders" class="mb-8 p-4 bg-white shadow-lg rounded-lg">
-      <h3 class="text-lg font-bold mb-2">Pedido ID: {{ order.id }}</h3>
+      <h3 class="text-lg font-bold mb-2">Comanda ID: {{ order.id }}</h3>
 
       <!-- Status Progress -->
       <div class="mt-4 relative">
@@ -55,7 +55,7 @@
       <!-- Order Details -->
       <div class="mt-4">
         <p class="text-gray-700">Total: {{ order.price }}€</p>
-        <p class="text-gray-700">Dirección: {{ order.address }}</p>
+        <p class="text-gray-700">Direcció: {{ order.address }}</p>
       </div>
     </div>
   </div>

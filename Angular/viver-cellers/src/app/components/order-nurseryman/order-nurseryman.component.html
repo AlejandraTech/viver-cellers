@@ -27,11 +27,11 @@
       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
-            <th class="px-6 py-3">Nombre de Usuario</th>
-            <th class="px-6 py-3">Dirección</th>
-            <th class="px-6 py-3">Precio</th>
-            <th class="px-6 py-3">Estado</th>
-            <th class="px-6 py-3">Ver Detalles</th>
+            <th class="px-6 py-3">Nom d'Usuari</th>
+            <th class="px-6 py-3">Direcció</th>
+            <th class="px-6 py-3">Preu</th>
+            <th class="px-6 py-3">Estat</th>
+            <th class="px-6 py-3">Mostrar Detalls</th>
             <th class="px-6 py-3">Modificar</th>
           </tr>
         </thead>
@@ -79,9 +79,9 @@
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead>
             <tr>
-              <th class="px-6 py-3">Producto</th>
-              <th class="px-6 py-3">Cantidad</th>
-              <th class="px-6 py-3">Precio Producto</th>
+              <th class="px-6 py-3">Producte</th>
+              <th class="px-6 py-3">Quantitat</th>
+              <th class="px-6 py-3">Preu Producte</th>
             </tr>
           </thead>
           <tbody>
@@ -97,16 +97,16 @@
     <!-- Form to modify order -->
     <div *ngIf="isModifyFormVisible && selectedOrder" class="mt-4">
       <form [formGroup]="modifyOrderForm" class="bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4">
-        <h2 class="text-lg font-semibold mb-4 text-center">Modificar Orden</h2>
+        <h2 class="text-lg font-semibold mb-4 text-center">Modificar Comanda</h2>
         <div>
-          <label for="status" class="block text-sm font-bold mb-2 text-gray-700">Estado del Pedido</label>
+          <label for="status" class="block text-sm font-bold mb-2 text-gray-700">Estat Comanda</label>
           <select formControlName="status"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             <option *ngFor="let status of statuses" [value]="status.id">{{ status.name }}</option>
           </select>
           <div *ngIf="modifyOrderForm.get('status')?.errors?.['required'] && modifyOrderForm.get('status')?.touched"
             class="text-red-500 text-xs italic">
-            Por favor, seleccione un estado.
+            Seleccioneu un estat.
           </div>
         </div>
 
@@ -136,10 +136,10 @@
         <div class="mt-6 flex justify-center items-center space-x-4">
           <button type="button"
             class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            (click)="onSubmit()" [disabled]="modifyOrderForm.invalid">Modificar Orden</button>
+            (click)="onSubmit()" [disabled]="modifyOrderForm.invalid">Modificar Comanda</button>
           <button type="button"
             class="bg-white hover:bg-gray-100 text-red-500 font-bold py-2 px-4 rounded border border-red-500 focus:outline-none focus:shadow-outline"
-            (click)="cancelar()">Cancelar</button>
+            (click)="cancelar()">Cancel·lar</button>
         </div>
       </form>
     </div>

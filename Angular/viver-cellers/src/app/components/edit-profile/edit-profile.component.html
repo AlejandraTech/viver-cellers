@@ -122,6 +122,15 @@
                     this.profileForm.get('password')?.touched" class="text-red-500 text-xs italic">
                       Aquest camp només pot contenir com a mínim 8 caràcters.
                     </div>
+
+                    <!-- Pattern -->
+                    <div
+                      *ngIf="this.profileForm.get('password')?.errors?.['pattern'] && this.profileForm.get('password')?.touched"
+                      class="text-red-500 text-xs italic">
+                      La contrasenya ha de tenir almenys un dígit, almenys una minúscula, almenys una majúscula i
+                      almenys un
+                      caracter especial.
+                    </div>
                   </div>
 
                   <!-- Success Message -->

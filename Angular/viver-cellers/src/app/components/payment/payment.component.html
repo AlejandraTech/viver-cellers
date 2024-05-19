@@ -4,27 +4,123 @@
   <div id="card-element" class="bg-gray-200 p-4 mb-4"></div>
   <div id="card-errors" role="alert" class="text-red-500 mb-4"></div>
 
-  <!-- Angular Template for Address Inputs -->
+  <!-- Form Address Inputs -->
   <div class="mb-4">
-    <label class="block text-gray-700">Detalls de l'Adreça d'enviament:</label>
+    <label class="block text-gray-700 mb-4">Detalls de l'Adreça d'enviament:</label>
 
-    <input type="text" placeholder="Població" [(ngModel)]="city"
-      class="w-full p-2 border border-gray-300 rounded-md shadow-sm mb-2">
+    <form [formGroup]="payment" (ngSubmit)="processPayment()">
+      <!-- city input -->
+      <div class="form-group relative mb-4" data-twe-input-wrapper-init>
+        <label for="city" class="block text-gray-700 text-sm font-bold mb-2">Població
+        </label>
+        <input type="text" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+          placeholder="Població" formControlName="city" />
 
-    <input type="text" placeholder="Carrer" [(ngModel)]="street"
-      class="w-full p-2 border border-gray-300 rounded-md shadow-sm mb-2">
+        <!-- This field is required -->
+        <div *ngIf="this.payment.get('city')?.errors?.['required'] &&
+          this.payment.get('city')?.touched" class="text-red-500 text-xs italic">
+          Aquest camp és obligatori.
+        </div>
 
-    <input type="text" placeholder="Número Portal" [(ngModel)]="streetNumber"
-      class="w-full p-2 border border-gray-300 rounded-md shadow-sm mb-2">
+        <!-- MinLength -->
+        <div *ngIf="this.payment.get('city')?.errors?.['minlength'] &&
+        this.payment.get('city')?.touched" class="text-red-500 text-xs italic">
+          Aquest camp només pot contenir com a mínim 3 caràcters.
+        </div>
 
-    <input type="text" placeholder="Número Pis i Porta" [(ngModel)]="apartmentNumber"
-      class="w-full p-2 border border-gray-300 rounded-md shadow-sm mb-2">
+        <!-- Only letters -->
+        <div *ngIf="this.payment.get('city')?.errors?.['pattern'] &&
+        this.payment.get('city')?.touched" class="text-red-500 text-xs italic">
+          Només s'accepten lletres.
+        </div>
+      </div>
 
-    <input type="text" placeholder="Codi Postal" [(ngModel)]="postalCode"
-      class="w-full p-2 border border-gray-300 rounded-md shadow-sm mb-2">
+      <!-- street input -->
+      <div class="form-group relative mb-4" data-twe-input-wrapper-init>
+        <label for="street" class="block text-gray-700 text-sm font-bold mb-2">Carrer
+        </label>
+        <input type="text" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+          placeholder="Carrer" formControlName="street" />
+
+        <!-- This field is required -->
+        <div *ngIf="this.payment.get('street')?.errors?.['required'] &&
+        this.payment.get('street')?.touched" class="text-red-500 text-xs italic">
+          Aquest camp és obligatori.
+        </div>
+
+        <!-- MinLength -->
+        <div *ngIf="this.payment.get('street')?.errors?.['minlength'] &&
+        this.payment.get('street')?.touched" class="text-red-500 text-xs italic">
+          Aquest camp només pot contenir com a mínim 3 caràcters.
+        </div>
+
+        <!-- Only letters -->
+        <div *ngIf="this.payment.get('street')?.errors?.['pattern'] &&
+            this.payment.get('street')?.touched" class="text-red-500 text-xs italic">
+          Només s'accepten lletres.
+        </div>
+      </div>
+
+      <!-- streetNumber input -->
+      <div class="form-group relative mb-4" data-twe-input-wrapper-init>
+        <label for="streetNumber" class="block text-gray-700 text-sm font-bold mb-2">Número portal
+        </label>
+        <input type="text" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+          placeholder="Número portal" formControlName="streetNumber" />
+
+        <!-- This field is required -->
+        <div *ngIf="this.payment.get('streetNumber')?.errors?.['required'] &&
+          this.payment.get('streetNumber')?.touched" class="text-red-500 text-xs italic">
+          Aquest camp és obligatori.
+        </div>
+
+        <!-- Only numbers -->
+        <div *ngIf="this.payment.get('streetNumber')?.errors?.['pattern'] && this.payment.get('streetNumber')?.touched"
+          class="text-red-500 text-xs italic">
+          Només s'accepten números.
+        </div>
+      </div>
+
+      <!-- apartmentNumber input -->
+      <div class="form-group relative mb-4" data-twe-input-wrapper-init>
+        <label for="apartmentNumber" class="block text-gray-700 text-sm font-bold mb-2">Número pis i porta
+        </label>
+        <input type="text" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+          placeholder="Número pis i porta" formControlName="apartmentNumber" />
+
+        <!-- Pattern -->
+        <div
+          *ngIf="this.payment.get('apartmentNumber')?.errors?.['pattern'] && this.payment.get('apartmentNumber')?.touched"
+          class="text-red-500 text-xs italic">
+          El número d'apartaments no té el format correcte. [Num][][Num]
+        </div>
+      </div>
+
+      <!-- postalCode input -->
+      <div class="form-group relative mb-4" data-twe-input-wrapper-init>
+
+        <label for="postalCode" class="block text-gray-700 text-sm font-bold mb-2">Codi postal</label>
+        <input type="text" formControlName="postalCode"
+          class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm" placeholder="Codi postal">
+
+        <!-- This field is required -->
+        <div *ngIf="this.payment.get('postalCode')?.errors?.['required'] &&
+        this.payment.get('postalCode')?.touched" class="text-red-500 text-xs italic">
+          Aquest camp és obligatori.
+        </div>
+
+        <!-- Pattern -->
+        <div *ngIf="this.payment.get('postalCode')?.errors?.['pattern'] &&
+         this.payment.get('postalCode')?.touched" class="text-red-500 text-xs italic">
+          Codi postal incorrecte
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="payment.invalid"
+        class="w-full bg-red-500 text-white p-2 rounded hover:bg-red-600">Realitzar
+        Pagament</button>
+
+    </form>
   </div>
-
-  <!-- Submit Button -->
-  <button (click)="processPayment()" class="w-full bg-red-500 text-white p-2 rounded hover:bg-red-600">Realitzar
-    Pagament</button>
 </div>
