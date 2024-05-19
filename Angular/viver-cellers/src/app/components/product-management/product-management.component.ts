@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
-import { Product } from 'src/app/models/Product';
 import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
@@ -80,13 +79,13 @@ export class ProductManagementComponent {
       ]),
       type_wine: new FormControl('', [
         Validators.required,
-        Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$"),
+        Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚàèìòùÀÈÌÒÙçÇ'° ]+$"),
         Validators.minLength(2),
         Validators.maxLength(150)
       ]),
       type_variety: new FormControl('', [
         Validators.required,
-        Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$"),
+        Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚàèìòùÀÈÌÒÙçÇ'° ]+$"),
         Validators.minLength(2),
         Validators.maxLength(150)
       ]),
@@ -239,8 +238,8 @@ export class ProductManagementComponent {
         grade_alcohol: new FormControl(selectedProduct.grade_alcohol, [Validators.required, Validators.pattern(/^\d+\.\d{2}$/), Validators.min(0)]),
         iva: new FormControl(selectedProduct.iva, [Validators.required, Validators.pattern(/^\d+$/), Validators.min(0)]),
         price: new FormControl(selectedProduct.price, [Validators.required, Validators.pattern(/^\d+\.\d{2}$/), Validators.min(0)]),
-        type_wine: new FormControl(selectedProduct.type_wine.category, [Validators.required, Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$"), Validators.minLength(2), Validators.maxLength(150)]),
-        type_variety: new FormControl(selectedProduct.type_variety.variety, [Validators.required, Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$"), Validators.minLength(2), Validators.maxLength(150)]),
+        type_wine: new FormControl(selectedProduct.type_wine.category, [Validators.required, Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚàèìòùÀÈÌÒÙçÇ'° ]+$"), Validators.minLength(2), Validators.maxLength(150)]),
+        type_variety: new FormControl(selectedProduct.type_variety.variety, [Validators.required, Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚàèìòùÀÈÌÒÙçÇ'° ]+$"), Validators.minLength(2), Validators.maxLength(150)]),
         stock: new FormControl(selectedProduct.stock, [Validators.required, Validators.pattern(/^\d+$/), Validators.min(0)]),
         project_name: new FormControl(selectedProduct.project.id, [Validators.required]),
       });
@@ -254,8 +253,8 @@ export class ProductManagementComponent {
         grade_alcohol: new FormControl('', [Validators.required, Validators.pattern(/^\d+\.\d{2}$/), Validators.min(0)]),
         iva: new FormControl('', [Validators.required, Validators.pattern(/^\d+$/), Validators.min(0)]),
         price: new FormControl('', [Validators.required, Validators.pattern(/^\d+\.\d{2}$/), Validators.min(0)]),
-        type_wine: new FormControl('', [Validators.required, Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$"), Validators.minLength(2), Validators.maxLength(150)]),
-        type_variety: new FormControl('', [Validators.required, Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$"), Validators.minLength(2), Validators.maxLength(150)]),
+        type_wine: new FormControl('', [Validators.required, Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚàèìòùÀÈÌÒÙçÇ'° ]+$"), Validators.minLength(2), Validators.maxLength(150)]),
+        type_variety: new FormControl('', [Validators.required, Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚàèìòùÀÈÌÒÙçÇ'° ]+$"), Validators.minLength(2), Validators.maxLength(150)]),
         stock: new FormControl('', [Validators.required, Validators.pattern(/^\d+$/), Validators.min(0)]),
         project_name: new FormControl('', [Validators.required]),
       });
