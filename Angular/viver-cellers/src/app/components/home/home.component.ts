@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/models/Project';
+import { CookiesService } from 'src/app/services/cookies.service';
 import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
@@ -9,11 +10,16 @@ import { ProjectService } from 'src/app/services/project.service';
 })
 export class HomeComponent implements OnInit {
   projects: Project[] = [];
+  showBanner: boolean = true;
 
-  constructor(private projectService: ProjectService) { }
+  constructor(private projectService: ProjectService, private myCookieService: CookiesService) { }
 
   ngOnInit(): void {
     this.loadProjects();
+
+    if (this.myCookieService.checkCookie('cookieConsent')) {
+      this.showBanner = false;
+    }
   }
 
   loadProjects(): void {
@@ -25,5 +31,19 @@ export class HomeComponent implements OnInit {
         console.error('Error fetching products: ', error);
       }
     );
+  }
+
+  /**
+   * They are called cookies and depending on whether all or the necessary ones are accepted,
+   * the method is executed
+   */
+  acceptAllCookies(): void {
+    this.myCookieService.acceptAllCookiesAndCaptureData();
+    this.showBanner = false;
+  }
+
+  acceptNecessaryCookies(): void {
+    this.myCookieService.acceptNecessaryCookiesAndCaptureData();
+    this.showBanner = false;
   }
 }

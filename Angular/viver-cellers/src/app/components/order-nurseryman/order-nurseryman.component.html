@@ -23,15 +23,18 @@
         </svg>
       </div>
     </div>
+    <br>
+
+    <!-------------------------------------------------------------------------------------->
     <div class="overflow-x-auto rounded-lg shadow-md">
       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
-            <th class="px-6 py-3">Nom d'Usuari</th>
+            <th class="px-6 py-3">Nom d'usuari</th>
             <th class="px-6 py-3">Direcció</th>
             <th class="px-6 py-3">Preu</th>
             <th class="px-6 py-3">Estat</th>
-            <th class="px-6 py-3">Mostrar Detalls</th>
+            <th class="px-6 py-3">Veure detalls</th>
             <th class="px-6 py-3">Modificar</th>
           </tr>
         </thead>
@@ -39,8 +42,10 @@
           <tr *ngFor="let order of orders; let i = index" class="bg-white dark:bg-gray-800">
             <td class="px-6 py-4">{{ order.name }}</td>
             <td class="px-6 py-4">{{ order.address }}</td>
-            <td class="px-6 py-4">{{ order.price }}</td>
-            <td class="px-6 py-4">{{ order.order_status_id }}</td>
+            <td class="px-6 py-4">{{ order.price }}€</td>
+            <td class="px-6 py-4">
+              <span [ngClass]="getOrderStatusClass(order.order_status_id)">{{ order.order_status_id }}</span>
+            </td>
             <td class="px-6 py-4">
               <div class="inline-block align-middle border border-red-600 rounded-full p-1 hover:bg-red-100">
                 <button (click)="showDetails(order)">
@@ -81,14 +86,14 @@
             <tr>
               <th class="px-6 py-3">Producte</th>
               <th class="px-6 py-3">Quantitat</th>
-              <th class="px-6 py-3">Preu Producte</th>
+              <th class="px-6 py-3">Preu producte</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let detail of selectedOrder.order_lines">
               <td class="px-6 py-4">{{ detail.product.name }}</td>
               <td class="px-6 py-4">{{ detail.quantity }}</td>
-              <td class="px-6 py-4">{{ detail.product.price }}</td>
+              <td class="px-6 py-4">{{ detail.product.price }}€</td>
             </tr>
           </tbody>
         </table>
@@ -97,16 +102,16 @@
     <!-- Form to modify order -->
     <div *ngIf="isModifyFormVisible && selectedOrder" class="mt-4">
       <form [formGroup]="modifyOrderForm" class="bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4">
-        <h2 class="text-lg font-semibold mb-4 text-center">Modificar Comanda</h2>
+        <h2 class="text-lg font-semibold mb-4 text-center">Modificar Ordre</h2>
         <div>
-          <label for="status" class="block text-sm font-bold mb-2 text-gray-700">Estat Comanda</label>
+          <label for="status" class="block text-sm font-bold mb-2 text-gray-700">Estat de la comanda</label>
           <select formControlName="status"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             <option *ngFor="let status of statuses" [value]="status.id">{{ status.name }}</option>
           </select>
           <div *ngIf="modifyOrderForm.get('status')?.errors?.['required'] && modifyOrderForm.get('status')?.touched"
             class="text-red-500 text-xs italic">
-            Seleccioneu un estat.
+            Si us plau, seleccioni un estat.
           </div>
         </div>
 
@@ -136,10 +141,10 @@
         <div class="mt-6 flex justify-center items-center space-x-4">
           <button type="button"
             class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            (click)="onSubmit()" [disabled]="modifyOrderForm.invalid">Modificar Comanda</button>
+            (click)="onSubmit()" [disabled]="modifyOrderForm.invalid">Modificar Ordre</button>
           <button type="button"
             class="bg-white hover:bg-gray-100 text-red-500 font-bold py-2 px-4 rounded border border-red-500 focus:outline-none focus:shadow-outline"
-            (click)="cancelar()">Cancel·lar</button>
+            (click)="cancelar()">Cancelar</button>
         </div>
       </form>
     </div>

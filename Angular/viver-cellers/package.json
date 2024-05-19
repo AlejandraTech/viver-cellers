@@ -23,6 +23,7 @@
     "@stripe/stripe-js": "^3.4.0",
     "chart.js": "^4.4.3",
     "flowbite": "^2.3.0",
+    "ngx-cookie-service": "^17.1.0",
     "rxjs": "~7.8.0",
     "stripe-angular": "^1.9.3",
     "tslib": "^2.3.0",

@@ -153,6 +153,10 @@ export class UserManagementComponent implements OnInit {
             this.getUsers();
             this.successMessage = 'Usuari afegit amb èxit.';
             this.errorMessage = '';
+            this.adduser.controls['email'].reset();
+            this.adduser.controls['password'].reset();
+            this.adduser.controls['rol'].reset();
+            this.adduser.reset(); // Reset the adduser form after successful addition
           },
           error => {
             if (error.status === 422) {
@@ -177,15 +181,16 @@ export class UserManagementComponent implements OnInit {
         rol: this.modifyuser.value.rol,
         project_id_fk: this.modifyuser.value.rol === 'nurseryman' ? this.modifyuser.value.project_id_fk : null
       };
-      // Llamar al servicio para actualizar los datos del usuario
+
       this.authService.updateUser(userData, this.userId)
         .subscribe(
           response => {
-            this.getUsers(); // Actualizar la lista de usuarios después de la modificación
-            this.isModifyFormVisible = false; // Ocultar el formulario de modificación
-            this.isAddFormVisible = true; // Mostrar el formulario de adición
+            this.getUsers();
+            this.isModifyFormVisible = false;
+            this.isAddFormVisible = true;
             this.successMessage = 'Usuari modificat amb èxit.';
             this.errorMessage = '';
+            this.modifyuser.reset();
           },
           error => {
             this.errorMessage = `S'ha produït un error mentre es modificava l'usuari. Si us plau, intenta-ho de nou més tard.`;

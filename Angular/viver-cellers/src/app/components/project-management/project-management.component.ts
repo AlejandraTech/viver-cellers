@@ -89,6 +89,7 @@ export class ProjectManagementComponent implements OnInit {
             this.getProjects(); // Update the list of projects after addition
             this.successMessage = 'Projecte afegit amb èxit.';
             this.errorMessage = '';
+            this.addproject.reset();
           },
           error => {
             // Handle errors related to adding projects
