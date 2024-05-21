@@ -1,5 +1,7 @@
-// Performing operations related to authentication and user management with linkage to Laravel.
-
+/**
+ * @author: Alejandra Paz , Angel Rivera, Julia Prieto
+ * Performing operations related to authentication and user management with linkage to Laravel.
+ */
 import { Injectable } from '@angular/core';
 import {
   HttpClient,
@@ -90,6 +92,11 @@ export class AuthService {
       .pipe(catchError(this.errorHandler));
   }
 
+  /**
+   *  Create HTTP headers with the Authorization token from local storage.
+   *  Make an HTTP GET request to the API endpoint /user with the headers.
+   *  Use the map operator to transform the response, extracting
+   */
   getUser(): Observable<any> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${localStorage.getItem('access_token')}`,

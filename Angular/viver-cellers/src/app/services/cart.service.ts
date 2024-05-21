@@ -1,3 +1,7 @@
+/**
+ * @author: Alejandra Paz , Angel Rivera, Julia Prieto
+ * Performing CRUD operations of cart with Laravel binding.
+ */
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Product } from '../models/Product';

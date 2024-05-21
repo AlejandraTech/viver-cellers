@@ -1,6 +1,6 @@
-<section class="bg-neutral-200 dark:bg-neutral-700">
+<section class="bg-neutral-200 dark:bg-neutral-700 selection:bg-gray-300">
   <div class="container mx-auto p-6">
-    <!-- Projec table -->
+    <!-- Project table -->
     <div class="overflow-x-auto rounded-lg shadow-md">
       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-center text-xs uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -51,9 +51,9 @@
 
     <!-- Form to add project -->
     <div class="mt-4" *ngIf="isAddFormVisible">
-      <form class="bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4" [formGroup]="addproject">
-        <div class="flex justify-center items-center">
-          <div class="justify-center items-center inline-block align-middle border border-red-600 rounded-full p-1">
+      <form class="bg-white dark:bg-gray-800 rounded shadow-md px-8 pt-6 pb-8 mb-4" [formGroup]="addproject">
+        <div class="flex justify-center items-center mb-4">
+          <div class="border border-red-600 rounded-full p-1">
             <img
               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAP9JREFUSEvtlMsRgjAQQF8cC9Ei4KyViJWolaCVyM0ZsAftJLryGSDLJGGGm7my7Nu83Y1h4WMWzs8f4DWsKnrAZg2ZhYNkMHBL4OzNpgSogAruwK4fb+GdwjYW4gBKyAzkE4n2CRQxEAdQ1SpOE0kumqoKrMQnP5vDowFEjShyjoVjCtfxhyhA02BRFNyDKIBU106RqJLmGngnsO9X3iad6kera/YmzwZUtRppcqdIbrGCwtb74ExRsCLPiLY2nEkKAjSVq9OjeB7sQxDgCflXRRa4RMW46VP/dU0u4WVgEwKIeTY6gG8qxmBta7XiZo9pyE2blzg0dF7c/wZebx/ln0IZaZTTHgAAAABJRU5ErkJggg=="
               alt="Afegir" class="rounded-full" />
@@ -64,57 +64,44 @@
 
           <!-- Name input -->
           <div>
-            <label class="block text-sm font-bold mb-2 text-gray-700" for="project_name">Nom</label>
+            <label class="block text-sm font-bold mb-2 text-gray-700 dark:text-gray-300" for="project_name">Nom</label>
             <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
               type="text" placeholder="Nom" formControlName="project_name" />
-
-            <!-- This field is required -->
             <div
               *ngIf="this.addproject.get('project_name')?.errors?.['required'] && this.addproject.get('project_name')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp és obligatori.
             </div>
-
-            <!-- MaxLength -->
             <div
               *ngIf="this.addproject.get('project_name')?.errors?.['maxlength'] && this.addproject.get('project_name')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp només pot contenir un màxim de 50 caràcters.
             </div>
-
-            <!-- MinLength -->
             <div
               *ngIf="this.addproject.get('project_name')?.errors?.['minlength'] && this.addproject.get('project_name')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp només pot contenir com a mínim 2 caràcters.
             </div>
-
           </div>
 
-          <!-- definition input -->
+          <!-- Definition input -->
           <div>
-            <div class="max-w-sm">
-              <label class="block text-sm font-bold mb-2 text-gray-700" for="definition">Definició</label>
-              <textarea
-                class="shadow appearance-none border rounded w-full lg:w-full py-8 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="definició" formControlName="definition"></textarea>
-            </div>
-
-            <!-- This field is required -->
-            <div *ngIf="this.addproject.get('definition')?.errors?.['required'] &&
-              this.addproject.get('definition')?.touched" class="text-red-500 text-xs italic">
+            <label class="block text-sm font-bold mb-2 text-gray-700 dark:text-gray-300"
+              for="definition">Definició</label>
+            <textarea
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Definició" formControlName="definition"></textarea>
+            <div
+              *ngIf="this.addproject.get('definition')?.errors?.['required'] && this.addproject.get('definition')?.touched"
+              class="text-red-500 text-xs italic">
               Aquest camp és obligatori.
             </div>
-
-            <!-- MaxLength -->
             <div
               *ngIf="this.addproject.get('definition')?.errors?.['maxlength'] && this.addproject.get('definition')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp només pot contenir un màxim de 150 caràcters.
             </div>
-
-            <!-- MinLength -->
             <div
               *ngIf="this.addproject.get('definition')?.errors?.['minlength'] && this.addproject.get('definition')?.touched"
               class="text-red-500 text-xs italic">
@@ -122,30 +109,23 @@
             </div>
           </div>
 
-          <!-- description input -->
+          <!-- Description input -->
           <div>
-            <div class="max-w-sm">
-              <label class="block text-sm font-bold mb-2 text-gray-700" for="description">Descripció</label>
-              <textarea
-                class="shadow appearance-none border rounded w-full lg:w-full py-8 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="descripció" formControlName="description"></textarea>
-            </div>
-
-            <!-- This field is required -->
+            <label class="block text-sm font-bold mb-2 text-gray-700 dark:text-gray-300"
+              for="description">Descripció</label>
+            <textarea
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Descripció" formControlName="description"></textarea>
             <div
               *ngIf="this.addproject.get('description')?.errors?.['required'] && this.addproject.get('description')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp és obligatori.
             </div>
-
-            <!-- MaxLength -->
             <div
               *ngIf="this.addproject.get('description')?.errors?.['maxlength'] && this.addproject.get('description')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp només pot contenir un màxim de 100 caràcters.
             </div>
-
-            <!-- MinLength -->
             <div
               *ngIf="this.addproject.get('description')?.errors?.['minlength'] && this.addproject.get('description')?.touched"
               class="text-red-500 text-xs italic">
@@ -153,79 +133,67 @@
             </div>
           </div>
 
-          <!-- stories input -->
+          <!-- Stories input -->
           <div>
-            <div class="max-w-sm">
-              <label class="block text-sm font-bold mb-2 text-gray-700" for="stories">Història</label>
-              <textarea
-                class="shadow appearance-none border rounded w-full lg:w-full py-8 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="història" formControlName="stories"></textarea>
-            </div>
-
-            <!-- This field is required -->
+            <label class="block text-sm font-bold mb-2 text-gray-700 dark:text-gray-300" for="stories">Història</label>
+            <textarea
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Història" formControlName="stories"></textarea>
             <div *ngIf="this.addproject.get('stories')?.errors?.['required'] && this.addproject.get('stories')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp és obligatori.
             </div>
-
-            <!-- MaxLength -->
             <div
               *ngIf="this.addproject.get('stories')?.errors?.['maxlength'] && this.addproject.get('stories')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp només pot contenir un màxim de 150 caràcters.
             </div>
-
-            <!-- MinLength -->
             <div
               *ngIf="this.addproject.get('stories')?.errors?.['minlength'] && this.addproject.get('stories')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp només pot contenir com a mínim 10 caràcters.
             </div>
           </div>
-
-          <div class="mt-6">
-            <button (click)="submitAdd()" routerlink="/register"
-              class="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="button" [disabled]="addproject.invalid">
-              Afegir projecte
-            </button>
-          </div>
-
-          <!-- Success Message -->
-          <div class="bg-green-50 border border-green-400 rounded text-green-800 text-sm p-4 flex justify-between"
-            *ngIf="successMessage">
-            <div>
-              <div class="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                    clip-rule="evenodd" />
-                </svg>
-                <p>
-                  <span class="font-bold">Info:</span>
-                  {{ successMessage }}
-                </p>
-              </div>
-            </div>
-            <div>
-              <svg (click)="closeSuccessMessage()" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer"
-                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </div>
-          </div>
-
-          <!-- Error message -->
-          <div class="text-red-500 text-sm mt-4" *ngIf="errorMessage">{{ errorMessage }}</div>
         </div>
+
+        <div class="mt-6">
+          <button (click)="submitAdd()" routerlink="/register"
+            class="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="button" [disabled]="addproject.invalid">
+            Afegir projecte
+          </button>
+        </div>
+
+        <!-- Success Message -->
+        <div class="bg-green-50 border border-green-400 rounded text-green-800 text-sm p-4 flex justify-between"
+          *ngIf="successMessage">
+          <div class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                clip-rule="evenodd" />
+            </svg>
+            <p>
+              <span class="font-bold">Info:</span>
+              {{ successMessage }}
+            </p>
+          </div>
+          <svg (click)="closeSuccessMessage()" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer"
+            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </div>
+
+        <!-- Error message -->
+        <div class="text-red-500 text-sm mt-4" *ngIf="errorMessage">{{ errorMessage }}</div>
       </form>
     </div>
 
     <!-- Form to modify project -->
     <div class="mt-4" *ngIf="isModifyFormVisible">
-      <form class="bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4" [formGroup]="modifyproject">
-        <div class="flex justify-center items-center">
-          <div class="justify-center items-center inline-block align-middle border border-red-600 rounded-full p-1">
+      <form class="bg-white dark:bg-gray-800 rounded shadow-md px-8 pt-6 pb-8 mb-4" [formGroup]="modifyproject">
+        <div class="flex justify-center items-center mb-4">
+          <div class="border border-red-600 rounded-full p-1">
             <svg class="h-6 w-6 text-red-700" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
               stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" />
@@ -240,58 +208,44 @@
 
           <!-- Name input -->
           <div>
-            <label class="block text-sm font-bold mb-2 text-gray-700" for="project_name">Nom</label>
+            <label class="block text-sm font-bold mb-2 text-gray-700 dark:text-gray-300" for="project_name">Nom</label>
             <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
               type="text" placeholder="Nom" formControlName="project_name" />
-
-            <!-- This field is required -->
             <div
               *ngIf="this.modifyproject.get('project_name')?.errors?.['required'] && this.modifyproject.get('project_name')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp és obligatori.
             </div>
-
-            <!-- MaxLength -->
             <div
               *ngIf="this.modifyproject.get('project_name')?.errors?.['maxlength'] && this.modifyproject.get('project_name')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp només pot contenir un màxim de 50 caràcters.
             </div>
-
-            <!-- MinLength -->
             <div
               *ngIf="this.modifyproject.get('project_name')?.errors?.['minlength'] && this.modifyproject.get('project_name')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp només pot contenir com a mínim 2 caràcters.
             </div>
-
           </div>
 
-          <!-- definition input -->
+          <!-- Definition input -->
           <div>
-            <div class="max-w-sm">
-              <label class="block text-sm font-bold mb-2 text-gray-700" for="definition">Definició</label>
-              <textarea
-                class="shadow appearance-none border rounded w-full lg:w-full py-8 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="definició" formControlName="definition"></textarea>
-            </div>
-
-            <!-- This field is required -->
+            <label class="block text-sm font-bold mb-2 text-gray-700 dark:text-gray-300"
+              for="definition">Definició</label>
+            <textarea
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Definició" formControlName="definition"></textarea>
             <div
               *ngIf="this.modifyproject.get('definition')?.errors?.['required'] && this.modifyproject.get('definition')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp és obligatori.
             </div>
-
-            <!-- MaxLength -->
             <div
               *ngIf="this.modifyproject.get('definition')?.errors?.['maxlength'] && this.modifyproject.get('definition')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp només pot contenir un màxim de 150 caràcters.
             </div>
-
-            <!-- MinLength -->
             <div
               *ngIf="this.modifyproject.get('definition')?.errors?.['minlength'] && this.modifyproject.get('definition')?.touched"
               class="text-red-500 text-xs italic">
@@ -299,30 +253,23 @@
             </div>
           </div>
 
-          <!-- description input -->
+          <!-- Description input -->
           <div>
-            <div class="max-w-sm">
-              <label class="block text-sm font-bold mb-2 text-gray-700" for="description">Descripció</label>
-              <textarea
-                class="shadow appearance-none border rounded w-full lg:w-full py-8 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="descripció" formControlName="description"></textarea>
-            </div>
-
-            <!-- This field is required -->
+            <label class="block text-sm font-bold mb-2 text-gray-700 dark:text-gray-300"
+              for="description">Descripció</label>
+            <textarea
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Descripció" formControlName="description"></textarea>
             <div
               *ngIf="this.modifyproject.get('description')?.errors?.['required'] && this.modifyproject.get('description')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp és obligatori.
             </div>
-
-            <!-- MaxLength -->
             <div
               *ngIf="this.modifyproject.get('description')?.errors?.['maxlength'] && this.modifyproject.get('description')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp només pot contenir un màxim de 100 caràcters.
             </div>
-
-            <!-- MinLength -->
             <div
               *ngIf="this.modifyproject.get('description')?.errors?.['minlength'] && this.modifyproject.get('description')?.touched"
               class="text-red-500 text-xs italic">
@@ -330,77 +277,65 @@
             </div>
           </div>
 
-          <!-- stories input -->
+          <!-- Stories input -->
           <div>
-            <div class="max-w-sm">
-              <label class="block text-sm font-bold mb-2 text-gray-700" for="stories">Història</label>
-              <textarea
-                class="shadow appearance-none border rounded w-full lg:w-full py-8 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="història" formControlName="stories"></textarea>
-            </div>
-
-            <!-- This field is required -->
+            <label class="block text-sm font-bold mb-2 text-gray-700 dark:text-gray-300" for="stories">Història</label>
+            <textarea
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Història" formControlName="stories"></textarea>
             <div
               *ngIf="this.modifyproject.get('stories')?.errors?.['required'] && this.modifyproject.get('stories')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp és obligatori.
             </div>
-
-            <!-- MaxLength -->
             <div
               *ngIf="this.modifyproject.get('stories')?.errors?.['maxlength'] && this.modifyproject.get('stories')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp només pot contenir un màxim de 150 caràcters.
             </div>
-
-            <!-- MinLength -->
             <div
               *ngIf="this.modifyproject.get('stories')?.errors?.['minlength'] && this.modifyproject.get('stories')?.touched"
               class="text-red-500 text-xs italic">
               Aquest camp només pot contenir com a mínim 10 caràcters.
             </div>
           </div>
-
-          <div class="mt-6 flex justify-center items-center space-x-4">
-            <button
-              class="flex-shrink-0 w-auto bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="button" [disabled]="modifyproject.invalid" (click)="onSubmit()">
-              Modificar Projecte
-            </button>
-            <button
-              class="flex-shrink-0 w-auto bg-white hover:bg-gray-100 text-red-500 font-bold py-2 px-4 rounded border border-red-500 focus:outline-none focus:shadow-outline"
-              type="button" (click)="cancelar()">
-              Cancelar
-            </button>
-          </div>
-
-          <!-- Success Message -->
-          <div class="bg-green-50 border border-green-400 rounded text-green-800 text-sm p-4 flex justify-between"
-            *ngIf="successMessage">
-            <div>
-              <div class="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                    clip-rule="evenodd" />
-                </svg>
-                <p>
-                  <span class="font-bold">Info:</span>
-                  {{ successMessage }}
-                </p>
-              </div>
-            </div>
-            <div>
-              <svg (click)="closeSuccessMessage()" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer"
-                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </div>
-          </div>
-
-          <!-- Error message -->
-          <div class="text-red-500 text-sm mt-4" *ngIf="errorMessage">{{ errorMessage }}</div>
         </div>
+
+        <div class="mt-6 flex justify-center items-center space-x-4">
+          <button
+            class="w-auto bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="button" [disabled]="modifyproject.invalid" (click)="onSubmit()">
+            Modificar Projecte
+          </button>
+          <button
+            class="w-auto bg-white hover:bg-gray-100 text-red-500 font-bold py-2 px-4 rounded border border-red-500 focus:outline-none focus:shadow-outline"
+            type="button" (click)="cancelar()">
+            Cancelar
+          </button>
+        </div>
+
+        <!-- Success Message -->
+        <div class="bg-green-50 border border-green-400 rounded text-green-800 text-sm p-4 flex justify-between"
+          *ngIf="successMessage">
+          <div class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                clip-rule="evenodd" />
+            </svg>
+            <p>
+              <span class="font-bold">Info:</span>
+              {{ successMessage }}
+            </p>
+          </div>
+          <svg (click)="closeSuccessMessage()" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer"
+            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </div>
+
+        <!-- Error message -->
+        <div class="text-red-500 text-sm mt-4" *ngIf="errorMessage">{{ errorMessage }}</div>
       </form>
     </div>
   </div>

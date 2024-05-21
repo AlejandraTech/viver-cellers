@@ -1,3 +1,7 @@
+/**
+ * @author: Alejandra Paz , Angel Rivera, Julia Prieto
+ * Performing CRUD operations of product with Laravel binding.
+ */
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';

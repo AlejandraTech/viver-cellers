@@ -65,7 +65,6 @@ export class UserManagementComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.pattern("^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$")]),
       password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/)]),
       rol: new FormControl('', [Validators.required]),
-      project_id_fk: new FormControl('')
     }, { validators: this.projectRequiredIfNurseryman });
 
     // Initialize the form for modifying users
@@ -142,8 +141,7 @@ export class UserManagementComponent implements OnInit {
         dni: this.adduser.value.dni,
         email: this.adduser.value.email,
         password: this.adduser.value.password,
-        rol: this.adduser.value.rol,
-        project_id_fk: this.adduser.value.rol === 'nurseryman' ? this.adduser.value.project_id_fk : null
+        rol: this.adduser.value.rol
       };
 
       // Call the service to add the user

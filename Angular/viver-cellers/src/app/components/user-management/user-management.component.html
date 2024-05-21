@@ -1,4 +1,4 @@
-<section class="bg-neutral-200 dark:bg-neutral-700">
+<section class="bg-neutral-200 dark:bg-neutral-700 selection:bg-gray-300">
   <div class="container mx-auto p-6">
     <!-- User table -->
     <div class="overflow-x-auto rounded-lg shadow-md">
@@ -218,16 +218,6 @@
               Si us plau, seleccioni un rol.
             </div>
           </div>
-        </div>
-
-        <!-- Project dropdown for nurseryman role -->
-        <div *ngIf="adduser.get('rol')?.value === 'nurseryman'">
-          <label class="block text-sm font-bold mb-2 text-gray-700" for="project">Projecte</label>
-          <select formControlName="project_id_fk"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            <option value="">Seleccionar Projecte</option>
-            <option *ngFor="let project of projects" [value]="project.id">{{ project.project_name }}</option>
-          </select>
         </div>
 
         <div class="mt-6">

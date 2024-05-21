@@ -1,3 +1,7 @@
+/**
+ * @author: Alejandra Paz , Angel Rivera, Julia Prieto
+ *  Method for accept cookies.
+ */
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 

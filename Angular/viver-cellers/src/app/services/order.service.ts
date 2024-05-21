@@ -1,5 +1,7 @@
-// This service is used to make HTTP requests related to user orders
-
+/**
+ * @author: Alejandra Paz , Angel Rivera, Julia Prieto
+ * Performing CRUD operations of order with Laravel binding.
+ */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';

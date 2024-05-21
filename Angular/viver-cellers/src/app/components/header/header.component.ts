@@ -61,6 +61,9 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  /**
+   *Check if the logged in user is not an admin.
+   */
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
     if (this.isMenuOpen && this.isAdminMenuOpen) {
@@ -68,6 +71,9 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  /**
+   *
+   */
   toggleAdminMenu(): void {
     this.isAdminMenuOpen = !this.isAdminMenuOpen;
     if (this.isAdminMenuOpen && this.isMenuOpen) {

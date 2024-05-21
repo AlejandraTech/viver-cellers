@@ -1,3 +1,7 @@
+/**
+ * @author: Alejandra Paz , Angel Rivera, Julia Prieto
+ * Performing method of payment with Laravel binding.
+ */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 

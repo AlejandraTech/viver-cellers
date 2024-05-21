@@ -56,8 +56,23 @@ export class EditProfileComponent implements OnInit {
    * Method to submit the user modification form
    */
   onSubmit() {
+    /*
+      * Check if the profile form is valid
+      * Checks the `valid` property of the `profileForm` form to ensure that all fields meet the set validations.
+    */
     if (this.profileForm.valid) {
+      /*
+        * Call the authentication service to update the profile
+        * Calls the `updateProfile` method of the `authService` service, passing the form values ​​(`profileForm.value`).
+        * Subscribe to the profile update response.
+      */
       this.authService.updateProfile(this.profileForm.value).subscribe(
+        /*
+          * Handle successful response
+          * If the profile update is successful, this function is executed.
+          * Display a success message in the console and update `successMessage` with a success message.
+          * Clear any previous error messages by assigning an empty string to `errorMessage`.
+        */
         response => {
           console.log('Perfil actualitzat amb exit');
           this.successMessage = 'Perfil actualitzat amb exit';
