@@ -11,6 +11,7 @@ import { ProjectService } from 'src/app/services/project.service';
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
+  //Arrays
   products: Product[] = [];
   projects: Project[] = [];
   categories: any[] = [];
