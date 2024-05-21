@@ -1,0 +1,13 @@
+/* Estilos para el botón de filtros */
+button {
+  transition: background-color 0.3s ease;
+}
+
+/* Estilos para mostrar el dropdown */
+.hidden {
+  display: none;
+}
+
+.block {
+  display: block;
+}

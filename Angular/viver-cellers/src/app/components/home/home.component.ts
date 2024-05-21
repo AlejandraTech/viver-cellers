@@ -14,6 +14,13 @@ export class HomeComponent implements OnInit {
 
   constructor(private projectService: ProjectService, private myCookieService: CookiesService) { }
 
+  /**
+   * Load the projects
+   * Call the `loadProjects` method to get all the projects when the component is initialized.
+   * Check if the consent cookie exists
+   * Use the `myCookieService` service to check if the cookie 'cookieConsent' is present.
+   * If the cookie is present, set `showBanner` to `false` to hide the banner.
+   */
   ngOnInit(): void {
     this.loadProjects();
 
@@ -22,6 +29,13 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  /*
+    * Get all service projects
+    * Call the `getAllProjects` method of the `projectService` service to get all the projects.
+    * Subscribe to the service's response.
+    * If the request is successful, assign the received data to the `projects` property.
+    * If an error occurs, display an error message in the console.
+  */
   loadProjects(): void {
     this.projectService.getAllProjects().subscribe(
       (data: Project[]) => {
@@ -33,15 +47,21 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  /**
-   * They are called cookies and depending on whether all or the necessary ones are accepted,
-   * the method is executed
-   */
+  /*
+    * Accept all cookies and capture data
+    * Call the `acceptAllCookiesAndCaptureData` method of the `myCookieService` service to accept all cookies.
+    * Set `showBanner` to `false` to hide the banner after accepting all cookies.
+  */
   acceptAllCookies(): void {
     this.myCookieService.acceptAllCookiesAndCaptureData();
     this.showBanner = false;
   }
 
+  /*
+    * Accept only necessary cookies and capture data
+    * Call the `acceptNecessaryCookiesAndCaptureData` method of the `myCookieService` service to accept only necessary cookies.
+    * Set `showBanner` to `false` to hide the banner after accepting necessary cookies.
+  */
   acceptNecessaryCookies(): void {
     this.myCookieService.acceptNecessaryCookiesAndCaptureData();
     this.showBanner = false;

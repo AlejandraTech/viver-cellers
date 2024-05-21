@@ -12,13 +12,17 @@ export class InformationComponent implements OnInit {
 
   constructor(private projectService: ProjectService) { }
 
+  // Call of the method loadproject
   ngOnInit(): void {
     this.loadProjects();
   }
 
+  // Method to load all projects
   loadProjects(): void {
     this.projectService.getAllProjects().subscribe(
+      // Call the service to get all projects
       (data: Project[]) => {
+        // Assigns the data of the projects obtained to the variable `projects`
         this.projects = data;
       },
       error => {

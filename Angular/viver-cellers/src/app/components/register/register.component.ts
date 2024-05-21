@@ -9,10 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  // Represents the registration form.
   register!: FormGroup;
   errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) {
+     // Initializes the registration form with form controls and validators.
     this.register = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚàèìòùÀÈÌÒÙçÇ'° ]+$")]),
       lastname: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚàèìòùÀÈÌÒÙçÇ'° ]+$")]),
@@ -23,8 +25,11 @@ export class RegisterComponent {
     });
   }
 
+
   onSubmit(): void {
+    // Checks if the registration form is valid.
     if (this.register.valid) {
+      // Constructs the user data object from the form values.
       const userData = {
         name: this.register.value.name,
         lastname: this.register.value.lastname,
@@ -32,6 +37,7 @@ export class RegisterComponent {
         email: this.register.value.email,
         password: this.register.value.password,
       };
+       // Calls the authentication service to register the user.
       this.authService.registerUser(userData)
         .subscribe(
           response => {

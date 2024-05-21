@@ -8,16 +8,21 @@ import { ProjectService } from 'src/app/services/project.service';
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent implements OnInit {
+  // Array to store the projects fetched from the server.
   projects: Project[] = [];
 
+  // Constructor to inject the ProjectService dependency.
   constructor(private projectService: ProjectService) { }
 
+  // Lifecycle hook that runs after the component is initialized.
   ngOnInit(): void {
     this.loadProjects();
   }
 
+  // Loads the projects from the service.
   loadProjects(): void {
     this.projectService.getAllProjects().subscribe(
+      // Assigns the fetched projects to the component property.
       (data: Project[]) => {
         this.projects = data;
       },

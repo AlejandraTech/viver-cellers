@@ -62,7 +62,7 @@ export class HeaderComponent implements OnInit {
   }
 
   /**
-   *Check if the logged in user is not an admin.
+   * Check if the logged in user is not an admin.
    */
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
@@ -72,7 +72,7 @@ export class HeaderComponent implements OnInit {
   }
 
   /**
-   *
+   * Check if the logged in user is an admin.
    */
   toggleAdminMenu(): void {
     this.isAdminMenuOpen = !this.isAdminMenuOpen;
@@ -81,6 +81,12 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  /**
+   * What this method does is for the client menu (#client-menu-button),
+   * it sets the isMenuOpen variable to false, indicating that the client menu should be closed.
+   * For the administrator menu (#admin-menu-button), set the isAdminMenuOpen variable to false,
+   * indicating that the administrator menu should also be closed.
+   */
   @HostListener('document:click', ['$event'])
   clickOutside(event: any): void {
     if (!event.target.closest('#client-menu-button')) {

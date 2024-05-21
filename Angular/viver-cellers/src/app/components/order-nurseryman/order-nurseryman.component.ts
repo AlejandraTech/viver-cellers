@@ -17,17 +17,20 @@ export class OrderNurserymanComponent implements OnInit {
   successMessage: string = '';
   errorMessage: string = '';
 
+  // Constructor to inject dependencies and initialize the modify order form.
   constructor(private orderService: OrderService, private fb: FormBuilder) {
     this.modifyOrderForm = this.fb.group({
       status: ['', Validators.required]
     });
   }
 
+  // Lifecycle hook that runs after the component is initialized.
   ngOnInit(): void {
     this.loadNurserymanOrders();
     this.loadOrderStatuses();
   }
 
+  // Loads the orders of the nurseryman from the service.
   loadNurserymanOrders(): void {
     this.orderService.getNurserymanOrders().subscribe({
       next: (response) => {
@@ -39,6 +42,7 @@ export class OrderNurserymanComponent implements OnInit {
     });
   }
 
+  // Loads the order statuses from the service.
   loadOrderStatuses(): void {
     this.orderService.getOrderStatuses().subscribe({
       next: (response) => {
@@ -50,6 +54,7 @@ export class OrderNurserymanComponent implements OnInit {
     });
   }
 
+  // Shows the details of a specific order.
   showDetails(order: any): void {
     this.orderService.showOrderDetails(order.id).subscribe({
       next: (response) => {
@@ -62,6 +67,7 @@ export class OrderNurserymanComponent implements OnInit {
     });
   }
 
+  // Shows the modify form for a specific order.
   showModifyForm(order: any): void {
     this.selectedOrder = order;
     this.isModifyFormVisible = true;
@@ -70,6 +76,7 @@ export class OrderNurserymanComponent implements OnInit {
     });
   }
 
+  // Submits the modification form to update the order status.
   onSubmit(): void {
     if (this.modifyOrderForm.valid && this.selectedOrder) {
       const statusId = this.modifyOrderForm.get('status')?.value;
@@ -90,15 +97,18 @@ export class OrderNurserymanComponent implements OnInit {
     }
   }
 
+  // Cancels the modify form.
   cancelar(): void {
     this.isModifyFormVisible = false;
     this.selectedOrder = null;
   }
 
+  // Closes the error message.
   closeSuccessMessage(): void {
     this.successMessage = '';
   }
 
+  // Closes the error message.
   closeErrorMessage(): void {
     this.errorMessage = '';
   }

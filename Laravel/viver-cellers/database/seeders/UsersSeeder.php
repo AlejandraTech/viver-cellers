@@ -1,8 +1,10 @@
 <?php
+
 /**
  * @author: Alejandra Paz , Angel Rivera, Julia Prieto
  * Seeder class inserting the initial data of the table users
  */
+
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
@@ -58,6 +60,18 @@ class UsersSeeder extends Seeder
                 'dni' => null,
                 'lastname' => 'client1',
                 'email' => 'client1@gmail.com',
+                'password' => Hash::make('12345678'),
+                'rol' => 'client',
+                'address' => null,
+                'project_id_fk' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'client2',
+                'dni' => null,
+                'lastname' => 'client2',
+                'email' => 'client2@gmail.com',
                 'password' => Hash::make('12345678'),
                 'rol' => 'client',
                 'address' => null,

@@ -1,21 +1,40 @@
 <section class="bg-neutral-200 dark:bg-neutral-700 selection:bg-gray-300">
   <div class="container h-full p-10">
-    <div class="flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
+    <div
+      class="flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200"
+    >
       <div class="w-full">
         <div class="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
           <div class="g-0 lg:flex lg:flex-wrap">
-
             <!-- Right column container with background and description-->
-            <div class="flex items-center rounded-b-lg lg:w-6/12 lg:rounded-e-lg lg:rounded-bl-none"
-              style="background: linear-gradient(to right, #cb0000, #ab0000, #8b0000, #6b0000 )">
+            <div
+              class="flex items-center rounded-b-lg lg:w-6/12 lg:rounded-e-lg lg:rounded-bl-none"
+              style="
+                background: linear-gradient(
+                  to right,
+                  #cb0000,
+                  #ab0000,
+                  #8b0000,
+                  #6b0000
+                );
+              "
+            >
               <div class="px-4 py-6 text-white md:mx-6 md:p-12">
-                <h1 class="mb-6 text-2xl lg:text-3xl font-semibold flex items-center">
+                <h1
+                  class="mb-6 text-2xl lg:text-3xl font-semibold flex items-center"
+                >
                   Editar Perfil
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
-                    class="ml-2 lg:w-8 lg:h-8" style="fill: rgba(255, 255, 255, 1);">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    class="ml-2 lg:w-8 lg:h-8"
+                    style="fill: rgba(255, 255, 255, 1)"
+                  >
                     <path
-                      d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z">
-                    </path>
+                      d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"
+                    ></path>
                   </svg>
                 </h1>
               </div>
@@ -24,126 +43,230 @@
             <!-- Left column container-->
             <div class="px-4 md:px-0 lg:w-6/12">
               <div class="md:mx-6 md:p-12">
-                <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="max-w-md mx-auto mt-8 pt-6">
+                <form
+                  [formGroup]="profileForm"
+                  (ngSubmit)="onSubmit()"
+                  class="max-w-md mx-auto mt-8 pt-6"
+                >
                   <!-- name input -->
                   <div class="mb-4">
-                    <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nom</label>
-                    <input type="text" formControlName="name" id="name"
-                      class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm" placeholder="Nom">
+                    <label
+                      for="name"
+                      class="block text-gray-700 text-sm font-bold mb-2"
+                      >Nom</label
+                    >
+                    <input
+                      type="text"
+                      formControlName="name"
+                      id="name"
+                      class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                      placeholder="Nom"
+                    />
 
                     <!-- This field is required -->
-                    <div *ngIf="this.profileForm.get('name')?.errors?.['required'] &&
-                    this.profileForm.get('name')?.touched" class="text-red-500 text-xs italic">
+                    <div
+                      *ngIf="this.profileForm.get('name')?.errors?.['required'] &&
+                    this.profileForm.get('name')?.touched"
+                      class="text-red-500 text-xs italic"
+                    >
                       Aquest camp és obligatori.
                     </div>
 
                     <!-- MaxLength -->
-                    <div *ngIf="this.profileForm.get('name')?.errors?.['maxlength'] &&
-                  this.profileForm.get('name')?.touched" class="text-red-500 text-xs italic">
+                    <div
+                      *ngIf="this.profileForm.get('name')?.errors?.['maxlength'] &&
+                  this.profileForm.get('name')?.touched"
+                      class="text-red-500 text-xs italic"
+                    >
                       Aquest camp només pot contenir un màxim de 20 caràcters.
                     </div>
 
                     <!-- MinLength -->
-                    <div *ngIf="this.profileForm.get('name')?.errors?.['minlength'] &&
-                  this.profileForm.get('name')?.touched" class="text-red-500 text-xs italic">
+                    <div
+                      *ngIf="this.profileForm.get('name')?.errors?.['minlength'] &&
+                  this.profileForm.get('name')?.touched"
+                      class="text-red-500 text-xs italic"
+                    >
                       Aquest camp només pot contenir com a mínim 3 caràcters.
                     </div>
 
                     <!-- Only letters -->
-                    <div *ngIf="this.profileForm.get('name')?.errors?.['pattern'] &&
-                  this.profileForm.get('name')?.touched" class="text-red-500 text-xs italic">
+                    <div
+                      *ngIf="this.profileForm.get('name')?.errors?.['pattern'] &&
+                  this.profileForm.get('name')?.touched"
+                      class="text-red-500 text-xs italic"
+                    >
                       Només s'accepten lletres.
                     </div>
                   </div>
                   <!-- lastname input -->
                   <div class="mb-4">
-                    <label for="lastname" class="block text-gray-700 text-sm font-bold mb-2">Cognoms</label>
-                    <input type="text" formControlName="lastname" id="lastname"
-                      class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm" placeholder="Cognoms">
+                    <label
+                      for="lastname"
+                      class="block text-gray-700 text-sm font-bold mb-2"
+                      >Cognoms</label
+                    >
+                    <input
+                      type="text"
+                      formControlName="lastname"
+                      id="lastname"
+                      class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                      placeholder="Cognoms"
+                    />
 
                     <!-- This field is required -->
-                    <div *ngIf="this.profileForm.get('lastname')?.errors?.['required'] &&
-                   this.profileForm.get('lastname')?.touched" class="text-red-500 text-xs italic">
+                    <div
+                      *ngIf="this.profileForm.get('lastname')?.errors?.['required'] &&
+                   this.profileForm.get('lastname')?.touched"
+                      class="text-red-500 text-xs italic"
+                    >
                       Aquest camp és obligatori.
                     </div>
 
                     <!-- MaxLength -->
-                    <div *ngIf="this.profileForm.get('lastname')?.errors?.['maxlength'] &&
-                   this.profileForm.get('lastname')?.touched" class="text-red-500 text-xs italic">
+                    <div
+                      *ngIf="this.profileForm.get('lastname')?.errors?.['maxlength'] &&
+                   this.profileForm.get('lastname')?.touched"
+                      class="text-red-500 text-xs italic"
+                    >
                       Aquest camp només pot contenir un màxim de 20 caràcters.
                     </div>
 
                     <!-- MinLength -->
-                    <div *ngIf="this.profileForm.get('lastname')?.errors?.['minlength'] &&
-                   this.profileForm.get('lastname')?.touched" class="text-red-500 text-xs italic">
+                    <div
+                      *ngIf="this.profileForm.get('lastname')?.errors?.['minlength'] &&
+                   this.profileForm.get('lastname')?.touched"
+                      class="text-red-500 text-xs italic"
+                    >
                       Aquest camp només pot contenir com a mínim 3 caràcters.
                     </div>
 
                     <!-- Only letters -->
-                    <div *ngIf="this.profileForm.get('lastname')?.errors?.['pattern'] &&
-                       this.profileForm.get('lastname')?.touched" class="text-red-500 text-xs italic">
+                    <div
+                      *ngIf="this.profileForm.get('lastname')?.errors?.['pattern'] &&
+                       this.profileForm.get('lastname')?.touched"
+                      class="text-red-500 text-xs italic"
+                    >
                       Només s'accepten lletres.
                     </div>
                   </div>
                   <!-- E-mail input -->
                   <div class="mb-4">
-                    <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Correu Electrònic</label>
-                    <input type="email" formControlName="email" id="email"
+                    <label
+                      for="email"
+                      class="block text-gray-700 text-sm font-bold mb-2"
+                      >Correu Electrònic</label
+                    >
+                    <input
+                      type="email"
+                      formControlName="email"
+                      id="email"
                       class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                      placeholder="Correu Electrònico">
+                      placeholder="Correu Electrònico"
+                    />
 
                     <!-- This field is required -->
-                    <div *ngIf="this.profileForm.get('email')?.errors?.['required'] &&
-                   this.profileForm.get('email')?.touched" class="text-red-500 text-xs italic">
+                    <div
+                      *ngIf="this.profileForm.get('email')?.errors?.['required'] &&
+                   this.profileForm.get('email')?.touched"
+                      class="text-red-500 text-xs italic"
+                    >
                       Aquest camp és obligatori.
                     </div>
 
                     <!-- Pattern -->
-                    <div *ngIf="this.profileForm.get('email')?.errors?.['pattern'] &&
-                   this.profileForm.get('email')?.touched" class="text-red-500 text-xs italic">
+                    <div
+                      *ngIf="this.profileForm.get('email')?.errors?.['pattern'] &&
+                   this.profileForm.get('email')?.touched"
+                      class="text-red-500 text-xs italic"
+                    >
                       Format invàlid.
                     </div>
                   </div>
                   <!-- Password input -->
                   <div class="mb-6">
-                    <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Contrasenya</label>
-                    <input type="password" formControlName="password" id="password"
+                    <label
+                      for="password"
+                      class="block text-gray-700 text-sm font-bold mb-2"
+                      >Contrasenya</label
+                    >
+                    <input
+                      type="password"
+                      formControlName="password"
+                      id="password"
                       class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                      placeholder="Contrasenya">
+                      placeholder="Contrasenya"
+                    />
 
                     <!-- This field is required -->
-                    <div *ngIf="this.profileForm.get('password')?.errors?.['required'] &&
-                    this.profileForm.get('password')?.touched" class="text-red-500 text-xs italic">
+                    <div
+                      *ngIf="this.profileForm.get('password')?.errors?.['required'] &&
+                    this.profileForm.get('password')?.touched"
+                      class="text-red-500 text-xs italic"
+                    >
                       Aquest camp és obligatori.
                     </div>
 
                     <!-- MinLength -->
-                    <div *ngIf="this.profileForm.get('password')?.errors?.['minlength'] &&
-                    this.profileForm.get('password')?.touched" class="text-red-500 text-xs italic">
+                    <div
+                      *ngIf="this.profileForm.get('password')?.errors?.['minlength'] &&
+                    this.profileForm.get('password')?.touched"
+                      class="text-red-500 text-xs italic"
+                    >
                       Aquest camp només pot contenir com a mínim 8 caràcters.
                     </div>
 
                     <!-- Pattern -->
                     <div
                       *ngIf="this.profileForm.get('password')?.errors?.['pattern'] && this.profileForm.get('password')?.touched"
-                      class="text-red-500 text-xs italic">
-                      La contrasenya ha de tenir almenys un dígit, almenys una minúscula, almenys una majúscula i
-                      almenys un
-                      caracter especial.
+                      class="text-red-500 text-xs italic"
+                    >
+                      La contrasenya ha de tenir almenys un dígit, almenys una
+                      minúscula, almenys una majúscula i almenys un caracter
+                      especial.
                     </div>
                   </div>
 
+                  <!-- Submit button -->
+                  <div class="mb-12 pb-1 pt-1 text-center">
+                    <button
+                      class="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-dark-3 transition duration-150 ease-in-out hover:shadow-dark-2 focus:shadow-dark-2 focus:outline-none focus:ring-0 active:shadow-dark-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
+                      type="submit"
+                      [disabled]="profileForm.invalid"
+                      data-twe-ripple-init
+                      data-twe-ripple-color="light"
+                      style="
+                        background: linear-gradient(
+                          to right,
+                          #6b0000,
+                          #8b0000,
+                          #ab0000,
+                          #cb0000
+                        );
+                      "
+                    >
+                      Modificar
+                    </button>
+                  </div>
+                  <br>
                   <!-- Success Message -->
                   <div
                     class="bg-green-50 border border-green-400 rounded text-green-800 text-sm p-4 flex justify-between"
-                    *ngIf="successMessage">
+                    *ngIf="successMessage"
+                  >
                     <div>
                       <div class="flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20"
-                          fill="currentColor">
-                          <path fill-rule="evenodd"
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-4 w-4 mr-2"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fill-rule="evenodd"
                             d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                            clip-rule="evenodd" />
+                            clip-rule="evenodd"
+                          />
                         </svg>
                         <p>
                           <span class="font-bold">Info:</span>
@@ -152,25 +275,27 @@
                       </div>
                     </div>
                     <div>
-                      <svg (click)="closeSuccessMessage()" xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M6 18L18 6M6 6l12 12" />
+                      <svg
+                        (click)="closeSuccessMessage()"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6 cursor-pointer"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M6 18L18 6M6 6l12 12"
+                        />
                       </svg>
                     </div>
                   </div>
 
                   <!-- Error message -->
-                  <div class="text-red-500 text-sm mt-4" *ngIf="errorMessage">{{ errorMessage }}</div>
-
-                  <!-- Submit button -->
-                  <div class="mb-12 pb-1 pt-1 text-center">
-                    <button
-                      class="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-dark-3 transition duration-150 ease-in-out hover:shadow-dark-2 focus:shadow-dark-2 focus:outline-none focus:ring-0 active:shadow-dark-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
-                      type="submit" [disabled]="profileForm.invalid" data-twe-ripple-init data-twe-ripple-color="light"
-                      style="background: linear-gradient(to right, #6b0000, #8b0000, #ab0000, #cb0000);">
-                      Inicieu sessió
-                    </button>
+                  <div class="text-red-500 text-sm mt-4" *ngIf="errorMessage">
+                    {{ errorMessage }}
                   </div>
                 </form>
               </div>
