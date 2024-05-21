@@ -74,9 +74,17 @@ class ProjectController extends Controller
             ]);
 
             // add project to database
-            $data = Project::create($request->all());
+            //$data = Project::create($request->all());
 
-            return response()->json(['message' => 'Project created successfully'], 200);
+            $data = Project::create([
+                'project_name' => $request->input('project_name'),
+                'definition' => $request->input('definition'),
+                'description' => $request->input('description'),
+                'stories' => $request->input('stories'),
+                'logo_path' => 'assets/img/generales/default.png',
+            ]);
+            return ApiResponse::success('Project created successfully', 200, $data);
+            //return response()->json(['message' => 'Project created successfully'], 200, $data);
         } catch (ValidationException $e) {
             return ApiResponse::error('Error creating the project: ' . $e->getMessage(), 422);
         }

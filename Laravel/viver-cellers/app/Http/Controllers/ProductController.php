@@ -127,6 +127,7 @@ class ProductController extends Controller
                 'id_vineyard_area_fk' => $vineyardArea->id,
                 'id_type_wine_fk' => $typeWine->id,
                 'id_type_variety_fk' => $typeVariety->id,
+                'image_path' => 'assets/img/generales/default.png',
             ]);
 
             return ApiResponse::success('Product created successfully', 200, $product);

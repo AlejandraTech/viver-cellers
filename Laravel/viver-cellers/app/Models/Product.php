@@ -17,6 +17,7 @@ class Product extends Model
     // Array containing the fields that can be assigned with a value from the application
     protected $fillable = [
         'id_vineyard_area_fk',
+        'image_path',
         'name',
         'winemaking',
         'grade_alcohol',
