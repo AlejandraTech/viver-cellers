@@ -1,3 +1,18 @@
 <app-header></app-header>
+<div *ngIf="showBanner" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
+  <div class="bg-white p-6 rounded-lg shadow-lg text-center max-w-md mx-auto">
+    <h2 class="text-2xl font-bold mb-4 text-gray-800">Gestió de Cookies</h2>
+    <p class="mb-4 text-gray-700">Utilitzem cookies per millorar la teva experiència al nostre lloc web. Acceptes totes
+      les cookies?</p>
+    <div class="flex space-x-4 justify-center">
+      <button (click)="acceptAllCookies()"
+        class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-700 transition duration-300">Acceptar
+        Tot</button>
+      <button (click)="acceptNecessaryCookies()"
+        class="px-4 py-2 bg-red-300 text-white rounded-md hover:bg-red-600 transition duration-300">Acceptar Només
+        Necessàries</button>
+    </div>
+  </div>
+</div>
 <router-outlet></router-outlet>
 <app-footer></app-footer>

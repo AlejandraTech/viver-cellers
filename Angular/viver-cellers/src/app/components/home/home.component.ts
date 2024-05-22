@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/models/Project';
-import { CookiesService } from 'src/app/services/cookies.service';
 import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
@@ -10,9 +9,8 @@ import { ProjectService } from 'src/app/services/project.service';
 })
 export class HomeComponent implements OnInit {
   projects: Project[] = [];
-  showBanner: boolean = true;
 
-  constructor(private projectService: ProjectService, private myCookieService: CookiesService) { }
+  constructor(private projectService: ProjectService) { }
 
   /**
    * Load the projects
@@ -23,10 +21,6 @@ export class HomeComponent implements OnInit {
    */
   ngOnInit(): void {
     this.loadProjects();
-
-    if (this.myCookieService.checkCookie('cookieConsent')) {
-      this.showBanner = false;
-    }
   }
 
   /*
@@ -45,25 +39,5 @@ export class HomeComponent implements OnInit {
         console.error('Error fetching products: ', error);
       }
     );
-  }
-
-  /*
-    * Accept all cookies and capture data
-    * Call the `acceptAllCookiesAndCaptureData` method of the `myCookieService` service to accept all cookies.
-    * Set `showBanner` to `false` to hide the banner after accepting all cookies.
-  */
-  acceptAllCookies(): void {
-    this.myCookieService.acceptAllCookiesAndCaptureData();
-    this.showBanner = false;
-  }
-
-  /*
-    * Accept only necessary cookies and capture data
-    * Call the `acceptNecessaryCookiesAndCaptureData` method of the `myCookieService` service to accept only necessary cookies.
-    * Set `showBanner` to `false` to hide the banner after accepting necessary cookies.
-  */
-  acceptNecessaryCookies(): void {
-    this.myCookieService.acceptNecessaryCookiesAndCaptureData();
-    this.showBanner = false;
   }
 }
