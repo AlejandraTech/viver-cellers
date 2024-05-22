@@ -13,7 +13,7 @@ export class CartComponent implements OnInit {
   cart: Product[] = []; // Array to store product
   isCartEmpty: boolean = true; //Variable that checks if the carriage is empty
   totalItems: number = 0; //Variable that counts the total products in the shopping cart
-
+  errorMessage: string = 'No hi ha productes a la cistella, si us plau seleccioni productes a la botiga.';
 
   constructor(private cartService: CartService, private router: Router) { }
 
@@ -97,4 +97,10 @@ export class CartComponent implements OnInit {
   clearCart(): void {
     this.cartService.clearCart();
   }
+
+  // Closes the error message.
+  closeErrorMessage(): void {
+    this.errorMessage = '';
+  }
+
 }

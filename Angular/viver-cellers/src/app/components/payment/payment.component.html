@@ -48,6 +48,12 @@
           Aquest camp és obligatori.
         </div>
 
+        <!-- MaxLength -->
+        <div *ngIf="this.payment.get('street')?.errors?.['maxlength'] && this.payment.get('street')?.touched"
+          class="text-red-500 text-xs italic">
+          Aquest camp només pot contenir com a màxim 20 caràcters.
+        </div>
+
         <!-- MinLength -->
         <div *ngIf="this.payment.get('street')?.errors?.['minlength'] &&
         this.payment.get('street')?.touched" class="text-red-500 text-xs italic">

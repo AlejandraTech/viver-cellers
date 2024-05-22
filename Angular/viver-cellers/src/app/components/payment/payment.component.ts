@@ -38,8 +38,8 @@ export class PaymentComponent implements OnInit {
     this.initStripe();
 
     this.payment = new FormGroup({
-      city: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$")]),
-      street: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$")]),
+      city: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚàèìòùÀÈÌÒÙçÇ'° ]+$")]),
+      street: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚàèìòùÀÈÌÒÙçÇ'° ]+$")]),
       streetNumber: new FormControl('', [Validators.required, Validators.pattern(/^\d+$/)]),
       apartmentNumber: new FormControl('', [Validators.pattern(/^\d+ \d+$/)]),
       postalCode: new FormControl('', [Validators.required, Validators.pattern(/^\d{5}$/)]),

@@ -19,7 +19,7 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.pattern("^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$")]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8)])
+      password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/)])
     });
   }
 
@@ -42,11 +42,11 @@ export class LoginComponent {
           localStorage.setItem('user_id', response.user.id);
           localStorage.setItem('user_name', response.user.name);
           localStorage.setItem('user_rol', response.user.rol);
-           // Recarga la página después de iniciar sesión exitosamente
+          // Recarga la página después de iniciar sesión exitosamente
           location.reload();
         },
         error => {
-           // Si hay un error en la solicitud de inicio de sesión
+          // Si hay un error en la solicitud de inicio de sesión
           if (error.status === 401) {
             this.errorMessage = 'Correu electrònic o contrasenya incorrectes';
           } else {

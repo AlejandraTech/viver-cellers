@@ -83,14 +83,14 @@ export class OrderNurserymanComponent implements OnInit {
       this.orderService.updateOrderStatus(this.selectedOrder.id, statusId).subscribe({
         next: (response) => {
           console.log('Order status updated successfully', response);
-          this.successMessage = 'Perfil actualitzat amb exit';
+          this.successMessage = 'Ordre actualitzat amb exit';
           this.errorMessage = '';
           this.isModifyFormVisible = false;
           this.loadNurserymanOrders();
         },
         error: (error) => {
           console.error('Error updating order status', error);
-          this.errorMessage = "Error en actualitzar el perfil. Si us plau, torna-ho a intentar més tard";
+          this.errorMessage = "Error en actualitzar l'ordre. Si us plau, torna-ho a intentar més tard";
           this.successMessage = '';
         }
       });
