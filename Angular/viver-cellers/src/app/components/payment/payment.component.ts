@@ -31,26 +31,12 @@ export class PaymentComponent implements OnInit {
   constructor(private paymentService: PaymentService, private cartService: CartService, private router: Router) { }
 
   ngOnInit(): void {
-    /*
-      * Subscribe to changes to cart items
-      * Subscribes to `cartItems$`, an observable that emits the cart items.
-      * Updates the `this.cart` property with the items emitted by the observable.
-    */
     this.cartService.cartItems$.subscribe(items => {
       this.cart = items;
     });
 
-    /*
-     * Initialize Stripe.js when the component is initialized
-     * Call the `initStripe` method to initialize the Stripe.js library.
-     */
     this.initStripe();
 
-    /**
-     * Create a group of forms for payment information
-     * A `FormGroup` called `payment` is created that groups several form controls (`FormControl`).
-     * Each form control has specific validations using `Validators`.
-     */
     this.payment = new FormGroup({
       city: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$")]),
       street: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern("^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$")]),
@@ -59,6 +45,7 @@ export class PaymentComponent implements OnInit {
       postalCode: new FormControl('', [Validators.required, Validators.pattern(/^\d{5}$/)]),
     });
   }
+
 
   async initStripe() {
     // Load Stripe.js library
