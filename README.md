@@ -1,103 +1,59 @@
-# Viver de Cellers 🍷
+# 🍷 Viver de Cellers 
 
-The web development project for the Viver de Cellers del Penedés is a collaborative initiative between the City Council of Vilafranca del Penedés, the Alt Penedés County Council, the Denominació d’Origen Penedès, and the Barcelona Provincial Council. Its purpose is to promote and support wine-related initiatives in the renowned Catalan territory of Penedés.
+The **Viver de Cellers del Penedés** web project is a collaborative initiative aimed at promoting and supporting winemaking projects in the prestigious Catalan region of Penedés. This joint effort involves the Vilafranca del Penedés Town Hall, the Consell Comarcal Alt Penedés, the Denominació d’Origen Penedès, and the Diputació de Barcelona.
 
-This nursery involves the participation of various local wineries, such as Heretat Can Serra, Mulet Viticultors, Vins de Sinergia, Vins Gèniu, Joan Grill, Amat i Montané, and Heretat Baltà de Cela.
+---
 
-## Functional Requirements 📊
+### 🗂️ Index
 
-- **Home Page**:
-  - Attractive presentation of the nursery with suggestive images and a brief summary of its purpose and values.
-  - Navigation menu providing quick access to main sections like "Nursery," "Services," "Who can be a nursery member?," "Nursery regulations," "PECT," and "Projects."
+| Section                                      | Description                                                                      |
+|----------------------------------------------|----------------------------------------------------------------------------------|
+| [📄 Project Description](#project-description) | Introduction to Viver de Cellers and its mission in the Penedés region.             |
+| [📊 Functional Requirements](#functional-requirements) | Main functionalities and sections of the web application.                     |
+| [🛠️ Technologies and Tools](#technologies-and-tools) | Tools and technologies used in the platform development.           |
 
-- **Nursery Section**:
-  - Detailed information about facilities and services, including photos and videos.
-  - Gallery of images and videos to provide a comprehensive view of the place.
+---
 
-- **Services Section**:
-  - Offering technical advice, events, and workshops.
+## 📌 Project Description
 
-- **Who can be a nursery member?**:
-  - Specification of requirements for those interested in becoming nursery members.
-<!--- Including a request form to simplify the application process. --->
+The **Viver de Cellers del Penedés** is a key initiative that aims to foster the development of local viticulture. The nursery has the collaboration of multiple local wineries, including Heretat Can Serra, Mulet Viticultors, Vins de Sinergia, Vins Gèniu, Joan Grill, Amat i Montané, and Heretat Baltà de Cela. The main goal of this project is to provide a support and promotion platform for these wineries, highlighting the quality and winemaking tradition of the Penedés.
 
-- **Nursery Regulations**:
-  - Presentation of the nursery's internal regulations, including rules of coexistence and facility usage.
+> **Objective**: Support and enhance local winemaking initiatives through an interactive, content-rich web platform.
 
-- **PECT Section**:
-  - Details about the Territorial Connectivity Strategic Plan (PECT), including objectives, actions, and expected outcomes.
+---
 
-- **Projects Section**:
-  - List of ongoing projects in the nursery, with titles, descriptions, objectives, and expected results.
-  - Links to project websites and social media pages (if available).
+## 📊 Functional Requirements
 
-- **Shop**:
-  - Option for online purchase of nursery products.
-<!--- Offering a wide range of filters to facilitate product search, such as producer, variety, wine type, price, and format. --->
+| Section                              | Description                                                                 |
+|--------------------------------------|-----------------------------------------------------------------------------|
+| **Home Page**                        | Attractive presentation with images and a summary of the nursery's purpose and values. |
+| **Nursery Section**                  | Detailed information about facilities and services, including a multimedia gallery. |
+| **Services Section**                 | Offering technical advice, events, and workshops for nursery members.       |
+| **Who Can Be a Nurseryman?**         | Details about the requirements to become a member and how to apply.        |
+| **Nursery Regulations**              | Rules of coexistence and use of the facilities.                            |
+| **PECT Section**                     | Information about the Strategic Plan for Territorial Connectivity (PECT).   |
+| **Projects Section**                 | List and description of ongoing projects, with links to additional resources. |
+| **Store**                            | Option for online purchase of nursery products.                            |
 
-## Technologies and Tools 🛠️
+---
 
-- **Programming Languages:** JavaScript for client-side logic, PHP for the backend.
-  
-- **Frameworks:** Angular for the client-side, Laravel for the backend. Integration of Tailwind CSS for design and styling.
+## 🛠️ Technologies and Tools
 
-- **Database:** MySQL for managing the project's database.
+| Category                   | Tool                                                   |
+|-----------------------------|---------------------------------------------------------------|
+| **Programming Languages** | <img src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-thebadge&logo=javascript&logoColor=%23F7DF1E" alt="JavaScript Badge"/> (frontend), <img src="https://img.shields.io/badge/php-%23777BB4.svg?style=for-thebadge&logo=php&logoColor=white" alt="PHP Badge"/> (backend) |
+| **Frameworks**              | <img src="https://img.shields.io/badge/angular-%23DD0031.svg?style=for-thebadge&logo=angular&logoColor=white" alt="Angular Badge"/> (client), <img src="https://img.shields.io/badge/laravel-%23FF2D20.svg?style=for-thebadge&logo=laravel&logoColor=white" alt="Laravel Badge"/> (server), <img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-thebadge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS Badge"/> (styling) |
+| **Database**                | <img src="https://img.shields.io/badge/mysql-%234479A1.svg?style=for-thebadge&logo=mysql&logoColor=white" alt="MySQL Badge"/> |
+| **Dependency Management**   | <img src="https://img.shields.io/badge/npm-%23CB3837.svg?style=for-thebadge&logo=npm&logoColor=white" alt="npm Badge"/> (JavaScript), <img src="https://img.shields.io/badge/composer-%23888888.svg?style=for-thebadge&logo=composer&logoColor=white" alt="Composer Badge"/> (PHP) |
+| **Markup Languages**        | <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-thebadge&logo=html5&logoColor=white" alt="HTML5 Badge"/>, <img src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-thebadge&logo=css3&logoColor=white" alt="CSS3 Badge"/> |
+| **Management and Development Tools** | <img src="https://img.shields.io/badge/youtrack-%23006EFF.svg?style=for-thebadge&logo=youtrack&logoColor=white" alt="YouTrack Badge"/> (task tracking), <img src="https://img.shields.io/badge/github-%23121011.svg?style=for-thebadge&logo=github&logoColor=white" alt="GitHub Badge"/> (repository), <img src="https://img.shields.io/badge/visual%20studio%20code-%23007ACC.svg?style=for-thebadge&logo=visual-studio-code&logoColor=white" alt="Visual Studio Code Badge"/> (IDE) |
 
-- **Dependencies:** npm for JavaScript, Composer for PHP.
+---
 
-- **Markup Languages:** HTML5 and CSS for website structure and presentation.
+## Author 👩‍💻
 
-- **Management and Development Tools:** YouTrack for task tracking and management, GitHub as the main platform for hosting the project repository and collaborating on development. Visual Studio Code for code writing, debugging, and version management.
+This project was created by [**Alejandra**](https://github.com/AlejandraTech), [**Julia**](https://github.com/Julia-1997) and [**Angel**](https://github.com/DarkAng10).
 
-<!---
-# Viver de Cellers 🍷
+---
 
-El proyecto de desarrollo web para el Vivero de Cellers del Penedés es una iniciativa colaborativa entre el Ayuntamiento de Vilafranca del Penedés, el Consell Comarcal Alt Penedés, la Denominació d’Origen Penedès y la Diputació de Barcelona. Su propósito es impulsar y respaldar iniciativas vitivinícolas en el reconocido territorio catalán del Penedés.
-
-Este vivero cuenta con la participación de diversas bodegas locales, como Heretat Can Serra, Mulet Viticultors, Vins de Sinergia, Vins Gèniu, Joan Grill, Amat i Montané y Heretat Baltà de Cela.
-
-## Requisitos Funcionales:
-
-- **Página de Inicio**:
-  - Presentación atractiva del vivero con imágenes sugestivas y resumen breve de su propósito y valores.
-  - Menú de navegación con acceso rápido a secciones principales como "Vivero", "Servicios", "¿Quién puede ser viverista?", "Reglamento del vivero", "PECT" y "Proyectos".
-
-- **Sección Vivero**:
-  - Información detallada sobre instalaciones y servicios, con fotos y vídeos.
-  - Galería de imágenes y vídeos para ofrecer una vista completa del lugar.
-
-- **Sección Servicios**:
-  - Ofrecer asesoramiento técnico, eventos y talleres.
-
-- **¿Quién puede ser viverista?**:
-  - Especificación de requisitos para interesados en ser viveristas.
-  - Incluir un formulario de solicitud para simplificar el proceso de solicitud. 
-
-- **Reglamento del vivero**:
-  - Presentación del reglamento interno del vivero, incluyendo normas de convivencia y uso de instalaciones.
-
-- **Sección PECT**:
-  - Detalles sobre el Plan Estratégico de Conectividad Territorial (PECT), con objetivos, acciones y resultados esperados.
-
-- **Sección Proyectos**:
-  - Lista de proyectos en desarrollo en el vivero, con títulos, descripciones, objetivos y resultados esperados.
-  - Enlaces a las páginas web de los proyectos y redes sociales (si están disponibles).
-
-- **Tienda**:
-  - Posibilidad de compra en línea de productos del vivero.
-  - Ofrecer una amplia gama de filtros para facilitar la búsqueda de productos, como elaborador, variedad, tipo de vino, precio y formato.
-
-## Tecnologías y Herramientas:
-
-- **Lenguajes de programación:** JavaScript para la lógica del cliente, PHP para el backend.
-  
-- **Frameworks:** Angular para la parte del cliente, Laravel para el backend. Integración de Tailwind CSS para diseño y estilizado.
-
-- **Base de datos:** MySQL para gestionar la base de datos del proyecto.
-
-- **Dependencias:** npm para JavaScript, Composer para PHP.
-
-- **Lenguajes de marca:** HTML5 y CSS para estructura y presentación de páginas web.
-
-- **Herramientas de gestión y desarrollo:** YouTrack para seguimiento y gestión de tareas, GitHub como plataforma principal para alojar el repositorio del proyecto y colaborar en el desarrollo. Visual Studio Code para escritura de código, debugging y gestión de versiones.
---->
+The **Viver de Cellers del Penedés** offers a complete digital experience for those interested in Penedés viticulture, integrating technology and content to promote and support the region's winemaking initiatives.
