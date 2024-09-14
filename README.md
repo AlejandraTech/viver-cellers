@@ -50,7 +50,7 @@ The **Viver de Cellers del Penedés** is a key initiative that aims to foster th
 
 ---
 
-## Author 👩‍💻
+## 👩‍💻 Author
 
 This project was created by [**Alejandra**](https://github.com/AlejandraTech), [**Julia**](https://github.com/Julia-1997) and [**Angel**](https://github.com/DarkAng10).
 
